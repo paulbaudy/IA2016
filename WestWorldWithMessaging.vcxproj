@@ -45,7 +45,7 @@
     <OutDir>.\Debug\</OutDir>
     <IntDir>.\Debug\</IntDir>
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\Paul\Desktop\IA\VS2010\Common;$(IncludePath)</IncludePath>
+    <IncludePath>Common;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>.\Release\</OutDir>
@@ -128,7 +128,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Common\Time\CrudeTimer.cpp" />
+    <ClCompile Include="Common\Time\CrudeTimer.cpp" />
     <ClCompile Include="BaseGameEntity.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="main.cpp" />
