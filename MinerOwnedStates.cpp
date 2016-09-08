@@ -9,6 +9,8 @@
 #include "EntityNames.h"
 
 #include <iostream>
+#include <string>
+#include <sstream>
 using std::cout;
 
 
@@ -68,8 +70,10 @@ void EnterMineAndDigForNugget::Execute(Miner* pMiner)
 
 void EnterMineAndDigForNugget::Exit(Miner* pMiner)
 {
-  cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " 
+	std::stringstream ss;
+  ss << "\n" << GetNameOfEntity(pMiner->ID()) << ": " 
        << "Ah'm leavin' the goldmine with mah pockets full o' sweet gold";
+  cout << ss.str();
 }
 
 

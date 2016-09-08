@@ -1,5 +1,6 @@
 #include <fstream>
 #include <time.h>
+#include <thread>
 
 #include "Locations.h"
 #include "Miner.h"
@@ -11,6 +12,10 @@
 
 
 std::ofstream os;
+
+void doUpdate(BaseGameEntity* entity) {
+	entity->Update();
+}
 
 int main()
 {
@@ -32,11 +37,21 @@ int main()
   EntityMgr->RegisterEntity(Bob);
   EntityMgr->RegisterEntity(Elsa);
 
+  // Create threads for agents
+  std::thread t_Bob;
+  std::thread t_Elsa;
+
   //run Bob and Elsa through a few Update calls
   for (int i=0; i<30; ++i)
   { 
-    Bob->Update();
-    Elsa->Update();
+
+    //Bob->Update();
+    //Elsa->Update();
+	  t_Bob = std::thread(doUpdate, Bob);
+	  t_Elsa = std::thread(doUpdate, Elsa);
+	 
+	  t_Bob.join();
+	  t_Elsa.join();
 
     //dispatch any delayed messages
     Dispatch->DispatchDelayedMessages();

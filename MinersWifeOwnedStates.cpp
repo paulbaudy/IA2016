@@ -8,6 +8,8 @@
 #include "EntityNames.h"
 
 #include <iostream>
+#include <string>
+#include <sstream>
 using std::cout;
 
 #ifdef TEXTOUTPUT
@@ -124,7 +126,9 @@ VisitBathroom* VisitBathroom::Instance()
 
 void VisitBathroom::Enter(MinersWife* wife)
 {  
-  cout << "\n" << GetNameOfEntity(wife->ID()) << ": Walkin' to the can. Need to powda mah pretty li'lle nose"; 
+	std::stringstream ss;
+  ss << "\n" << GetNameOfEntity(wife->ID()) << ": Walkin' to the can. Need to powda mah pretty li'lle nose"; 
+  cout << ss.str();
 }
 
 
