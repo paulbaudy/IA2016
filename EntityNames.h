@@ -6,8 +6,9 @@
 enum 
 {
   ent_Miner_Bob,
-
-  ent_Elsa
+  ent_Elsa,
+  //Add by Elo -- TODO remove
+  ent_Miner_John
 };
 
 inline std::string GetNameOfEntity(int n)
@@ -21,6 +22,11 @@ inline std::string GetNameOfEntity(int n)
   case ent_Elsa:
     
     return "Elsa"; 
+
+  //Add by Elo -- TODO remove
+  case ent_Miner_John:
+
+	  return "Miner John";
 
   default:
 

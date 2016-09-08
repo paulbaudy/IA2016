@@ -28,15 +28,22 @@ int main()
   //create his wife
   MinersWife* Elsa = new MinersWife(ent_Elsa);
 
+  //Add by Elo -- TODO remove
+  Miner* John = new Miner(ent_Miner_John);
+
   //register them with the entity manager
   EntityMgr->RegisterEntity(Bob);
   EntityMgr->RegisterEntity(Elsa);
+  //Add by Elo -- TODO remove
+  EntityMgr->RegisterEntity(John);
 
   //run Bob and Elsa through a few Update calls
   for (int i=0; i<30; ++i)
   { 
     Bob->Update();
     Elsa->Update();
+	//Add by Elo -- TODO remove
+	John->Update();
 
     //dispatch any delayed messages
     Dispatch->DispatchDelayedMessages();
@@ -47,6 +54,9 @@ int main()
   //tidy up
   delete Bob;
   delete Elsa;
+
+  //Add by Elo -- TODO remove
+  delete John;
 
   //wait for a keypress before exiting
   PressAnyKeyToContinue();
