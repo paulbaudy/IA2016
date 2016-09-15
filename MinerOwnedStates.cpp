@@ -230,30 +230,136 @@ void QuenchThirst::Enter(Miner* pMiner)
     pMiner->ChangeLocation(saloon);
 
     cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Boy, ah sure is thusty! Walking to the saloon";
+
+	//let the waitress know I'm here
+	/* Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY, //time delay
+		pMiner->ID(),        //ID of sender
+		ent_Elsa,            //ID of recipient
+		Msg_HiHoneyImHome,   //the message
+		NO_ADDITIONAL_INFO); */ 
+
+	Dispatch->DispatchMessage(1.5, //time delay
+		pMiner->ID(),        //ID of sender
+		pMiner->ID(),            //ID of recipient
+		Msg_WaitingForDrink,   //the message
+		NO_ADDITIONAL_INFO);
   }
 }
 
 void QuenchThirst::Execute(Miner* pMiner)
 {
-  pMiner->BuyAndDrinkAWhiskey();
+	// pMiner->BuyAndDrinkAWhiskey();
 
-  cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "That's mighty fine sippin' liquer";
+	// cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "That's mighty fine sippin' liquer";
+	
+	// pMiner->GetFSM()->ChangeState(EnterMineAndDigForNugget::Instance());
 
-  pMiner->GetFSM()->ChangeState(EnterMineAndDigForNugget::Instance());  
+	cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Still waiting for Jess...";
+
 }
 
 
 void QuenchThirst::Exit(Miner* pMiner)
 { 
-  cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Leaving the saloon, feelin' good";
+	if (!pMiner->Thirsty()) {
+		cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Leaving the saloon, feelin' good";
+	}
 }
 
 
 bool QuenchThirst::OnMessage(Miner* pMiner, const Telegram& msg)
 {
-  //send msg to global message handler
-  return false;
+	SetTextColor(BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+
+	switch (msg.Msg)
+	{
+	case Msg_HoneyImHere:
+
+		cout << "\nMessage handled by " << GetNameOfEntity(pMiner->ID())
+			<< " at time: " << Clock->GetCurrentTime();
+
+		SetTextColor(FOREGROUND_RED | FOREGROUND_INTENSITY);
+
+		cout << "\n" << GetNameOfEntity(pMiner->ID())
+			<< ": Oh, hello'!";
+
+		pMiner->GetFSM()->ChangeState(InteractWithWaitress::Instance());
+
+		return true;
+
+	case Msg_WaitingForDrink:
+		cout << "\nMessage handled by " << GetNameOfEntity(pMiner->ID())
+			<< " at time: " << Clock->GetCurrentTime();
+
+		SetTextColor(FOREGROUND_RED | FOREGROUND_INTENSITY);
+
+		pMiner->BuyAndDrinkAWhiskey();
+
+		cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "That's mighty fine sippin' liquer"; // TODO : changer
+
+		pMiner->GetFSM()->ChangeState(EnterMineAndDigForNugget::Instance());
+	}//end switch
+
+	return false; //send message to global message handler
 }
+
+//------------------------------------------------------------------------InteractWithWaitress
+
+InteractWithWaitress* InteractWithWaitress::Instance() {
+	static InteractWithWaitress instance;
+
+	return &instance;
+}
+
+void InteractWithWaitress::Enter(Miner* pMiner) {
+	cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Can I have a drink?"; // TODO
+}
+
+void InteractWithWaitress::Execute(Miner* pMiner) {
+
+}
+
+void InteractWithWaitress::Exit(Miner* pMiner) {
+
+}
+
+bool InteractWithWaitress::OnMessage(Miner* pMiner, const Telegram& msg) {
+	SetTextColor(BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+
+	switch (msg.Msg)
+	{
+	case Msg_MaybeNextTime:
+
+		cout << "\nMessage handled by " << GetNameOfEntity(pMiner->ID())
+			<< " at time: " << Clock->GetCurrentTime();
+
+		SetTextColor(FOREGROUND_RED | FOREGROUND_INTENSITY);
+
+		cout << "\n" << GetNameOfEntity(pMiner->ID())
+			<< ": Okay Hun, see ya'!";
+
+		pMiner->GetFSM()->RevertToPreviousState();
+
+		return true;
+		
+	case Msg_SeeYouSoon:
+		cout << "\nMessage handled by " << GetNameOfEntity(pMiner->ID())
+			<< " at time: " << Clock->GetCurrentTime();
+
+		SetTextColor(FOREGROUND_RED | FOREGROUND_INTENSITY); // TODO : regrouper les deux premières lignes au dessus des cases?
+
+		cout << "\n" << GetNameOfEntity(pMiner->ID())
+			<< ": Okay Hun, see ya'!"; // TODO : msg
+
+		pMiner->GetFSM()->ChangeState(VisitBankAndDepositGold::Instance());
+
+		return true;
+
+	}//end switch
+
+	return false; //send message to global message handler
+}
+
 
 //------------------------------------------------------------------------EatStew
 

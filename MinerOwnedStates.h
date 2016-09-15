@@ -142,6 +142,33 @@ public:
   virtual bool OnMessage(Miner* agent, const Telegram& msg);
 };
 
+//------------------------------------------------------------------------
+//
+//  TODO : description
+//  
+//------------------------------------------------------------------------
+class InteractWithWaitress : public State<Miner> 
+{
+private:
+	InteractWithWaitress() {}
+
+	//copy ctor and assignment should be private
+	InteractWithWaitress(const InteractWithWaitress&);
+	InteractWithWaitress& operator=(const InteractWithWaitress&);
+public:
+
+	//this is a singleton
+	static InteractWithWaitress* Instance();
+
+	virtual void Enter(Miner* miner);
+
+	virtual void Execute(Miner* miner);
+
+	virtual void Exit(Miner* miner);
+
+	virtual bool OnMessage(Miner* agent, const Telegram& msg);
+};
+
 
 //------------------------------------------------------------------------
 //

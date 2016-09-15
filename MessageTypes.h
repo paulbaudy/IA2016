@@ -7,6 +7,10 @@ enum message_type
 {
   Msg_HiHoneyImHome,
   Msg_StewReady,
+  Msg_HoneyImHere,
+  Msg_WaitingForDrink,
+  Msg_MaybeNextTime,
+  Msg_SeeYouSoon,
 };
 
 
@@ -21,6 +25,18 @@ inline std::string MsgToStr(int msg)
   case Msg_StewReady:
     
     return "StewReady";
+
+  case Msg_HoneyImHere:
+	  return "Hello honey, I'm here!";
+
+  case Msg_WaitingForDrink:
+	  return "I've waited way too long.";
+
+  case Msg_MaybeNextTime:
+	  return "Well. Maybe next time then..";
+
+  case Msg_SeeYouSoon:
+	  return "Thanks, see you soon.";
 
   default:
 
