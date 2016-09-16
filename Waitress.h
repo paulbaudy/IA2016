@@ -20,14 +20,16 @@
 #include "WaitressOwnedStates.h"
 #include "fsm/StateMachine.h"
 
+#include "misc/Utils.h"
+
 template <class entity_type> class State; //pre-fixed with "template <class entity_type> " for vs8 compatibility
 
 struct Telegram;
 
 //bellow this value a waitress looks bad
-const int BeautyLevel = 3;
+const int SweatLevel = 4; //TODO voir si on change valeur
 //above this value a waitress is bored
-const int BoredomLevel = 3;
+const int BoredomLevel = 5;
 
 
 class Waitress : public BaseGameEntity
@@ -42,8 +44,8 @@ private:
 	//how many nuggets the waitress has in her pockets
 	int                   m_iGoldTips;
 
-	//the higher the value, the more pretty the waitress
-	int                   m_iBeauty;
+	//the higher the value, the sweatier the waitress
+	int                   m_iSweat;
 
 	//the higher the value, the more bored the waitress
 	int                   m_iBoredom;
@@ -52,7 +54,7 @@ public:
 
 	Waitress(int id) :m_Location(saloon),
 		m_iGoldTips(0),
-		m_iBeauty(5),
+		m_iSweat(0),
 		m_iBoredom(0),
 		BaseGameEntity(id)
 
@@ -85,13 +87,15 @@ public:
 	void          SetGoldTips(int val) { m_iGoldTips = val; }
 	void          AddToGoldTips(int val);
 
-	bool		  isPretty()const;
-	void		  DecreaseBeauty() { m_iBeauty -= 1; }
-	void		  IncreaseBeauty() { m_iBeauty += 1; }
+	bool		  isSweaty()const;
+	void		  DecreaseSweat() { m_iSweat -= 1; } //TODO voir si on change de valeur
+	void		  IncreaseSweat() { m_iSweat += 1; }
+	void		  SetSweat(int val) { m_iSweat = val; }
 
 	bool          isBored()const;
 	void          DecreaseBoredom() { m_iBoredom -= 1; }
 	void          IncreaseBoredom() { m_iBoredom += 1; }
+	void		  SetBoredom(int val) { m_iBoredom = val; }
 
 };
 

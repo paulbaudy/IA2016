@@ -22,9 +22,9 @@ void Waitress::AddToGoldTips(const int val)
 	if (m_iGoldTips < 0) m_iGoldTips = 0;
 }
 
-bool Waitress::isPretty()const
+bool Waitress::isSweaty()const
 {
-	if (m_iBeauty >= BeautyLevel) { return true; }
+	if (m_iSweat >= SweatLevel) { return true; }
 
 	return false;
 }
