@@ -234,7 +234,7 @@ void QuenchThirst::Enter(Miner* pMiner)
 	//let the waitress know I'm here
 	Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY, //time delay
 		pMiner->ID(),        //ID of sender
-		ent_Elsa,            //ID of recipient
+		ent_Jessica,            //ID of recipient
 		Msg_HiWaitress,   //the message
 		NO_ADDITIONAL_INFO); 
 
