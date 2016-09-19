@@ -6,7 +6,7 @@
 enum 
 {
   ent_Miner_Bob,
-  ent_Elsa
+  ent_Elsa,
 };
 
 inline std::string GetNameOfEntity(int n)

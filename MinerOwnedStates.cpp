@@ -232,11 +232,11 @@ void QuenchThirst::Enter(Miner* pMiner)
     cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Boy, ah sure is thusty! Walking to the saloon";
 
 	//let the waitress know I'm here
-	/* Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY, //time delay
+	Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY, //time delay
 		pMiner->ID(),        //ID of sender
 		ent_Elsa,            //ID of recipient
-		Msg_HiHoneyImHome,   //the message
-		NO_ADDITIONAL_INFO); */ 
+		Msg_HiWaitress,   //the message
+		NO_ADDITIONAL_INFO); 
 
 	Dispatch->DispatchMessage(1.5, //time delay
 		pMiner->ID(),        //ID of sender
