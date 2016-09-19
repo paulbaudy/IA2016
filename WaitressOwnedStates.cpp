@@ -73,8 +73,27 @@ void Bartend::Exit(Waitress* pWaitress)
 
 bool Bartend::OnMessage(Waitress* pWaitress, const Telegram& msg)
 {
-	//send msg to global message handler
-	return false;
+	SetTextColor(BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+
+	switch (msg.Msg)
+	{
+	case Msg_HiWaitress:
+
+		cout << "\nMessage handled by " << GetNameOfEntity(pWaitress->ID())
+			<< " at time: " << Clock->GetCurrentTime();
+
+		SetTextColor(FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+
+		cout << "\n" << GetNameOfEntity(pWaitress->ID())
+			<< ": Bonjour!";
+
+		pWaitress->GetFSM()->ChangeState(InteractWithMiner::Instance());
+
+		return true;
+
+	}//end switch
+
+	return false; //send message to global message handler
 }
 
 //------------------------------------------------------------------------methods for EnterRestroomAndMakeUp
@@ -176,6 +195,52 @@ void PractisePiano::Exit(Waitress* pWaitress)
 
 
 bool PractisePiano::OnMessage(Waitress* pWaitress, const Telegram& msg)
+{
+	//send msg to global message handler
+	return false;
+}
+
+//------------------------------------------------------------------------methods for InteractWithMiner
+InteractWithMiner* InteractWithMiner::Instance()
+{
+	static InteractWithMiner instance;
+
+	return &instance;
+}
+
+
+void InteractWithMiner::Enter(Waitress* pWaitress)
+{
+	//if the waitress is not already located at the bar, she must
+	//change location to this bar
+	if (pWaitress->Location() != saloon)
+	{
+		cout << "\n" << GetNameOfEntity(pWaitress->ID()) << ": " << "I'm coming darling!";
+
+		pWaitress->ChangeLocation(saloon);
+	}
+}
+
+
+void InteractWithMiner::Execute(Waitress* pWaitress)
+{
+	//Now the waitress is at the bar. She will talk to
+	//the miner
+	pWaitress->DecreaseBoredom();
+
+	cout << "\n" << GetNameOfEntity(pWaitress->ID()) << ": " << "Blablabla";
+
+	//A message willbe sent to end the conversation
+}
+
+
+void InteractWithMiner::Exit(Waitress* pWaitress)
+{
+
+}
+
+
+bool InteractWithMiner::OnMessage(Waitress* pWaitress, const Telegram& msg)
 {
 	//send msg to global message handler
 	return false;

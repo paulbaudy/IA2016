@@ -110,6 +110,35 @@ public:
 
 };
 
+//------------------------------------------------------------------------
+//
+//  In this state, the waitress will interact with the miner. She will
+//  ask for tips and kiss him if he gives her some nuggets. When the
+//  interaction is over, she goes back to her previous state
+//------------------------------------------------------------------------
+class InteractWithMiner : public State<Waitress>
+{
+private:
+
+	InteractWithMiner() {}
+
+	InteractWithMiner(const InteractWithMiner&);
+	InteractWithMiner& operator=(const InteractWithMiner&);
+
+public:
+
+	//this is a singleton
+	static InteractWithMiner* Instance();
+
+	virtual void Enter(Waitress* miner);
+
+	virtual void Execute(Waitress* miner);
+
+	virtual void Exit(Waitress* miner);
+
+	virtual bool OnMessage(Waitress* agent, const Telegram& msg);
+
+};
 
 
 #endif
