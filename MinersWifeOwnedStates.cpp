@@ -43,6 +43,16 @@ bool WifesGlobalState::OnMessage(MinersWife* wife, const Telegram& msg)
 
   switch(msg.Msg)
   {
+  case Msg_ICanExplain: {
+	  cout << "\nMessage handled by " << GetNameOfEntity(wife->ID()) << " at time: "
+		  << Clock->GetCurrentTime();
+
+	  SetTextColor(FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+
+	  return true;
+  }
+
+	 
   case Msg_HiHoneyImHome:
    {
        cout << "\nMessage handled by " << GetNameOfEntity(wife->ID()) << " at time: " 

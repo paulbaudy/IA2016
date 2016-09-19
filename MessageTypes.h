@@ -11,6 +11,8 @@ enum message_type
   Msg_WaitingForDrink,
   Msg_MaybeNextTime,
   Msg_SeeYouSoon,
+  Msg_AskForGold,
+  Msg_ICanExplain,
 };
 
 

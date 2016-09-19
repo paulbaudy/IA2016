@@ -38,6 +38,21 @@ bool Miner::Thirsty()const
   return false;
 }
 
+bool Miner::Kissed() const
+{
+	return m_Kissed;
+}
+
+void Miner::doKiss()
+{
+	m_Kissed = true;
+}
+
+void Miner::resetKiss()
+{
+	m_Kissed = false;
+}
+
 bool Miner::Fatigued()const
 {
   if (m_iFatigue > TirednessThreshold)

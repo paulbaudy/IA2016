@@ -295,7 +295,7 @@ bool QuenchThirst::OnMessage(Miner* pMiner, const Telegram& msg)
 
 		pMiner->BuyAndDrinkAWhiskey();
 
-		cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "That's mighty fine sippin' liquer"; // TODO : changer
+		cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "That's mighty fine sippin' liquer"; 
 
 		pMiner->GetFSM()->ChangeState(EnterMineAndDigForNugget::Instance());
 	}//end switch
@@ -312,10 +312,18 @@ InteractWithWaitress* InteractWithWaitress::Instance() {
 }
 
 void InteractWithWaitress::Enter(Miner* pMiner) {
-	cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Can I have a drink?"; // TODO
+	//if the miner is not already located at the saloon, he must
+	//change location to the gold mine
+	if (pMiner->Location() != saloon) {
+		cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Great to see you!"; 
+
+		pMiner->ChangeLocation(saloon);
+	}
 }
 
 void InteractWithWaitress::Execute(Miner* pMiner) {
+
+	cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Bla bla!";
 
 }
 
@@ -328,6 +336,25 @@ bool InteractWithWaitress::OnMessage(Miner* pMiner, const Telegram& msg) {
 
 	switch (msg.Msg)
 	{
+	case Msg_AskForGold:
+		message_type msg;
+
+		if (pMiner->GoldCarried() > 20) { // TODO fixer variable
+			// msg = 
+		}
+		else {
+			// msg = 
+		}
+
+
+		/* 
+		Dispatch->DispatchMessage(0, //time delay
+		pMiner->ID(),        //ID of sender
+		pMiner->ID(),            //ID of recipient
+		msg,   //the message
+		NO_ADDITIONAL_INFO);*/
+
+		return true;
 	case Msg_MaybeNextTime:
 
 		cout << "\nMessage handled by " << GetNameOfEntity(pMiner->ID())
@@ -351,6 +378,7 @@ bool InteractWithWaitress::OnMessage(Miner* pMiner, const Telegram& msg) {
 		cout << "\n" << GetNameOfEntity(pMiner->ID())
 			<< ": Okay Hun, see ya'!"; // TODO : msg
 
+		pMiner->doKiss();
 		pMiner->GetFSM()->ChangeState(VisitBankAndDepositGold::Instance());
 
 		return true;
@@ -378,6 +406,7 @@ void EatStew::Enter(Miner* pMiner)
 
 void EatStew::Execute(Miner* pMiner)
 {
+
   cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Tastes real good too!";
 
   pMiner->GetFSM()->RevertToPreviousState();

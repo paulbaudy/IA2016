@@ -144,8 +144,9 @@ public:
 
 //------------------------------------------------------------------------
 //
-//  TODO : description
-//  
+//  Miner interacts with waitressin the saloon. If he has enough nuggets,
+//  he will give her some of them, and receives a kiss before returning home
+//
 //------------------------------------------------------------------------
 class InteractWithWaitress : public State<Miner> 
 {
