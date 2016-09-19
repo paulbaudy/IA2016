@@ -14,6 +14,7 @@ enum message_type
   Msg_SeeYouSoon,
   Msg_AskForGold,
   Msg_ICanExplain,
+  Msg_HiMiner,
 };
 
 
