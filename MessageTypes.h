@@ -8,6 +8,7 @@ enum message_type
   Msg_HiHoneyImHome,
   Msg_StewReady,
   Msg_HiWaitress,
+  Msg_HiMiner,
 };
 
 

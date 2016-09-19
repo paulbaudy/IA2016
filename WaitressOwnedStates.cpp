@@ -85,7 +85,7 @@ bool Bartend::OnMessage(Waitress* pWaitress, const Telegram& msg)
 		SetTextColor(FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY);
 
 		cout << "\n" << GetNameOfEntity(pWaitress->ID())
-			<< ": Bonjour!";
+			<< ": Oh! That's my favorite miner!";
 
 		pWaitress->GetFSM()->ChangeState(InteractWithMiner::Instance());
 
@@ -196,8 +196,27 @@ void PractisePiano::Exit(Waitress* pWaitress)
 
 bool PractisePiano::OnMessage(Waitress* pWaitress, const Telegram& msg)
 {
-	//send msg to global message handler
-	return false;
+	SetTextColor(BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+
+	switch (msg.Msg)
+	{
+	case Msg_HiWaitress:
+
+		cout << "\nMessage handled by " << GetNameOfEntity(pWaitress->ID())
+			<< " at time: " << Clock->GetCurrentTime();
+
+		SetTextColor(FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+
+		cout << "\n" << GetNameOfEntity(pWaitress->ID())
+			<< ": Oh! That's my favorite miner over there!";
+
+		pWaitress->GetFSM()->ChangeState(InteractWithMiner::Instance());
+
+		return true;
+
+	}//end switch
+
+	return false; //send message to global message handler
 }
 
 //------------------------------------------------------------------------methods for InteractWithMiner
@@ -219,6 +238,11 @@ void InteractWithMiner::Enter(Waitress* pWaitress)
 
 		pWaitress->ChangeLocation(saloon);
 	}
+	Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY,
+							pWaitress->ID(),
+							ent_Miner_Bob,
+							Msg_HiMiner,
+							NO_ADDITIONAL_INFO);
 }
 
 
@@ -230,7 +254,8 @@ void InteractWithMiner::Execute(Waitress* pWaitress)
 
 	cout << "\n" << GetNameOfEntity(pWaitress->ID()) << ": " << "Blablabla";
 
-	//A message willbe sent to end the conversation
+	//A message will be sent to end the conversation
+
 }
 
 
