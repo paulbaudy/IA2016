@@ -43,12 +43,12 @@ bool Miner::Kissed() const
 	return m_Kissed;
 }
 
-void Miner::doKiss()
+void Miner::getKissed()
 {
 	m_Kissed = true;
 }
 
-void Miner::resetKiss()
+void Miner::cleanLipstick()
 {
 	m_Kissed = false;
 }

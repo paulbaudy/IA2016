@@ -273,15 +273,13 @@ bool QuenchThirst::OnMessage(Miner* pMiner, const Telegram& msg)
 
 	switch (msg.Msg)
 	{
-	case Msg_HoneyImHere:
+	case Msg_HiMiner:
 
 		cout << "\nMessage handled by " << GetNameOfEntity(pMiner->ID())
 			<< " at time: " << Clock->GetCurrentTime();
 
 		SetTextColor(FOREGROUND_RED | FOREGROUND_INTENSITY);
 
-		cout << "\n" << GetNameOfEntity(pMiner->ID())
-			<< ": Oh, hello'!";
 
 		pMiner->GetFSM()->ChangeState(InteractWithWaitress::Instance());
 
@@ -315,10 +313,18 @@ void InteractWithWaitress::Enter(Miner* pMiner) {
 	//if the miner is not already located at the saloon, he must
 	//change location to the gold mine
 	if (pMiner->Location() != saloon) {
-		cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Great to see you!"; 
 
 		pMiner->ChangeLocation(saloon);
 	}
+
+	Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY, //time delay
+		pMiner->ID(),        //ID of sender
+		ent_Jessica,            //ID of recipient
+		Msg_GiveMeADrink,   //the message
+		NO_ADDITIONAL_INFO);
+
+	cout << "\n" << GetNameOfEntity(pMiner->ID())
+		<< ": Oh, fine! Can I have my sippin' liquer?";
 }
 
 void InteractWithWaitress::Execute(Miner* pMiner) {
@@ -336,25 +342,56 @@ bool InteractWithWaitress::OnMessage(Miner* pMiner, const Telegram& msg) {
 
 	switch (msg.Msg)
 	{
-	case Msg_AskForGold:
+	case Msg_GiveDrinkAndAskHarvest:
+		cout << "\nMessage handled by " << GetNameOfEntity(pMiner->ID())
+			<< " at time: " << Clock->GetCurrentTime();
+
 		message_type msg;
 
-		if (pMiner->GoldCarried() > 20) { // TODO fixer variable
-			// msg = 
-		}
-		else {
-			// msg = 
-		}
+		pMiner->BuyAndDrinkAWhiskey();
 
+		pMiner->GoldCarried() >= 2 ? msg = Msg_GoodHarvest : msg = Msg_BadHarvest;
 
-		/* 
+		SetTextColor(FOREGROUND_RED | FOREGROUND_INTENSITY);
+
 		Dispatch->DispatchMessage(0, //time delay
 		pMiner->ID(),        //ID of sender
-		pMiner->ID(),            //ID of recipient
+		ent_Jessica,            //ID of recipient
 		msg,   //the message
-		NO_ADDITIONAL_INFO);*/
+		NO_ADDITIONAL_INFO);
+
+		msg==Msg_GoodHarvest? 
+			cout << "\n" << GetNameOfEntity(pMiner->ID())
+			<< ": Oh yeah, a real gold mine! My pockets are almost full'!": 
+			cout << "\n" << GetNameOfEntity(pMiner->ID())
+			<< ": Not really. This is just not my day.";
 
 		return true;
+
+	case Msg_AskForTips:
+		cout << "\nMessage handled by " << GetNameOfEntity(pMiner->ID())
+			<< " at time: " << Clock->GetCurrentTime();
+
+		message_type msg;
+
+		pMiner->Fatigued()? msg = Msg_LeaveMeAlone : msg = Msg_TakeGold;
+
+		SetTextColor(FOREGROUND_RED | FOREGROUND_INTENSITY);
+
+		Dispatch->DispatchMessage(0, //time delay
+			pMiner->ID(),        //ID of sender
+			ent_Jessica,            //ID of recipient
+			msg,   //the message
+			NO_ADDITIONAL_INFO);
+
+		msg == Msg_LeaveMeAlone ?
+			cout << "\n" << GetNameOfEntity(pMiner->ID())
+			<< ":  Leave me alone. I'm tired..." :
+			cout << "\n" << GetNameOfEntity(pMiner->ID())
+			<< ": What a good idea! Take this nugget!";
+
+		return true;
+
 	case Msg_MaybeNextTime:
 
 		cout << "\nMessage handled by " << GetNameOfEntity(pMiner->ID())
@@ -373,12 +410,13 @@ bool InteractWithWaitress::OnMessage(Miner* pMiner, const Telegram& msg) {
 		cout << "\nMessage handled by " << GetNameOfEntity(pMiner->ID())
 			<< " at time: " << Clock->GetCurrentTime();
 
-		SetTextColor(FOREGROUND_RED | FOREGROUND_INTENSITY); // TODO : regrouper les deux premières lignes au dessus des cases?
+		SetTextColor(FOREGROUND_RED | FOREGROUND_INTENSITY);
+
+		pMiner->getKissed();
 
 		cout << "\n" << GetNameOfEntity(pMiner->ID())
-			<< ": Okay Hun, see ya'!"; // TODO : msg
-
-		pMiner->doKiss();
+			<< ": Okay, see ya'!"; 
+		
 		pMiner->GetFSM()->ChangeState(VisitBankAndDepositGold::Instance());
 
 		return true;
