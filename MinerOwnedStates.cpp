@@ -254,6 +254,13 @@ void QuenchThirst::Execute(Miner* pMiner)
 	
 	// pMiner->GetFSM()->ChangeState(EnterMineAndDigForNugget::Instance());
 
+	//let the waitress know I'm here
+	Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY, //time delay
+		pMiner->ID(),        //ID of sender
+		ent_Jessica,            //ID of recipient
+		Msg_HiWaitress,   //the message
+		NO_ADDITIONAL_INFO);
+
 	cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Still waiting for Jess...";
 
 }
