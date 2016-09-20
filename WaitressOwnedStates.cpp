@@ -243,6 +243,8 @@ void InteractWithMiner::Enter(Waitress* pWaitress)
 							ent_Miner_Bob,
 							Msg_HiMiner,
 							NO_ADDITIONAL_INFO);
+
+	cout << "\n" << GetNameOfEntity(pWaitress->ID()) << ": " << "Hi Miner, how are you today?";
 }
 
 
@@ -267,6 +269,86 @@ void InteractWithMiner::Exit(Waitress* pWaitress)
 
 bool InteractWithMiner::OnMessage(Waitress* pWaitress, const Telegram& msg)
 {
-	//send msg to global message handler
-	return false;
+	SetTextColor(BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+
+	switch (msg.Msg)
+	{
+	case Msg_GiveMeADrink:
+
+		cout << "\nMessage handled by " << GetNameOfEntity(pWaitress->ID())
+			<< " at time: " << Clock->GetCurrentTime();
+
+		Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY,
+			pWaitress->ID(),
+			ent_Miner_Bob,
+			Msg_GiveDrinkAndAskHarvest,
+			NO_ADDITIONAL_INFO);
+
+		SetTextColor(FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+
+		cout << "\n" << GetNameOfEntity(pWaitress->ID())
+			<< ": There you go! Did you have a good harvest?";
+
+		return true;
+
+	case Msg_GoodHarvest:
+
+		cout << "\nMessage handled by " << GetNameOfEntity(pWaitress->ID())
+			<< " at time: " << Clock->GetCurrentTime();
+
+		Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY,
+			pWaitress->ID(),
+			ent_Miner_Bob,
+			Msg_AskForTips,
+			NO_ADDITIONAL_INFO);
+
+		SetTextColor(FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+
+		cout << "\n" << GetNameOfEntity(pWaitress->ID())
+			<< ": That's a good news! Don't you have some for your favorite waitress?";
+
+		return true;
+
+	case Msg_BadHarvest:
+	case Msg_LeaveMeAlone:
+
+		cout << "\nMessage handled by " << GetNameOfEntity(pWaitress->ID())
+			<< " at time: " << Clock->GetCurrentTime();
+
+		Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY,
+			pWaitress->ID(),
+			ent_Miner_Bob,
+			Msg_MaybeNextTime,
+			NO_ADDITIONAL_INFO);
+
+		SetTextColor(FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+
+		cout << "\n" << GetNameOfEntity(pWaitress->ID())
+			<< ": That's too bad... Guess I have some work to do.";
+
+		pWaitress->GetFSM()->RevertToPreviousState();
+		return true;
+
+	case Msg_TakeGold:
+
+		cout << "\nMessage handled by " << GetNameOfEntity(pWaitress->ID())
+			<< " at time: " << Clock->GetCurrentTime();
+
+		Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY,
+			pWaitress->ID(),
+			ent_Miner_Bob,
+			Msg_SeeYouSoon,
+			NO_ADDITIONAL_INFO);
+
+		SetTextColor(FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+
+		cout << "\n" << GetNameOfEntity(pWaitress->ID())
+			<< ": Oh! Thank you, you're so cute! See you soon darling *kiss*";
+
+		pWaitress->GetFSM()->RevertToPreviousState();
+		return true;
+
+	}//end switch
+
+	return false; //send message to global message handler
 }
