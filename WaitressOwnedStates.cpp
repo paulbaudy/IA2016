@@ -238,7 +238,7 @@ void InteractWithMiner::Enter(Waitress* pWaitress)
 
 		pWaitress->ChangeLocation(saloon);
 	}
-	Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY,
+	Dispatch->DispatchMessage(0.1,
 							pWaitress->ID(),
 							ent_Miner_Bob,
 							Msg_HiMiner,
@@ -254,7 +254,7 @@ void InteractWithMiner::Execute(Waitress* pWaitress)
 	//the miner
 	pWaitress->DecreaseBoredom();
 
-	cout << "\n" << GetNameOfEntity(pWaitress->ID()) << ": " << "Blablabla";
+	// cout << "\n" << GetNameOfEntity(pWaitress->ID()) << ": " << "Blablabla";
 
 	//A message will be sent to end the conversation
 
@@ -278,7 +278,7 @@ bool InteractWithMiner::OnMessage(Waitress* pWaitress, const Telegram& msg)
 		cout << "\nMessage handled by " << GetNameOfEntity(pWaitress->ID())
 			<< " at time: " << Clock->GetCurrentTime();
 
-		Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY,
+		Dispatch->DispatchMessage(0.1,
 			pWaitress->ID(),
 			ent_Miner_Bob,
 			Msg_GiveDrinkAndAskHarvest,
@@ -296,7 +296,7 @@ bool InteractWithMiner::OnMessage(Waitress* pWaitress, const Telegram& msg)
 		cout << "\nMessage handled by " << GetNameOfEntity(pWaitress->ID())
 			<< " at time: " << Clock->GetCurrentTime();
 
-		Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY,
+		Dispatch->DispatchMessage(0.1,
 			pWaitress->ID(),
 			ent_Miner_Bob,
 			Msg_AskForTips,
@@ -315,7 +315,7 @@ bool InteractWithMiner::OnMessage(Waitress* pWaitress, const Telegram& msg)
 		cout << "\nMessage handled by " << GetNameOfEntity(pWaitress->ID())
 			<< " at time: " << Clock->GetCurrentTime();
 
-		Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY,
+		Dispatch->DispatchMessage(0.1,
 			pWaitress->ID(),
 			ent_Miner_Bob,
 			Msg_MaybeNextTime,
@@ -334,7 +334,7 @@ bool InteractWithMiner::OnMessage(Waitress* pWaitress, const Telegram& msg)
 		cout << "\nMessage handled by " << GetNameOfEntity(pWaitress->ID())
 			<< " at time: " << Clock->GetCurrentTime();
 
-		Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY,
+		Dispatch->DispatchMessage(0.1,
 			pWaitress->ID(),
 			ent_Miner_Bob,
 			Msg_SeeYouSoon,
@@ -351,4 +351,4 @@ bool InteractWithMiner::OnMessage(Waitress* pWaitress, const Telegram& msg)
 	}//end switch
 
 	return false; //send message to global message handler
-}
+} 
