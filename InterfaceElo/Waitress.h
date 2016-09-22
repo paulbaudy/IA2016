@@ -84,18 +84,20 @@ public:
 	void          ChangeLocation(location_type loc) { m_Location = loc; }
 
 	int           GoldTips()const { return m_iGoldTips; }
-	void          SetGoldTips(int val) { m_iGoldTips = val; }
+    void          SetGoldTips(int val) { val<0 ? m_iGoldTips = 0 : m_iGoldTips = val; }
 	void          AddToGoldTips(int val);
 
 	bool		  isSweaty()const;
 	void		  DecreaseSweat() { m_iSweat -= 1; } //TODO voir si on change de valeur
 	void		  IncreaseSweat() { m_iSweat += 1; }
-	void		  SetSweat(int val) { m_iSweat = val; }
+    void		  SetSweat(int val) {val<0 ? m_iSweat=0 : m_iSweat = val; }
+    int           GetSweat() { return m_iSweat; }
 
 	bool          isBored()const;
 	void          DecreaseBoredom() { m_iBoredom -= 1; }
 	void          IncreaseBoredom() { m_iBoredom += 1; }
-	void		  SetBoredom(int val) { m_iBoredom = val; }
+    void		  SetBoredom(int val) { val<0 ? m_iBoredom = 0 : m_iBoredom = val; }
+    int           GetBoredom() { return m_iBoredom; }
 
 };
 

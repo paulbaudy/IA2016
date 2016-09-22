@@ -93,13 +93,15 @@ public:
   void          ChangeLocation(location_type loc){m_Location=loc;}
     
   int           GoldCarried()const{return m_iGoldCarried;}
-  void          SetGoldCarried(int val){m_iGoldCarried = val;}
+  void          SetGoldCarried(int val){val<0 ? m_iGoldCarried=0 : m_iGoldCarried = val;} //Improve check
   void          AddToGoldCarried(int val);
   bool          PocketsFull()const{return m_iGoldCarried >= MaxNuggets;}
 
   bool          Fatigued()const;
   void          DecreaseFatigue(){m_iFatigue -= 1;}
   void          IncreaseFatigue(){m_iFatigue += 1;}
+  int           GetFatigue()const{return m_iFatigue;} //Getter added
+  void          SetFatigue(int val){val<0 ? m_iFatigue=0 : m_iFatigue=val;} //Setter added
 
   int           Wealth()const{return m_iMoneyInBank;}
   void          SetWealth(int val){m_iMoneyInBank = val;}
@@ -107,6 +109,8 @@ public:
 
   bool          Thirsty()const; 
   void          BuyAndDrinkAWhiskey(){m_iThirst = 0; m_iMoneyInBank-=2;}
+  int           GetThirst()const{return m_iThirst;} //Getter added
+  void          SetThirst(int val){val<0 ? m_iThirst=0 : m_iThirst=val;} //Setter added
 
 
   bool          Kissed()const;
