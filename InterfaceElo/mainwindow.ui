@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MinerLife</class>
- <widget class="QMainWindow" name="MinerLife">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Miner in the west</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
@@ -22,7 +22,7 @@
       </property>
       <layout class="QGridLayout" name="gridLayout_3">
        <item row="0" column="1">
-        <widget class="QCheckBox" name="checkBox">
+        <widget class="QCheckBox" name="checkBoxCook">
          <property name="text">
           <string/>
          </property>
@@ -36,23 +36,6 @@
         </widget>
        </item>
       </layout>
-     </widget>
-    </item>
-    <item row="3" column="3">
-     <widget class="QPushButton" name="pushButton">
-      <property name="text">
-       <string>Launch</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="2">
-     <widget class="QProgressBar" name="progressBar">
-      <property name="value">
-       <number>8</number>
-      </property>
-      <property name="invertedAppearance">
-       <bool>false</bool>
-      </property>
      </widget>
     </item>
     <item row="0" column="3">
@@ -82,14 +65,8 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="1">
-        <widget class="QLCDNumber" name="lcdNumber_2"/>
-       </item>
-       <item row="2" column="1">
-        <widget class="QLCDNumber" name="lcdNumber_3"/>
-       </item>
        <item row="3" column="1">
-        <widget class="QLCDNumber" name="lcdNumber"/>
+        <widget class="QLCDNumber" name="lcdGold"/>
        </item>
        <item row="4" column="0">
         <widget class="QLabel" name="label_6">
@@ -99,19 +76,31 @@
         </widget>
        </item>
        <item row="4" column="1">
-        <widget class="QLCDNumber" name="lcdNumber_4"/>
+        <widget class="QLCDNumber" name="lcdBank"/>
+       </item>
+       <item row="1" column="1">
+        <widget class="QCheckBox" name="checkBoxThirst">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QCheckBox" name="checkBoxFatigue">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
        </item>
       </layout>
-      <zorder>textBrowser</zorder>
-      <zorder>textBrowser</zorder>
       <zorder>label_3</zorder>
       <zorder>label_2</zorder>
-      <zorder>lcdNumber_2</zorder>
-      <zorder>lcdNumber_3</zorder>
       <zorder>label</zorder>
-      <zorder>lcdNumber</zorder>
+      <zorder>lcdGold</zorder>
       <zorder>label_6</zorder>
-      <zorder>lcdNumber_4</zorder>
+      <zorder>lcdBank</zorder>
+      <zorder>checkBoxThirst</zorder>
+      <zorder>checkBoxFatigue</zorder>
      </widget>
     </item>
     <item row="2" column="3">
@@ -121,7 +110,7 @@
       </property>
       <layout class="QGridLayout" name="gridLayout_4">
        <item row="0" column="1">
-        <widget class="QLCDNumber" name="lcdNumber_7"/>
+        <widget class="QLCDNumber" name="lcdBeauty"/>
        </item>
        <item row="0" column="0">
         <widget class="QLabel" name="label_8">
@@ -138,7 +127,7 @@
         </widget>
        </item>
        <item row="2" column="1">
-        <widget class="QLCDNumber" name="lcdNumber_5"/>
+        <widget class="QLCDNumber" name="lcdGoldJess"/>
        </item>
        <item row="2" column="0">
         <widget class="QLabel" name="label_5">
@@ -148,9 +137,19 @@
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="QLCDNumber" name="lcdNumber_6"/>
+        <widget class="QLCDNumber" name="lcdBoredom"/>
        </item>
       </layout>
+     </widget>
+    </item>
+    <item row="3" column="2">
+     <widget class="QProgressBar" name="progressBar">
+      <property name="value">
+       <number>8</number>
+      </property>
+      <property name="invertedAppearance">
+       <bool>false</bool>
+      </property>
      </widget>
     </item>
     <item row="0" column="1" rowspan="3" colspan="2">
@@ -173,6 +172,32 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Miner : Coucou&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jessica : Salut toi!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
+     </widget>
+    </item>
+    <item row="3" column="3">
+     <widget class="QFrame" name="frame">
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QPushButton" name="pushButton_2">
+         <property name="text">
+          <string>Options</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton">
+         <property name="text">
+          <string>Launch</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </item>
    </layout>
