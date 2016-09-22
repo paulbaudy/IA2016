@@ -23,29 +23,15 @@
       <enum>QFrame::Raised</enum>
      </property>
      <layout class="QFormLayout" name="formLayout">
-      <item row="3" column="0">
-       <widget class="QLabel" name="label">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_4">
         <property name="text">
-         <string>Step by step</string>
+         <string>Bob</string>
         </property>
        </widget>
       </item>
-      <item row="3" column="1">
-       <widget class="QCheckBox" name="checkBox">
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>Jessica</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QComboBox" name="comboBox"/>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="comboBox_3"/>
       </item>
       <item row="1" column="0">
        <widget class="QLabel" name="label_3">
@@ -57,15 +43,46 @@
       <item row="1" column="1">
        <widget class="QComboBox" name="comboBox_2"/>
       </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="label_4">
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_2">
         <property name="text">
-         <string>Bob</string>
+         <string>Jessica</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="1">
-       <widget class="QComboBox" name="comboBox_3"/>
+      <item row="2" column="1">
+       <widget class="QComboBox" name="comboBox"/>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_5">
+        <property name="text">
+         <string>Iteration</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QSpinBox" name="sb_iteration">
+        <property name="maximum">
+         <number>50</number>
+        </property>
+        <property name="value">
+         <number>30</number>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Step by step</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QCheckBox" name="cbStep">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
