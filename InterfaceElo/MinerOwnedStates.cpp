@@ -421,7 +421,10 @@ bool InteractWithWaitress::OnMessage(Miner* pMiner, const Telegram& msg) {
 		SetTextColor(FOREGROUND_RED | FOREGROUND_INTENSITY);
 
 		cout << "\n" << GetNameOfEntity(pMiner->ID())
-			<< ": Okay Hun, see ya'!";
+            << ": Okay Hun, see ya'! Let's finish my drink!";
+
+        //Drink his last sip
+        pMiner->SetThirst(0);
 
 		pMiner->GetFSM()->ChangeState(EnterMineAndDigForNugget::Instance());
 
@@ -436,7 +439,10 @@ bool InteractWithWaitress::OnMessage(Miner* pMiner, const Telegram& msg) {
 		pMiner->getKissed();
 
 		cout << "\n" << GetNameOfEntity(pMiner->ID())
-			<< ": Okay, see ya'!"; 
+            << ": Okay, see ya'! Let's finish my drink!";
+
+        //Drink his last sip
+        pMiner->SetThirst(0);
 		
 		pMiner->GetFSM()->ChangeState(VisitBankAndDepositGold::Instance());
 

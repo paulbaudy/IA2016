@@ -28,7 +28,7 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStatusBar>
-#include <QtWidgets/QTextBrowser>
+#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
 
@@ -41,6 +41,7 @@ public:
     QAction *actionQuit;
     QWidget *centralWidget;
     QGridLayout *gridLayout;
+    QProgressBar *progressBar;
     QGraphicsView *graphicsView;
     QGroupBox *groupBox;
     QGridLayout *gridLayout_2;
@@ -57,14 +58,6 @@ public:
     QLabel *label_6;
     QCheckBox *checkBoxKissed;
     QCheckBox *checkBoxGold;
-    QGroupBox *groupBox_2;
-    QGridLayout *gridLayout_3;
-    QLabel *label_4;
-    QCheckBox *checkBoxCook;
-    QFrame *frame;
-    QFormLayout *formLayout;
-    QPushButton *pushButton_2;
-    QPushButton *pushButton;
     QGroupBox *groupBox_3;
     QGridLayout *gridLayout_4;
     QSpinBox *sbBeauty;
@@ -75,8 +68,15 @@ public:
     QSpinBox *sbGold_2;
     QCheckBox *checkBoxSweat;
     QCheckBox *checkBoxBoredom;
-    QTextBrowser *textBrowser;
-    QProgressBar *progressBar;
+    QGroupBox *groupBox_2;
+    QGridLayout *gridLayout_3;
+    QLabel *label_4;
+    QCheckBox *checkBoxCook;
+    QFrame *frame;
+    QFormLayout *formLayout;
+    QPushButton *pushButton_2;
+    QPushButton *pushButton;
+    QTextEdit *log;
     QMenuBar *menuBar;
     QMenu *menuResert_values_by_default;
     QToolBar *mainToolBar;
@@ -97,6 +97,13 @@ public:
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        progressBar = new QProgressBar(centralWidget);
+        progressBar->setObjectName(QStringLiteral("progressBar"));
+        progressBar->setValue(8);
+        progressBar->setInvertedAppearance(false);
+
+        gridLayout->addWidget(progressBar, 4, 2, 1, 1);
+
         graphicsView = new QGraphicsView(centralWidget);
         graphicsView->setObjectName(QStringLiteral("graphicsView"));
         graphicsView->viewport()->setProperty("cursor", QVariant(QCursor(Qt::PointingHandCursor)));
@@ -191,46 +198,6 @@ public:
 
         gridLayout->addWidget(groupBox, 0, 3, 1, 1);
 
-        groupBox_2 = new QGroupBox(centralWidget);
-        groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
-        gridLayout_3 = new QGridLayout(groupBox_2);
-        gridLayout_3->setSpacing(6);
-        gridLayout_3->setContentsMargins(11, 11, 11, 11);
-        gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
-        label_4 = new QLabel(groupBox_2);
-        label_4->setObjectName(QStringLiteral("label_4"));
-
-        gridLayout_3->addWidget(label_4, 0, 0, 1, 1);
-
-        checkBoxCook = new QCheckBox(groupBox_2);
-        checkBoxCook->setObjectName(QStringLiteral("checkBoxCook"));
-
-        gridLayout_3->addWidget(checkBoxCook, 0, 1, 1, 1);
-
-
-        gridLayout->addWidget(groupBox_2, 1, 3, 1, 1);
-
-        frame = new QFrame(centralWidget);
-        frame->setObjectName(QStringLiteral("frame"));
-        frame->setFrameShape(QFrame::StyledPanel);
-        frame->setFrameShadow(QFrame::Raised);
-        formLayout = new QFormLayout(frame);
-        formLayout->setSpacing(6);
-        formLayout->setContentsMargins(11, 11, 11, 11);
-        formLayout->setObjectName(QStringLiteral("formLayout"));
-        pushButton_2 = new QPushButton(frame);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-
-        formLayout->setWidget(0, QFormLayout::LabelRole, pushButton_2);
-
-        pushButton = new QPushButton(frame);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-
-        formLayout->setWidget(0, QFormLayout::FieldRole, pushButton);
-
-
-        gridLayout->addWidget(frame, 4, 3, 1, 1);
-
         groupBox_3 = new QGroupBox(centralWidget);
         groupBox_3->setObjectName(QStringLiteral("groupBox_3"));
         gridLayout_4 = new QGridLayout(groupBox_3);
@@ -280,17 +247,50 @@ public:
 
         gridLayout->addWidget(groupBox_3, 2, 3, 1, 1);
 
-        textBrowser = new QTextBrowser(centralWidget);
-        textBrowser->setObjectName(QStringLiteral("textBrowser"));
+        groupBox_2 = new QGroupBox(centralWidget);
+        groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
+        gridLayout_3 = new QGridLayout(groupBox_2);
+        gridLayout_3->setSpacing(6);
+        gridLayout_3->setContentsMargins(11, 11, 11, 11);
+        gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
+        label_4 = new QLabel(groupBox_2);
+        label_4->setObjectName(QStringLiteral("label_4"));
 
-        gridLayout->addWidget(textBrowser, 5, 1, 2, 3);
+        gridLayout_3->addWidget(label_4, 0, 0, 1, 1);
 
-        progressBar = new QProgressBar(centralWidget);
-        progressBar->setObjectName(QStringLiteral("progressBar"));
-        progressBar->setValue(8);
-        progressBar->setInvertedAppearance(false);
+        checkBoxCook = new QCheckBox(groupBox_2);
+        checkBoxCook->setObjectName(QStringLiteral("checkBoxCook"));
 
-        gridLayout->addWidget(progressBar, 4, 2, 1, 1);
+        gridLayout_3->addWidget(checkBoxCook, 0, 1, 1, 1);
+
+
+        gridLayout->addWidget(groupBox_2, 1, 3, 1, 1);
+
+        frame = new QFrame(centralWidget);
+        frame->setObjectName(QStringLiteral("frame"));
+        frame->setFrameShape(QFrame::StyledPanel);
+        frame->setFrameShadow(QFrame::Raised);
+        formLayout = new QFormLayout(frame);
+        formLayout->setSpacing(6);
+        formLayout->setContentsMargins(11, 11, 11, 11);
+        formLayout->setObjectName(QStringLiteral("formLayout"));
+        pushButton_2 = new QPushButton(frame);
+        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+
+        formLayout->setWidget(0, QFormLayout::LabelRole, pushButton_2);
+
+        pushButton = new QPushButton(frame);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+
+        formLayout->setWidget(0, QFormLayout::FieldRole, pushButton);
+
+
+        gridLayout->addWidget(frame, 4, 3, 1, 1);
+
+        log = new QTextEdit(centralWidget);
+        log->setObjectName(QStringLiteral("log"));
+
+        gridLayout->addWidget(log, 5, 2, 1, 2);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
@@ -330,23 +330,22 @@ public:
         label_6->setText(QApplication::translate("MainWindow", "Bank", 0));
         checkBoxKissed->setText(QString());
         checkBoxGold->setText(QString());
-        groupBox_2->setTitle(QApplication::translate("MainWindow", "Elsa", 0));
-        label_4->setText(QApplication::translate("MainWindow", "Cooking", 0));
-        checkBoxCook->setText(QString());
-        pushButton_2->setText(QApplication::translate("MainWindow", "Options", 0));
-        pushButton->setText(QApplication::translate("MainWindow", "Launch", 0));
         groupBox_3->setTitle(QApplication::translate("MainWindow", "Jessica", 0));
         label_8->setText(QApplication::translate("MainWindow", "Sweat", 0));
         label_5->setText(QApplication::translate("MainWindow", "Gold", 0));
         label_7->setText(QApplication::translate("MainWindow", "Boredom", 0));
         checkBoxSweat->setText(QString());
         checkBoxBoredom->setText(QString());
-        textBrowser->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        groupBox_2->setTitle(QApplication::translate("MainWindow", "Elsa", 0));
+        label_4->setText(QApplication::translate("MainWindow", "Cooking", 0));
+        checkBoxCook->setText(QString());
+        pushButton_2->setText(QApplication::translate("MainWindow", "Options", 0));
+        pushButton->setText(QApplication::translate("MainWindow", "Launch", 0));
+        log->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Miner : Coucou</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Jessica : Salut toi!</p></body></html>", 0));
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" color:#000000;\">Bla</span></p></body></html>", 0));
         menuResert_values_by_default->setTitle(QApplication::translate("MainWindow", "File", 0));
     } // retranslateUi
 

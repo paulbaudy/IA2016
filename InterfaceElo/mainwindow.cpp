@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
-
+#include "q_debugstream.h"
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -11,6 +10,9 @@ MainWindow::MainWindow(QWidget *parent) :
     // Init GUI
     ui->setupUi(this);
     ui->progressBar->setValue(0);
+
+    //Redirect Console output to QTextEdit
+    new Q_DebugStream(std::cout, ui->log);
 
     // Init configuration
     cf.nbIteration = 50;
