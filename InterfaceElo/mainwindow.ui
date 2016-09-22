@@ -51,13 +51,6 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="label_3">
-         <property name="text">
-          <string>Thirst</string>
-         </property>
-        </widget>
-       </item>
        <item row="3" column="0">
         <widget class="QLabel" name="label">
          <property name="text">
@@ -65,8 +58,12 @@
          </property>
         </widget>
        </item>
-       <item row="3" column="1">
-        <widget class="QLCDNumber" name="lcdGold"/>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Thirst</string>
+         </property>
+        </widget>
        </item>
        <item row="4" column="0">
         <widget class="QLabel" name="label_6">
@@ -74,9 +71,6 @@
           <string>Bank</string>
          </property>
         </widget>
-       </item>
-       <item row="4" column="1">
-        <widget class="QLCDNumber" name="lcdBank"/>
        </item>
        <item row="1" column="1">
         <widget class="QCheckBox" name="checkBoxThirst">
@@ -92,15 +86,29 @@
          </property>
         </widget>
        </item>
+       <item row="1" column="2">
+        <widget class="QSpinBox" name="sbThirst"/>
+       </item>
+       <item row="3" column="2">
+        <widget class="QSpinBox" name="sbGold"/>
+       </item>
+       <item row="4" column="2">
+        <widget class="QSpinBox" name="sbBank"/>
+       </item>
+       <item row="2" column="2">
+        <widget class="QSpinBox" name="sbFatigue"/>
+       </item>
       </layout>
       <zorder>label_3</zorder>
       <zorder>label_2</zorder>
       <zorder>label</zorder>
-      <zorder>lcdGold</zorder>
       <zorder>label_6</zorder>
-      <zorder>lcdBank</zorder>
       <zorder>checkBoxThirst</zorder>
       <zorder>checkBoxFatigue</zorder>
+      <zorder>sbThirst</zorder>
+      <zorder>sbGold</zorder>
+      <zorder>sbBank</zorder>
+      <zorder>sbFatigue</zorder>
      </widget>
     </item>
     <item row="2" column="3">
@@ -109,13 +117,17 @@
        <string>Jessica</string>
       </property>
       <layout class="QGridLayout" name="gridLayout_4">
-       <item row="0" column="1">
-        <widget class="QLCDNumber" name="lcdBeauty"/>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+          <string>Gold</string>
+         </property>
+        </widget>
        </item>
        <item row="0" column="0">
         <widget class="QLabel" name="label_8">
          <property name="text">
-          <string>Beauty</string>
+          <string>Sweat</string>
          </property>
         </widget>
        </item>
@@ -126,18 +138,14 @@
          </property>
         </widget>
        </item>
-       <item row="2" column="1">
-        <widget class="QLCDNumber" name="lcdGoldJess"/>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="label_5">
-         <property name="text">
-          <string>Gold</string>
-         </property>
-        </widget>
+       <item row="0" column="1">
+        <widget class="QSpinBox" name="sbBeauty"/>
        </item>
        <item row="1" column="1">
-        <widget class="QLCDNumber" name="lcdBoredom"/>
+        <widget class="QSpinBox" name="sbBored"/>
+       </item>
+       <item row="2" column="1">
+        <widget class="QSpinBox" name="sbGold_2"/>
        </item>
       </layout>
      </widget>

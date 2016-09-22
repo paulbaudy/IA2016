@@ -21,6 +21,7 @@
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QVBoxLayout>
 
 QT_BEGIN_NAMESPACE
@@ -31,14 +32,16 @@ public:
     QVBoxLayout *verticalLayout;
     QFrame *frame;
     QFormLayout *formLayout;
-    QLabel *label;
-    QCheckBox *checkBox;
-    QLabel *label_2;
-    QComboBox *comboBox;
-    QLabel *label_3;
-    QComboBox *comboBox_2;
     QLabel *label_4;
     QComboBox *comboBox_3;
+    QLabel *label_3;
+    QComboBox *comboBox_2;
+    QLabel *label_2;
+    QComboBox *comboBox;
+    QLabel *label_5;
+    QSpinBox *sb_iteration;
+    QLabel *label;
+    QCheckBox *cbStep;
     QDialogButtonBox *buttonBox;
 
     void setupUi(QDialog *ConfigDialog)
@@ -54,25 +57,15 @@ public:
         frame->setFrameShadow(QFrame::Raised);
         formLayout = new QFormLayout(frame);
         formLayout->setObjectName(QStringLiteral("formLayout"));
-        label = new QLabel(frame);
-        label->setObjectName(QStringLiteral("label"));
+        label_4 = new QLabel(frame);
+        label_4->setObjectName(QStringLiteral("label_4"));
 
-        formLayout->setWidget(3, QFormLayout::LabelRole, label);
+        formLayout->setWidget(0, QFormLayout::LabelRole, label_4);
 
-        checkBox = new QCheckBox(frame);
-        checkBox->setObjectName(QStringLiteral("checkBox"));
+        comboBox_3 = new QComboBox(frame);
+        comboBox_3->setObjectName(QStringLiteral("comboBox_3"));
 
-        formLayout->setWidget(3, QFormLayout::FieldRole, checkBox);
-
-        label_2 = new QLabel(frame);
-        label_2->setObjectName(QStringLiteral("label_2"));
-
-        formLayout->setWidget(2, QFormLayout::LabelRole, label_2);
-
-        comboBox = new QComboBox(frame);
-        comboBox->setObjectName(QStringLiteral("comboBox"));
-
-        formLayout->setWidget(2, QFormLayout::FieldRole, comboBox);
+        formLayout->setWidget(0, QFormLayout::FieldRole, comboBox_3);
 
         label_3 = new QLabel(frame);
         label_3->setObjectName(QStringLiteral("label_3"));
@@ -84,15 +77,37 @@ public:
 
         formLayout->setWidget(1, QFormLayout::FieldRole, comboBox_2);
 
-        label_4 = new QLabel(frame);
-        label_4->setObjectName(QStringLiteral("label_4"));
+        label_2 = new QLabel(frame);
+        label_2->setObjectName(QStringLiteral("label_2"));
 
-        formLayout->setWidget(0, QFormLayout::LabelRole, label_4);
+        formLayout->setWidget(2, QFormLayout::LabelRole, label_2);
 
-        comboBox_3 = new QComboBox(frame);
-        comboBox_3->setObjectName(QStringLiteral("comboBox_3"));
+        comboBox = new QComboBox(frame);
+        comboBox->setObjectName(QStringLiteral("comboBox"));
 
-        formLayout->setWidget(0, QFormLayout::FieldRole, comboBox_3);
+        formLayout->setWidget(2, QFormLayout::FieldRole, comboBox);
+
+        label_5 = new QLabel(frame);
+        label_5->setObjectName(QStringLiteral("label_5"));
+
+        formLayout->setWidget(3, QFormLayout::LabelRole, label_5);
+
+        sb_iteration = new QSpinBox(frame);
+        sb_iteration->setObjectName(QStringLiteral("sb_iteration"));
+        sb_iteration->setMaximum(50);
+        sb_iteration->setValue(30);
+
+        formLayout->setWidget(3, QFormLayout::FieldRole, sb_iteration);
+
+        label = new QLabel(frame);
+        label->setObjectName(QStringLiteral("label"));
+
+        formLayout->setWidget(4, QFormLayout::LabelRole, label);
+
+        cbStep = new QCheckBox(frame);
+        cbStep->setObjectName(QStringLiteral("cbStep"));
+
+        formLayout->setWidget(4, QFormLayout::FieldRole, cbStep);
 
 
         verticalLayout->addWidget(frame);
@@ -115,11 +130,12 @@ public:
     void retranslateUi(QDialog *ConfigDialog)
     {
         ConfigDialog->setWindowTitle(QApplication::translate("ConfigDialog", "Options", 0));
-        label->setText(QApplication::translate("ConfigDialog", "Step by step", 0));
-        checkBox->setText(QString());
-        label_2->setText(QApplication::translate("ConfigDialog", "Jessica", 0));
-        label_3->setText(QApplication::translate("ConfigDialog", "Elsa", 0));
         label_4->setText(QApplication::translate("ConfigDialog", "Bob", 0));
+        label_3->setText(QApplication::translate("ConfigDialog", "Elsa", 0));
+        label_2->setText(QApplication::translate("ConfigDialog", "Jessica", 0));
+        label_5->setText(QApplication::translate("ConfigDialog", "Iteration", 0));
+        label->setText(QApplication::translate("ConfigDialog", "Step by step", 0));
+        cbStep->setText(QString());
     } // retranslateUi
 
 };

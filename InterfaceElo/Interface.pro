@@ -44,7 +44,8 @@ HEADERS  += mainwindow.h \
     Waitress.h \
     WaitressOwnedStates.h \
     Common/Time/CrudeTimer.h \
-    configdialog.h
+    configdialog.h \
+    configuration.h
 
 FORMS    += mainwindow.ui \
     configdialog.ui

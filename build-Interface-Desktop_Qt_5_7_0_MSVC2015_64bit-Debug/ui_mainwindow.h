@@ -20,12 +20,12 @@
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
-#include <QtWidgets/QLCDNumber>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QProgressBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTextBrowser>
 #include <QtWidgets/QToolBar>
@@ -45,21 +45,23 @@ public:
     QGroupBox *groupBox;
     QGridLayout *gridLayout_2;
     QLabel *label_2;
-    QLabel *label_3;
     QLabel *label;
-    QLCDNumber *lcdGold;
+    QLabel *label_3;
     QLabel *label_6;
-    QLCDNumber *lcdBank;
     QCheckBox *checkBoxThirst;
     QCheckBox *checkBoxFatigue;
+    QSpinBox *sbThirst;
+    QSpinBox *sbGold;
+    QSpinBox *sbBank;
+    QSpinBox *sbFatigue;
     QGroupBox *groupBox_3;
     QGridLayout *gridLayout_4;
-    QLCDNumber *lcdBeauty;
+    QLabel *label_5;
     QLabel *label_8;
     QLabel *label_7;
-    QLCDNumber *lcdGoldJess;
-    QLabel *label_5;
-    QLCDNumber *lcdBoredom;
+    QSpinBox *sbBeauty;
+    QSpinBox *sbBored;
+    QSpinBox *sbGold_2;
     QProgressBar *progressBar;
     QGraphicsView *graphicsView;
     QTextBrowser *textBrowser;
@@ -112,30 +114,20 @@ public:
 
         gridLayout_2->addWidget(label_2, 2, 0, 1, 1);
 
-        label_3 = new QLabel(groupBox);
-        label_3->setObjectName(QStringLiteral("label_3"));
-
-        gridLayout_2->addWidget(label_3, 1, 0, 1, 1);
-
         label = new QLabel(groupBox);
         label->setObjectName(QStringLiteral("label"));
 
         gridLayout_2->addWidget(label, 3, 0, 1, 1);
 
-        lcdGold = new QLCDNumber(groupBox);
-        lcdGold->setObjectName(QStringLiteral("lcdGold"));
+        label_3 = new QLabel(groupBox);
+        label_3->setObjectName(QStringLiteral("label_3"));
 
-        gridLayout_2->addWidget(lcdGold, 3, 1, 1, 1);
+        gridLayout_2->addWidget(label_3, 1, 0, 1, 1);
 
         label_6 = new QLabel(groupBox);
         label_6->setObjectName(QStringLiteral("label_6"));
 
         gridLayout_2->addWidget(label_6, 4, 0, 1, 1);
-
-        lcdBank = new QLCDNumber(groupBox);
-        lcdBank->setObjectName(QStringLiteral("lcdBank"));
-
-        gridLayout_2->addWidget(lcdBank, 4, 1, 1, 1);
 
         checkBoxThirst = new QCheckBox(groupBox);
         checkBoxThirst->setObjectName(QStringLiteral("checkBoxThirst"));
@@ -147,14 +139,36 @@ public:
 
         gridLayout_2->addWidget(checkBoxFatigue, 2, 1, 1, 1);
 
+        sbThirst = new QSpinBox(groupBox);
+        sbThirst->setObjectName(QStringLiteral("sbThirst"));
+
+        gridLayout_2->addWidget(sbThirst, 1, 2, 1, 1);
+
+        sbGold = new QSpinBox(groupBox);
+        sbGold->setObjectName(QStringLiteral("sbGold"));
+
+        gridLayout_2->addWidget(sbGold, 3, 2, 1, 1);
+
+        sbBank = new QSpinBox(groupBox);
+        sbBank->setObjectName(QStringLiteral("sbBank"));
+
+        gridLayout_2->addWidget(sbBank, 4, 2, 1, 1);
+
+        sbFatigue = new QSpinBox(groupBox);
+        sbFatigue->setObjectName(QStringLiteral("sbFatigue"));
+
+        gridLayout_2->addWidget(sbFatigue, 2, 2, 1, 1);
+
         label_3->raise();
         label_2->raise();
         label->raise();
-        lcdGold->raise();
         label_6->raise();
-        lcdBank->raise();
         checkBoxThirst->raise();
         checkBoxFatigue->raise();
+        sbThirst->raise();
+        sbGold->raise();
+        sbBank->raise();
+        sbFatigue->raise();
 
         gridLayout->addWidget(groupBox, 0, 3, 1, 1);
 
@@ -164,10 +178,10 @@ public:
         gridLayout_4->setSpacing(6);
         gridLayout_4->setContentsMargins(11, 11, 11, 11);
         gridLayout_4->setObjectName(QStringLiteral("gridLayout_4"));
-        lcdBeauty = new QLCDNumber(groupBox_3);
-        lcdBeauty->setObjectName(QStringLiteral("lcdBeauty"));
+        label_5 = new QLabel(groupBox_3);
+        label_5->setObjectName(QStringLiteral("label_5"));
 
-        gridLayout_4->addWidget(lcdBeauty, 0, 1, 1, 1);
+        gridLayout_4->addWidget(label_5, 2, 0, 1, 1);
 
         label_8 = new QLabel(groupBox_3);
         label_8->setObjectName(QStringLiteral("label_8"));
@@ -179,20 +193,20 @@ public:
 
         gridLayout_4->addWidget(label_7, 1, 0, 1, 1);
 
-        lcdGoldJess = new QLCDNumber(groupBox_3);
-        lcdGoldJess->setObjectName(QStringLiteral("lcdGoldJess"));
+        sbBeauty = new QSpinBox(groupBox_3);
+        sbBeauty->setObjectName(QStringLiteral("sbBeauty"));
 
-        gridLayout_4->addWidget(lcdGoldJess, 2, 1, 1, 1);
+        gridLayout_4->addWidget(sbBeauty, 0, 1, 1, 1);
 
-        label_5 = new QLabel(groupBox_3);
-        label_5->setObjectName(QStringLiteral("label_5"));
+        sbBored = new QSpinBox(groupBox_3);
+        sbBored->setObjectName(QStringLiteral("sbBored"));
 
-        gridLayout_4->addWidget(label_5, 2, 0, 1, 1);
+        gridLayout_4->addWidget(sbBored, 1, 1, 1, 1);
 
-        lcdBoredom = new QLCDNumber(groupBox_3);
-        lcdBoredom->setObjectName(QStringLiteral("lcdBoredom"));
+        sbGold_2 = new QSpinBox(groupBox_3);
+        sbGold_2->setObjectName(QStringLiteral("sbGold_2"));
 
-        gridLayout_4->addWidget(lcdBoredom, 1, 1, 1, 1);
+        gridLayout_4->addWidget(sbGold_2, 2, 1, 1, 1);
 
 
         gridLayout->addWidget(groupBox_3, 2, 3, 1, 1);
@@ -262,15 +276,15 @@ public:
         label_4->setText(QApplication::translate("MainWindow", "Cooking", 0));
         groupBox->setTitle(QApplication::translate("MainWindow", "Bob", 0));
         label_2->setText(QApplication::translate("MainWindow", "Fatigue", 0));
-        label_3->setText(QApplication::translate("MainWindow", "Thirst", 0));
         label->setText(QApplication::translate("MainWindow", "Gold", 0));
+        label_3->setText(QApplication::translate("MainWindow", "Thirst", 0));
         label_6->setText(QApplication::translate("MainWindow", "Bank", 0));
         checkBoxThirst->setText(QString());
         checkBoxFatigue->setText(QString());
         groupBox_3->setTitle(QApplication::translate("MainWindow", "Jessica", 0));
-        label_8->setText(QApplication::translate("MainWindow", "Beauty", 0));
-        label_7->setText(QApplication::translate("MainWindow", "Boredom", 0));
         label_5->setText(QApplication::translate("MainWindow", "Gold", 0));
+        label_8->setText(QApplication::translate("MainWindow", "Sweat", 0));
+        label_7->setText(QApplication::translate("MainWindow", "Boredom", 0));
         textBrowser->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
