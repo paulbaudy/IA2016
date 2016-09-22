@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>624</width>
-    <height>492</height>
+    <height>516</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,27 +15,14 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="1" column="3">
-     <widget class="QGroupBox" name="groupBox_2">
-      <property name="title">
-       <string>Elsa</string>
+    <item row="0" column="1" rowspan="4" colspan="2">
+     <widget class="QGraphicsView" name="graphicsView">
+      <property name="cursor" stdset="0">
+       <cursorShape>PointingHandCursor</cursorShape>
       </property>
-      <layout class="QGridLayout" name="gridLayout_3">
-       <item row="0" column="1">
-        <widget class="QCheckBox" name="checkBoxCook">
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_4">
-         <property name="text">
-          <string>Cooking</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
+      <property name="lineWidth">
+       <number>1</number>
+      </property>
      </widget>
     </item>
     <item row="0" column="3">
@@ -44,6 +31,39 @@
        <string>Bob</string>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
+       <item row="3" column="1">
+        <widget class="QSpinBox" name="sbGold"/>
+       </item>
+       <item row="2" column="1">
+        <widget class="QSpinBox" name="sbFatigue"/>
+       </item>
+       <item row="4" column="1">
+        <widget class="QSpinBox" name="sbBank"/>
+       </item>
+       <item row="2" column="3">
+        <widget class="QCheckBox" name="checkBoxFatigue">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QCheckBox" name="checkBoxThirst">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QSpinBox" name="sbThirst"/>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_9">
+         <property name="text">
+          <string>Lipstick</string>
+         </property>
+        </widget>
+       </item>
        <item row="2" column="0">
         <widget class="QLabel" name="label_2">
          <property name="text">
@@ -72,43 +92,83 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="1">
-        <widget class="QCheckBox" name="checkBoxThirst">
+       <item row="5" column="1">
+        <widget class="QCheckBox" name="checkBoxKissed">
          <property name="text">
           <string/>
          </property>
         </widget>
        </item>
-       <item row="2" column="1">
-        <widget class="QCheckBox" name="checkBoxFatigue">
+       <item row="3" column="3">
+        <widget class="QCheckBox" name="checkBoxGold">
          <property name="text">
           <string/>
          </property>
         </widget>
-       </item>
-       <item row="1" column="2">
-        <widget class="QSpinBox" name="sbThirst"/>
-       </item>
-       <item row="3" column="2">
-        <widget class="QSpinBox" name="sbGold"/>
-       </item>
-       <item row="4" column="2">
-        <widget class="QSpinBox" name="sbBank"/>
-       </item>
-       <item row="2" column="2">
-        <widget class="QSpinBox" name="sbFatigue"/>
        </item>
       </layout>
       <zorder>label_3</zorder>
       <zorder>label_2</zorder>
       <zorder>label</zorder>
       <zorder>label_6</zorder>
-      <zorder>checkBoxThirst</zorder>
+      <zorder>label_9</zorder>
       <zorder>checkBoxFatigue</zorder>
-      <zorder>sbThirst</zorder>
-      <zorder>sbGold</zorder>
+      <zorder>checkBoxThirst</zorder>
       <zorder>sbBank</zorder>
+      <zorder>sbGold</zorder>
       <zorder>sbFatigue</zorder>
+      <zorder>sbThirst</zorder>
+      <zorder>checkBoxKissed</zorder>
+      <zorder>checkBoxGold</zorder>
+     </widget>
+    </item>
+    <item row="1" column="3">
+     <widget class="QGroupBox" name="groupBox_2">
+      <property name="title">
+       <string>Elsa</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>Cooking</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QCheckBox" name="checkBoxCook">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="4" column="3">
+     <widget class="QFrame" name="frame">
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QFormLayout" name="formLayout">
+       <item row="0" column="0">
+        <widget class="QPushButton" name="pushButton_2">
+         <property name="text">
+          <string>Options</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="pushButton">
+         <property name="text">
+          <string>Launch</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </item>
     <item row="2" column="3">
@@ -117,17 +177,23 @@
        <string>Jessica</string>
       </property>
       <layout class="QGridLayout" name="gridLayout_4">
-       <item row="2" column="0">
-        <widget class="QLabel" name="label_5">
-         <property name="text">
-          <string>Gold</string>
-         </property>
-        </widget>
+       <item row="0" column="1">
+        <widget class="QSpinBox" name="sbBeauty"/>
        </item>
        <item row="0" column="0">
         <widget class="QLabel" name="label_8">
          <property name="text">
           <string>Sweat</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QSpinBox" name="sbBored"/>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+          <string>Gold</string>
          </property>
         </widget>
        </item>
@@ -138,39 +204,27 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
-        <widget class="QSpinBox" name="sbBeauty"/>
-       </item>
-       <item row="1" column="1">
-        <widget class="QSpinBox" name="sbBored"/>
-       </item>
        <item row="2" column="1">
         <widget class="QSpinBox" name="sbGold_2"/>
+       </item>
+       <item row="0" column="2">
+        <widget class="QCheckBox" name="checkBoxSweat">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QCheckBox" name="checkBoxBoredom">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
     </item>
-    <item row="3" column="2">
-     <widget class="QProgressBar" name="progressBar">
-      <property name="value">
-       <number>8</number>
-      </property>
-      <property name="invertedAppearance">
-       <bool>false</bool>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="1" rowspan="3" colspan="2">
-     <widget class="QGraphicsView" name="graphicsView">
-      <property name="cursor" stdset="0">
-       <cursorShape>PointingHandCursor</cursorShape>
-      </property>
-      <property name="lineWidth">
-       <number>1</number>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="1" rowspan="2" colspan="3">
+    <item row="5" column="1" rowspan="2" colspan="3">
      <widget class="QTextBrowser" name="textBrowser">
       <property name="html">
        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -182,30 +236,14 @@ p, li { white-space: pre-wrap; }
       </property>
      </widget>
     </item>
-    <item row="3" column="3">
-     <widget class="QFrame" name="frame">
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
+    <item row="4" column="2">
+     <widget class="QProgressBar" name="progressBar">
+      <property name="value">
+       <number>8</number>
       </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
+      <property name="invertedAppearance">
+       <bool>false</bool>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <widget class="QPushButton" name="pushButton_2">
-         <property name="text">
-          <string>Options</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButton">
-         <property name="text">
-          <string>Launch</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
      </widget>
     </item>
    </layout>
@@ -219,6 +257,14 @@ p, li { white-space: pre-wrap; }
      <height>21</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuResert_values_by_default">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionReset_values_by_default"/>
+    <addaction name="actionQuit"/>
+   </widget>
+   <addaction name="menuResert_values_by_default"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -229,6 +275,16 @@ p, li { white-space: pre-wrap; }
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionReset_values_by_default">
+   <property name="text">
+    <string>Reset values by default</string>
+   </property>
+  </action>
+  <action name="actionQuit">
+   <property name="text">
+    <string>Quit</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

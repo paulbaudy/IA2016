@@ -13,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->progressBar->setValue(0);
 
     // Init configuration
-    cf.nbIteration = 30;
+    cf.nbIteration = 50;
     cf.stepbystep = false;
 
 
@@ -40,12 +40,16 @@ MainWindow::MainWindow(QWidget *parent) :
     EntityMgr->RegisterEntity(Jessica);
 
 
-    // init Bob
+    // init checkbox disabled
     ui->checkBoxThirst->setEnabled(false);
     ui->checkBoxFatigue->setEnabled(false);
+    ui->checkBoxGold->setEnabled(false);
+    ui->checkBoxKissed->setEnabled(false);
     ui->checkBoxCook->setEnabled(false);
+    ui->checkBoxSweat->setEnabled(false);
+    ui->checkBoxBoredom->setEnabled(false);
 
-    ui->progressBar->setMaximum(30);
+    ui->progressBar->setMaximum(50);
     ui->progressBar->setMinimum(0);
 
     updater = new GUIUpdater();
@@ -85,6 +89,13 @@ void MainWindow::updateGui() {
     //dispatch any delayed messages
     Dispatch->DispatchDelayedMessages();
 
+    //Update infos
+    updateInfos();
+
+    ui->progressBar->setValue(ui->progressBar->value()+1);
+}
+
+void MainWindow::updateInfos(){
     // Update Bob
     ui->sbBank->setValue(Bob->Wealth());
     ui->sbGold->setValue(Bob->GoldCarried());
@@ -92,6 +103,8 @@ void MainWindow::updateGui() {
     ui->sbFatigue->setValue(Bob->GetFatigue());
     ui->checkBoxThirst->setChecked(Bob->Thirsty());
     ui->checkBoxFatigue->setChecked(Bob->Fatigued());
+    ui->checkBoxGold->setChecked(Bob->PocketsFull());
+    ui->checkBoxKissed->setChecked(Bob->Kissed());
 
     // Update Elsa
     ui->checkBoxCook->setChecked(Elsa->Cooking());
@@ -100,25 +113,49 @@ void MainWindow::updateGui() {
     ui->sbGold_2->setValue(Jessica->GoldTips());
     ui->sbBeauty->setValue(Jessica->GetSweat());
     ui->sbBored->setValue(Jessica->GetBoredom());
-
-    ui->progressBar->setValue(ui->progressBar->value()+1);
+    ui->checkBoxSweat->setChecked(Jessica->isSweaty());
+    ui->checkBoxBoredom->setChecked(Jessica->isBored());
 }
 
+void MainWindow::setInfosByDefault(){
+    //Bob's infos
+    Bob->SetWealth(0);
+    Bob->SetGoldCarried(0);
+    Bob->SetThirst(0);
+    Bob->SetFatigue(0);
+    Bob->cleanLipstick();
 
+    //Elsa's infos
+    Elsa->SetCooking(false);
+
+    //Jessica's infos
+    Jessica->SetGoldTips(0);
+    Jessica->SetSweat(0);
+    Jessica->SetBoredom(0);
+}
+
+void MainWindow::setInfosEnabled(bool val){
+    ui->pushButton_2->setEnabled(val);
+    ui->sbThirst->setEnabled(val);
+    ui->sbFatigue->setEnabled(val);
+    ui->sbGold->setEnabled(val);
+    ui->sbBank->setEnabled(val);
+    ui->sbBeauty->setEnabled(val);
+    ui->sbBored->setEnabled(val);
+    ui->sbGold_2->setEnabled(val);
+    ui->actionReset_values_by_default->setEnabled(val);
+}
+
+//----------------
+// Button events
+//----------------
 void MainWindow::on_pushButton_clicked()
 {
     updater->start();
+    //Disable infos changes
+    setInfosEnabled(false);
 
-    ui->pushButton_2->setEnabled(false);
-    ui->sbThirst->setEnabled(false);
-    ui->sbFatigue->setEnabled(false);
-    ui->sbGold->setEnabled(false);
-    ui->sbBank->setEnabled(false);
-    ui->sbBeauty->setEnabled(false);
-    ui->sbBored->setEnabled(false);
-    ui->sbGold_2->setEnabled(false);
 }
-
 
 void MainWindow::on_pushButton_2_clicked()
 {
@@ -133,6 +170,24 @@ void MainWindow::on_pushButton_2_clicked()
     updater->setIteration(cf.nbIteration);
 }
 
+//---------------
+// Menu events
+//---------------
+
+void MainWindow::on_actionReset_values_by_default_triggered()
+{
+    setInfosByDefault();
+    updateInfos();
+}
+
+void MainWindow::on_actionQuit_triggered()
+{
+    this->close();
+}
+
+//------------------
+// Infos events
+//------------------
 void MainWindow::on_sbThirst_editingFinished()
 {
     Bob->SetThirst(ui->sbThirst->value());
