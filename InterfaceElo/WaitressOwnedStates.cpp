@@ -238,7 +238,7 @@ void InteractWithMiner::Enter(Waitress* pWaitress)
 
 		pWaitress->ChangeLocation(saloon);
 	}
-	Dispatch->DispatchMessage(0.1,
+    Dispatch->DispatchMessage(0.001,
 							pWaitress->ID(),
 							ent_Miner_Bob,
 							Msg_HiMiner,
@@ -278,7 +278,7 @@ bool InteractWithMiner::OnMessage(Waitress* pWaitress, const Telegram& msg)
 		cout << "\nMessage handled by " << GetNameOfEntity(pWaitress->ID())
 			<< " at time: " << Clock->GetCurrentTime();
 
-		Dispatch->DispatchMessage(0.1,
+        Dispatch->DispatchMessage(0.01,
 			pWaitress->ID(),
 			ent_Miner_Bob,
 			Msg_GiveDrinkAndAskHarvest,
@@ -296,7 +296,7 @@ bool InteractWithMiner::OnMessage(Waitress* pWaitress, const Telegram& msg)
 		cout << "\nMessage handled by " << GetNameOfEntity(pWaitress->ID())
 			<< " at time: " << Clock->GetCurrentTime();
 
-		Dispatch->DispatchMessage(0.1,
+        Dispatch->DispatchMessage(0.01,
 			pWaitress->ID(),
 			ent_Miner_Bob,
 			Msg_AskForTips,
@@ -315,7 +315,7 @@ bool InteractWithMiner::OnMessage(Waitress* pWaitress, const Telegram& msg)
 		cout << "\nMessage handled by " << GetNameOfEntity(pWaitress->ID())
 			<< " at time: " << Clock->GetCurrentTime();
 
-		Dispatch->DispatchMessage(0.1,
+        Dispatch->DispatchMessage(0.01,
 			pWaitress->ID(),
 			ent_Miner_Bob,
 			Msg_MaybeNextTime,
@@ -334,7 +334,7 @@ bool InteractWithMiner::OnMessage(Waitress* pWaitress, const Telegram& msg)
 		cout << "\nMessage handled by " << GetNameOfEntity(pWaitress->ID())
 			<< " at time: " << Clock->GetCurrentTime();
 
-		Dispatch->DispatchMessage(0.1,
+        Dispatch->DispatchMessage(0.01,
 			pWaitress->ID(),
 			ent_Miner_Bob,
 			Msg_SeeYouSoon,

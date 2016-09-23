@@ -157,7 +157,7 @@ void GoHomeAndSleepTilRested::Enter(Miner* pMiner)
 
     if(pMiner->Kissed()){
         //let the wife know that's not what it looks like
-        Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY, //time delay
+        Dispatch->DispatchMessage(0.01, //time delay
                                   pMiner->ID(),        //ID of sender
                                   ent_Elsa,            //ID of recipient
                                   Msg_NotWhatLooksLike,   //the message
@@ -247,7 +247,7 @@ void QuenchThirst::Enter(Miner* pMiner)
     cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Boy, ah sure is thusty! Walking to the saloon";
 
 	//let the waitress know I'm here
-	Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY, //time delay
+    Dispatch->DispatchMessage(0.01, //time delay
 		pMiner->ID(),        //ID of sender
 		ent_Jessica,            //ID of recipient
 		Msg_HiWaitress,   //the message
@@ -270,7 +270,7 @@ void QuenchThirst::Execute(Miner* pMiner)
 	// pMiner->GetFSM()->ChangeState(EnterMineAndDigForNugget::Instance());
 
 	//let the waitress know I'm here
-	Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY, //time delay
+    Dispatch->DispatchMessage(0.01, //time delay
 		pMiner->ID(),        //ID of sender
 		ent_Jessica,            //ID of recipient
 		Msg_HiWaitress,   //the message
@@ -339,7 +339,7 @@ void InteractWithWaitress::Enter(Miner* pMiner) {
 		pMiner->ChangeLocation(saloon);
 	}
 
-	Dispatch->DispatchMessage(0.1, //time delay
+    Dispatch->DispatchMessage(0.01, //time delay
 		pMiner->ID(),        //ID of sender
 		ent_Jessica,            //ID of recipient
 		Msg_GiveMeADrink,   //the message
@@ -377,7 +377,7 @@ bool InteractWithWaitress::OnMessage(Miner* pMiner, const Telegram& msg) {
 
 		SetTextColor(FOREGROUND_RED | FOREGROUND_INTENSITY);
 
-		Dispatch->DispatchMessage(0.1, //time delay
+        Dispatch->DispatchMessage(0.01, //time delay
 		pMiner->ID(),        //ID of sender
 		ent_Jessica,            //ID of recipient
 		msgt,   //the message
@@ -399,7 +399,7 @@ bool InteractWithWaitress::OnMessage(Miner* pMiner, const Telegram& msg) {
 
 		SetTextColor(FOREGROUND_RED | FOREGROUND_INTENSITY);
 
-		Dispatch->DispatchMessage(0.1, //time delay
+        Dispatch->DispatchMessage(0.01, //time delay
 			pMiner->ID(),        //ID of sender
 			ent_Jessica,            //ID of recipient
 			msgt,   //the message
