@@ -340,6 +340,7 @@ bool InteractWithMiner::OnMessage(Waitress* pWaitress, const Telegram& msg)
 			Msg_SeeYouSoon,
 			NO_ADDITIONAL_INFO);
 
+        pWaitress->AddToGoldTips(1);
 		SetTextColor(FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY);
 
 		cout << "\n" << GetNameOfEntity(pWaitress->ID())

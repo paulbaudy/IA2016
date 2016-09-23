@@ -45,7 +45,8 @@ HEADERS  += mainwindow.h \
     WaitressOwnedStates.h \
     Common/Time/CrudeTimer.h \
     configdialog.h \
-    configuration.h
+    configuration.h \
+    q_debugstream.h
 
 FORMS    += mainwindow.ui \
     configdialog.ui

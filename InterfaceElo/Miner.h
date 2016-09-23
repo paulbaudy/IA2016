@@ -19,14 +19,16 @@
 #include "MinerOwnedStates.h"
 #include "fsm/StateMachine.h"
 
+#include "misc/Utils.h"
+
 template <class entity_type> class State; //pre-fixed with "template <class entity_type> " for vs8 compatibility
 
 struct Telegram;
 
 //the amount of gold a miner must have before he feels he can go home
-const int ComfortLevel       = 5;
+const int ComfortLevel       = 5; //was at 5
 //the amount of nuggets a miner can carry
-const int MaxNuggets         = 3;
+const int MaxNuggets         = 4; //was at 3
 //above this value a miner is thirsty
 const int ThirstLevel        = 5;
 //above this value a miner is sleepy
@@ -62,6 +64,7 @@ public:
                           m_iMoneyInBank(0),
                           m_iThirst(0),
                           m_iFatigue(0),
+						  m_Kissed(false),
                           BaseGameEntity(id, shack, locations, img)
                                
   {

@@ -155,12 +155,27 @@ void GoHomeAndSleepTilRested::Enter(Miner* pMiner)
 
     pMiner->ChangeLocation(shack); 
 
-    //let the wife know I'm home
-    Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY, //time delay
-                              pMiner->ID(),        //ID of sender
-                              ent_Elsa,            //ID of recipient
-                              Msg_HiHoneyImHome,   //the message
-                              NO_ADDITIONAL_INFO);    
+    if(pMiner->Kissed()){
+        //let the wife know that's not what it looks like
+        Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY, //time delay
+                                  pMiner->ID(),        //ID of sender
+                                  ent_Elsa,            //ID of recipient
+                                  Msg_NotWhatLooksLike,   //the message
+                                  NO_ADDITIONAL_INFO);
+
+        SetTextColor(FOREGROUND_RED|FOREGROUND_INTENSITY);
+
+        cout << "\n" << GetNameOfEntity(pMiner->ID())
+             << ": Honey, it's net' whot it looks lik'! A' prumis' you!";
+        pMiner->cleanLipstick();
+    }else{
+        //let the wife know I'm home
+        Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY, //time delay
+                                  pMiner->ID(),        //ID of sender
+                                  ent_Elsa,            //ID of recipient
+                                  Msg_HiHoneyImHome,   //the message
+                                  NO_ADDITIONAL_INFO);
+    }
   }
 }
 
@@ -358,7 +373,7 @@ bool InteractWithWaitress::OnMessage(Miner* pMiner, const Telegram& msg) {
 
 		pMiner->BuyAndDrinkAWhiskey();
 
-		pMiner->GoldCarried() >= 2 ? msgt = Msg_GoodHarvest : msgt = Msg_BadHarvest;
+        (pMiner->GoldCarried() >= 2) ? msgt = Msg_GoodHarvest : msgt = Msg_BadHarvest;
 
 		SetTextColor(FOREGROUND_RED | FOREGROUND_INTENSITY);
 
@@ -380,7 +395,7 @@ bool InteractWithWaitress::OnMessage(Miner* pMiner, const Telegram& msg) {
 		cout << "\nMessage handled by " << GetNameOfEntity(pMiner->ID())
 			<< " at time: " << Clock->GetCurrentTime();
 
-		pMiner->Fatigued()? msgt = Msg_LeaveMeAlone : msgt = Msg_TakeGold;
+        (RandFloat() < 0.5) ? msgt = Msg_LeaveMeAlone : msgt = Msg_TakeGold;
 
 		SetTextColor(FOREGROUND_RED | FOREGROUND_INTENSITY);
 
@@ -406,7 +421,10 @@ bool InteractWithWaitress::OnMessage(Miner* pMiner, const Telegram& msg) {
 		SetTextColor(FOREGROUND_RED | FOREGROUND_INTENSITY);
 
 		cout << "\n" << GetNameOfEntity(pMiner->ID())
-			<< ": Okay Hun, see ya'!";
+            << ": Okay Hun, see ya'! Let's finish my drink!";
+
+        //Drink his last sip
+        pMiner->SetThirst(0);
 
 		pMiner->GetFSM()->ChangeState(EnterMineAndDigForNugget::Instance());
 
@@ -421,7 +439,10 @@ bool InteractWithWaitress::OnMessage(Miner* pMiner, const Telegram& msg) {
 		pMiner->getKissed();
 
 		cout << "\n" << GetNameOfEntity(pMiner->ID())
-			<< ": Okay, see ya'!"; 
+            << ": Okay, see ya'! Let's finish my drink!";
+
+        //Drink his last sip
+        pMiner->SetThirst(0);
 		
 		pMiner->GetFSM()->ChangeState(VisitBankAndDepositGold::Instance());
 

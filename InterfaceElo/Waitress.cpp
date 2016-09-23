@@ -15,11 +15,13 @@ void Waitress::Update()
 
 
 
-void Waitress::AddToGoldTips(const int val)
+void Waitress::AddToGoldTips(int val)
 {
 	m_iGoldTips += val;
 
-	if (m_iGoldTips < 0) m_iGoldTips = 0;
+    if (m_iGoldTips < 0){
+        m_iGoldTips = 0;
+    }
 }
 
 bool Waitress::isSweaty()const

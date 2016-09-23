@@ -20,7 +20,7 @@ enum message_type
   Msg_MaybeNextTime,
   Msg_SeeYouSoon,
   Msg_AskForGold,
-  Msg_ICanExplain,
+  Msg_NotWhatLooksLike,
 };
 
 
@@ -62,13 +62,16 @@ inline std::string MsgToStr(int msg)
 	  return "TakeGold";
 
   case Msg_WaitingForDrink:
-	  return "I've waited way too long.";
+      return "WaitingForDrink";
 
   case Msg_MaybeNextTime:
-	  return "Well. Maybe next time then..";
+      return "MaybeNextTime";
 
   case Msg_SeeYouSoon:
-	  return "Thanks, see you soon.";
+      return "SeeYouSoon";
+
+  case Msg_NotWhatLooksLike:
+      return "NotWhatLooksLike";
 
   default:
 

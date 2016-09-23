@@ -56,6 +56,9 @@ public:
 
 public slots:
     void updateGui();
+    void updateInfos();
+    void setInfosByDefault();
+    void setInfosEnabled(bool val);
 
 private slots:
     void on_pushButton_clicked();
@@ -75,6 +78,10 @@ private slots:
     void on_sbBored_editingFinished();
 
     void on_sbGold_2_editingFinished();
+
+    void on_actionQuit_triggered();
+
+    void on_actionReset_values_by_default_triggered();
 
 private:
     Ui::MainWindow *ui;
