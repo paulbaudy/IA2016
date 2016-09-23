@@ -31,7 +31,9 @@ protected:
     {
         if (v == '\n')
         {
-            log_window->append("");
+            log_window->append(" ");
+        }else{
+            log_window->insertHtml((QString)v);
         }
         return v;
     }
@@ -40,19 +42,37 @@ protected:
     virtual std::streamsize xsputn(const char *p, std::streamsize n)
     {
         QString str(p);
+        QString bobColor = "<font color = 'blue'>";
+        QString elsaColor = "<font color = 'green'>";
+        QString jessicaColor = "<font color = 'red'>";
+        QString stdColor = "<font color = 'black'>";
+        QString endColor = "</font>";
+        QString color;
 
         if(str.contains("\n")){
             QStringList strSplitted = str.split("\n");
 
             log_window->moveCursor (QTextCursor::End);
-            log_window->insertPlainText(strSplitted.at(0)); //Index 0 is still on the same old line
+            log_window->insertHtml(strSplitted.at(0)); //Index 0 is still on the same old line
 
             for(int i = 1; i < strSplitted.size(); i++){
                 log_window->append(strSplitted.at(i));
             }
         }else{
             log_window->moveCursor (QTextCursor::End);
-            log_window->insertPlainText(str);
+            if(str == "Miner Bob"){
+                str+=" ";
+                color = bobColor;
+            }else if(str == "Elsa"){
+                str+=" ";
+                color = elsaColor;
+            }else if(str == "Jessica"){
+                str+=" ";
+                color = jessicaColor;
+            }else{
+                color = stdColor;
+            }
+            log_window->insertHtml(color + str + endColor);
         }
         return n;
     }

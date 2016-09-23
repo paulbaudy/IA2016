@@ -87,7 +87,9 @@ DIST          =  ..\InterfaceElo\mainwindow.h \
 		..\InterfaceElo\Waitress.h \
 		..\InterfaceElo\WaitressOwnedStates.h \
 		..\InterfaceElo\Common\Time\CrudeTimer.h \
-		..\InterfaceElo\configdialog.h ..\InterfaceElo\main.cpp \
+		..\InterfaceElo\configdialog.h \
+		..\InterfaceElo\configuration.h \
+		..\InterfaceElo\q_debugstream.h ..\InterfaceElo\main.cpp \
 		..\InterfaceElo\mainwindow.cpp \
 		..\InterfaceElo\BaseGameEntity.cpp \
 		..\InterfaceElo\EntityManager.cpp \
@@ -342,18 +344,18 @@ debug\moc_mainwindow.cpp: D:\Qt\Qt5.7.0\5.7\msvc2015_64\include\QtWidgets\QMainW
 		..\InterfaceElo\Common\fsm\State.h \
 		..\InterfaceElo\Common\fsm\StateMachine.h \
 		..\InterfaceElo\Common\Messaging\Telegram.h \
+		..\InterfaceElo\Common\misc\Utils.h \
 		..\InterfaceElo\MinersWife.h \
 		..\InterfaceElo\MinersWifeOwnedStates.h \
-		..\InterfaceElo\Common\misc\Utils.h \
 		..\InterfaceElo\Waitress.h \
 		..\InterfaceElo\WaitressOwnedStates.h \
 		..\InterfaceElo\EntityManager.h \
 		..\InterfaceElo\MessageDispatcher.h \
 		..\InterfaceElo\EntityNames.h \
+		..\InterfaceElo\configuration.h \
 		..\InterfaceElo\configdialog.h \
 		D:\Qt\Qt5.7.0\5.7\msvc2015_64\include\QtWidgets\QDialog \
 		D:\Qt\Qt5.7.0\5.7\msvc2015_64\include\QtWidgets\qdialog.h \
-		..\InterfaceElo\mainwindow.h \
 		..\InterfaceElo\mainwindow.h \
 		D:\Qt\Qt5.7.0\5.7\msvc2015_64\bin\moc.exe
 	D:\Qt\Qt5.7.0\5.7\msvc2015_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1900 -D_WIN32 -D_WIN64 -ID:/Qt/Qt5.7.0/5.7/msvc2015_64/mkspecs/win32-msvc2015 -I"C:/Users/Elodie/Desktop/TP IA/Projet/IA2016/InterfaceElo" -I"C:/Users/Elodie/Desktop/TP IA/Projet/IA2016/InterfaceElo/Common" -ID:/Qt/Qt5.7.0/5.7/msvc2015_64/include -ID:/Qt/Qt5.7.0/5.7/msvc2015_64/include/QtWidgets -ID:/Qt/Qt5.7.0/5.7/msvc2015_64/include/QtGui -ID:/Qt/Qt5.7.0/5.7/msvc2015_64/include/QtANGLE -ID:/Qt/Qt5.7.0/5.7/msvc2015_64/include/QtCore -I. ..\InterfaceElo\mainwindow.h -o debug\moc_mainwindow.cpp
@@ -456,31 +458,7 @@ debug\moc_configdialog.cpp: D:\Qt\Qt5.7.0\5.7\msvc2015_64\include\QtWidgets\QDia
 		D:\Qt\Qt5.7.0\5.7\msvc2015_64\include\QtCore\qfiledevice.h \
 		D:\Qt\Qt5.7.0\5.7\msvc2015_64\include\QtGui\qvector2d.h \
 		D:\Qt\Qt5.7.0\5.7\msvc2015_64\include\QtGui\qtouchdevice.h \
-		..\InterfaceElo\mainwindow.h \
-		D:\Qt\Qt5.7.0\5.7\msvc2015_64\include\QtWidgets\QMainWindow \
-		D:\Qt\Qt5.7.0\5.7\msvc2015_64\include\QtWidgets\qmainwindow.h \
-		D:\Qt\Qt5.7.0\5.7\msvc2015_64\include\QtWidgets\qtabwidget.h \
-		D:\Qt\Qt5.7.0\5.7\msvc2015_64\include\QtGui\qicon.h \
-		D:\Qt\Qt5.7.0\5.7\msvc2015_64\include\QtCore\QThread \
-		D:\Qt\Qt5.7.0\5.7\msvc2015_64\include\QtCore\qthread.h \
-		..\InterfaceElo\Locations.h \
-		..\InterfaceElo\Miner.h \
-		..\InterfaceElo\BaseGameEntity.h \
-		..\InterfaceElo\Common\messaging\Telegram.h \
-		..\InterfaceElo\Common\misc\ConsoleUtils.h \
-		..\InterfaceElo\MinerOwnedStates.h \
-		..\InterfaceElo\Common\fsm\State.h \
-		..\InterfaceElo\Common\fsm\StateMachine.h \
-		..\InterfaceElo\Common\Messaging\Telegram.h \
-		..\InterfaceElo\MinersWife.h \
-		..\InterfaceElo\MinersWifeOwnedStates.h \
-		..\InterfaceElo\Common\misc\Utils.h \
-		..\InterfaceElo\Waitress.h \
-		..\InterfaceElo\WaitressOwnedStates.h \
-		..\InterfaceElo\EntityManager.h \
-		..\InterfaceElo\MessageDispatcher.h \
-		..\InterfaceElo\EntityNames.h \
-		..\InterfaceElo\configdialog.h \
+		..\InterfaceElo\configuration.h \
 		..\InterfaceElo\configdialog.h \
 		D:\Qt\Qt5.7.0\5.7\msvc2015_64\bin\moc.exe
 	D:\Qt\Qt5.7.0\5.7\msvc2015_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1900 -D_WIN32 -D_WIN64 -ID:/Qt/Qt5.7.0/5.7/msvc2015_64/mkspecs/win32-msvc2015 -I"C:/Users/Elodie/Desktop/TP IA/Projet/IA2016/InterfaceElo" -I"C:/Users/Elodie/Desktop/TP IA/Projet/IA2016/InterfaceElo/Common" -ID:/Qt/Qt5.7.0/5.7/msvc2015_64/include -ID:/Qt/Qt5.7.0/5.7/msvc2015_64/include/QtWidgets -ID:/Qt/Qt5.7.0/5.7/msvc2015_64/include/QtGui -ID:/Qt/Qt5.7.0/5.7/msvc2015_64/include/QtANGLE -ID:/Qt/Qt5.7.0/5.7/msvc2015_64/include/QtCore -I. ..\InterfaceElo\configdialog.h -o debug\moc_configdialog.cpp
@@ -622,14 +600,15 @@ debug\main.obj: ..\InterfaceElo\main.cpp ../InterfaceElo/mainwindow.h \
 		..\InterfaceElo\Common\fsm\State.h \
 		..\InterfaceElo\Common\fsm\StateMachine.h \
 		..\InterfaceElo\Common\Messaging\Telegram.h \
+		..\InterfaceElo\Common\misc\Utils.h \
 		../InterfaceElo/MinersWife.h \
 		../InterfaceElo/MinersWifeOwnedStates.h \
-		..\InterfaceElo\Common\misc\Utils.h \
 		../InterfaceElo/Waitress.h \
 		../InterfaceElo/WaitressOwnedStates.h \
 		../InterfaceElo/EntityManager.h \
 		../InterfaceElo/MessageDispatcher.h \
 		../InterfaceElo/EntityNames.h \
+		../InterfaceElo/configuration.h \
 		../InterfaceElo/configdialog.h \
 		D:\Qt\Qt5.7.0\5.7\msvc2015_64\include\QtWidgets\QDialog \
 		D:\Qt\Qt5.7.0\5.7\msvc2015_64\include\QtWidgets\qdialog.h \
@@ -753,18 +732,28 @@ debug\mainwindow.obj: ..\InterfaceElo\mainwindow.cpp ../InterfaceElo/mainwindow.
 		..\InterfaceElo\Common\fsm\State.h \
 		..\InterfaceElo\Common\fsm\StateMachine.h \
 		..\InterfaceElo\Common\Messaging\Telegram.h \
+		..\InterfaceElo\Common\misc\Utils.h \
 		../InterfaceElo/MinersWife.h \
 		../InterfaceElo/MinersWifeOwnedStates.h \
-		..\InterfaceElo\Common\misc\Utils.h \
 		../InterfaceElo/Waitress.h \
 		../InterfaceElo/WaitressOwnedStates.h \
 		../InterfaceElo/EntityManager.h \
 		../InterfaceElo/MessageDispatcher.h \
 		../InterfaceElo/EntityNames.h \
+		../InterfaceElo/configuration.h \
 		../InterfaceElo/configdialog.h \
 		D:\Qt\Qt5.7.0\5.7\msvc2015_64\include\QtWidgets\QDialog \
 		D:\Qt\Qt5.7.0\5.7\msvc2015_64\include\QtWidgets\qdialog.h \
-		ui_mainwindow.h
+		ui_mainwindow.h \
+		../InterfaceElo/q_debugstream.h \
+		D:\Qt\Qt5.7.0\5.7\msvc2015_64\include\QtWidgets\QTextEdit.h \
+		D:\Qt\Qt5.7.0\5.7\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
+		D:\Qt\Qt5.7.0\5.7\msvc2015_64\include\QtWidgets\qframe.h \
+		D:\Qt\Qt5.7.0\5.7\msvc2015_64\include\QtGui\qtextdocument.h \
+		D:\Qt\Qt5.7.0\5.7\msvc2015_64\include\QtGui\qtextoption.h \
+		D:\Qt\Qt5.7.0\5.7\msvc2015_64\include\QtGui\qtextcursor.h \
+		D:\Qt\Qt5.7.0\5.7\msvc2015_64\include\QtGui\qtextformat.h \
+		D:\Qt\Qt5.7.0\5.7\msvc2015_64\include\QtGui\qpen.h
 
 debug\BaseGameEntity.obj: ..\InterfaceElo\BaseGameEntity.cpp ../InterfaceElo/BaseGameEntity.h \
 		..\InterfaceElo\Common\messaging\Telegram.h
@@ -791,7 +780,8 @@ debug\Miner.obj: ..\InterfaceElo\Miner.cpp ../InterfaceElo/Miner.h \
 		../InterfaceElo/MinerOwnedStates.h \
 		..\InterfaceElo\Common\fsm\State.h \
 		..\InterfaceElo\Common\fsm\StateMachine.h \
-		..\InterfaceElo\Common\Messaging\Telegram.h
+		..\InterfaceElo\Common\Messaging\Telegram.h \
+		..\InterfaceElo\Common\misc\Utils.h
 
 debug\MinerOwnedStates.obj: ..\InterfaceElo\MinerOwnedStates.cpp ../InterfaceElo/MinerOwnedStates.h \
 		..\InterfaceElo\Common\fsm\State.h \
@@ -802,6 +792,7 @@ debug\MinerOwnedStates.obj: ..\InterfaceElo\MinerOwnedStates.cpp ../InterfaceElo
 		..\InterfaceElo\Common\misc\ConsoleUtils.h \
 		..\InterfaceElo\Common\fsm\StateMachine.h \
 		..\InterfaceElo\Common\Messaging\Telegram.h \
+		..\InterfaceElo\Common\misc\Utils.h \
 		../InterfaceElo/MessageDispatcher.h \
 		../InterfaceElo/MessageTypes.h \
 		../InterfaceElo/Common/Time/CrudeTimer.h \
@@ -964,30 +955,7 @@ debug\configdialog.obj: ..\InterfaceElo\configdialog.cpp ../InterfaceElo/configd
 		D:\Qt\Qt5.7.0\5.7\msvc2015_64\include\QtCore\qfiledevice.h \
 		D:\Qt\Qt5.7.0\5.7\msvc2015_64\include\QtGui\qvector2d.h \
 		D:\Qt\Qt5.7.0\5.7\msvc2015_64\include\QtGui\qtouchdevice.h \
-		../InterfaceElo/mainwindow.h \
-		D:\Qt\Qt5.7.0\5.7\msvc2015_64\include\QtWidgets\QMainWindow \
-		D:\Qt\Qt5.7.0\5.7\msvc2015_64\include\QtWidgets\qmainwindow.h \
-		D:\Qt\Qt5.7.0\5.7\msvc2015_64\include\QtWidgets\qtabwidget.h \
-		D:\Qt\Qt5.7.0\5.7\msvc2015_64\include\QtGui\qicon.h \
-		D:\Qt\Qt5.7.0\5.7\msvc2015_64\include\QtCore\QThread \
-		D:\Qt\Qt5.7.0\5.7\msvc2015_64\include\QtCore\qthread.h \
-		../InterfaceElo/Locations.h \
-		../InterfaceElo/Miner.h \
-		../InterfaceElo/BaseGameEntity.h \
-		..\InterfaceElo\Common\messaging\Telegram.h \
-		..\InterfaceElo\Common\misc\ConsoleUtils.h \
-		../InterfaceElo/MinerOwnedStates.h \
-		..\InterfaceElo\Common\fsm\State.h \
-		..\InterfaceElo\Common\fsm\StateMachine.h \
-		..\InterfaceElo\Common\Messaging\Telegram.h \
-		../InterfaceElo/MinersWife.h \
-		../InterfaceElo/MinersWifeOwnedStates.h \
-		..\InterfaceElo\Common\misc\Utils.h \
-		../InterfaceElo/Waitress.h \
-		../InterfaceElo/WaitressOwnedStates.h \
-		../InterfaceElo/EntityManager.h \
-		../InterfaceElo/MessageDispatcher.h \
-		../InterfaceElo/EntityNames.h \
+		../InterfaceElo/configuration.h \
 		ui_configdialog.h
 
 debug\moc_mainwindow.obj: debug\moc_mainwindow.cpp 

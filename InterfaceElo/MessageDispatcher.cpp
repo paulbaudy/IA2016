@@ -75,8 +75,8 @@ void MessageDispatcher::DispatchMessage(double  delay,
   //if there is no delay, route telegram immediately                       
   if (delay <= 0.0f)                                                        
   {
-    cout << "\nInstant telegram dispatched at time: " << Clock->GetCurrentTime()
-         << " by " << GetNameOfEntity(pSender->ID()) << " for " << GetNameOfEntity(pReceiver->ID()) 
+    cout << "\nInstant telegram dispatched by " << GetNameOfEntity(pSender->ID()) << " for " << GetNameOfEntity(pReceiver->ID())
+         << " at time: " << Clock->GetCurrentTime()
          << ". Msg is "<< MsgToStr(msg);
 
     //send the telegram to the recipient
@@ -93,8 +93,9 @@ void MessageDispatcher::DispatchMessage(double  delay,
     //and put it in the queue
     PriorityQ.insert(telegram);   
 
-    cout << "\nDelayed telegram from " << GetNameOfEntity(pSender->ID()) << " recorded at time " 
-            << Clock->GetCurrentTime() << " for " << GetNameOfEntity(pReceiver->ID())
+    cout << "\nDelayed telegram from " << GetNameOfEntity(pSender->ID())
+         << " for " << GetNameOfEntity(pReceiver->ID())
+         << " recorded at time " << Clock->GetCurrentTime()
             << ". Msg is "<< MsgToStr(msg);
             
   }

@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //Redirect Console output to QTextEdit
     new Q_DebugStream(std::cout, ui->log);
+    ui->log->setReadOnly(true);
 
     // Init configuration
     cf.nbIteration = 50;
@@ -104,6 +105,11 @@ void MainWindow::updateInfos(){
     ui->sbThirst->setValue(Bob->GetThirst());
     ui->sbFatigue->setValue(Bob->GetFatigue());
     ui->checkBoxThirst->setChecked(Bob->Thirsty());
+    if(Bob->Thirsty()){
+        ui->label_3->setStyleSheet("QLabel { color : red; }");
+    }else{
+        ui->label_3->setStyleSheet("QLabel { color : black; }");
+    }
     ui->checkBoxFatigue->setChecked(Bob->Fatigued());
     ui->checkBoxGold->setChecked(Bob->PocketsFull());
     ui->checkBoxKissed->setChecked(Bob->Kissed());
