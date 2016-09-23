@@ -243,7 +243,7 @@ p, li { white-space: pre-wrap; }
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <widget class="QLabel" name="label_10">
+      <widget class="QLabel" name="Bank">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -262,7 +262,7 @@ p, li { white-space: pre-wrap; }
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="label_11">
+      <widget class="QLabel" name="Mine">
        <property name="geometry">
         <rect>
          <x>140</x>
@@ -281,7 +281,7 @@ p, li { white-space: pre-wrap; }
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="label_12">
+      <widget class="QLabel" name="Home">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -300,7 +300,7 @@ p, li { white-space: pre-wrap; }
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="label_13">
+      <widget class="QLabel" name="Bar">
        <property name="geometry">
         <rect>
          <x>260</x>
@@ -319,7 +319,7 @@ p, li { white-space: pre-wrap; }
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="label_14">
+      <widget class="QLabel" name="Piano">
        <property name="geometry">
         <rect>
          <x>360</x>
@@ -338,7 +338,7 @@ p, li { white-space: pre-wrap; }
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="label_15">
+      <widget class="QLabel" name="Toilets">
        <property name="geometry">
         <rect>
          <x>340</x>
@@ -357,7 +357,7 @@ p, li { white-space: pre-wrap; }
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="label_16">
+      <widget class="QLabel" name="Bob">
        <property name="geometry">
         <rect>
          <x>70</x>
@@ -376,7 +376,7 @@ p, li { white-space: pre-wrap; }
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="label_17">
+      <widget class="QLabel" name="Elsa">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -396,6 +396,25 @@ p, li { white-space: pre-wrap; }
        </property>
        <property name="wordWrap">
         <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="Jessica">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>70</y>
+         <width>61</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap>images/waitress.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
        </property>
       </widget>
      </widget>
