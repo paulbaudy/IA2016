@@ -40,8 +40,6 @@ private:
 
   //an instance of the state machine class
   StateMachine<Miner>*  m_pStateMachine;
-  
-  location_type         m_Location;
 
   //how many nuggets the miner has in his pockets
   int                   m_iGoldCarried;
@@ -59,12 +57,12 @@ private:
 
 public:
 
-  Miner(int id):m_Location(shack),
+  Miner(int id, QMap<location_type, QLabel*> locations, QLabel* img = nullptr):
                           m_iGoldCarried(0),
                           m_iMoneyInBank(0),
                           m_iThirst(0),
                           m_iFatigue(0),
-                          BaseGameEntity(id)
+                          BaseGameEntity(id, shack, locations, img)
                                
   {
     //set up state machine
@@ -89,8 +87,7 @@ public:
 
   
   //-------------------------------------------------------------accessors
-  location_type Location()const{return m_Location;}
-  void          ChangeLocation(location_type loc){m_Location=loc;}
+
     
   int           GoldCarried()const{return m_iGoldCarried;}
   void          SetGoldCarried(int val){val<0 ? m_iGoldCarried=0 : m_iGoldCarried = val;} //Improve check

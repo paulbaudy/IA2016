@@ -39,8 +39,6 @@ private:
 	//an instance of the state machine class
 	StateMachine<Waitress>*  m_pStateMachine;
 
-	location_type         m_Location;
-
 	//how many nuggets the waitress has in her pockets
 	int                   m_iGoldTips;
 
@@ -52,11 +50,11 @@ private:
 
 public:
 
-	Waitress(int id) :m_Location(saloon),
+    Waitress(int id, QMap<location_type, QLabel*> locations, QLabel* img = nullptr) :
 		m_iGoldTips(0),
 		m_iSweat(0),
 		m_iBoredom(0),
-		BaseGameEntity(id)
+        BaseGameEntity(id, saloon, locations, img)
 
 	{
 		//set up state machine
@@ -80,8 +78,7 @@ public:
 
 
 	//-------------------------------------------------------------accessors
-	location_type Location()const { return m_Location; }
-	void          ChangeLocation(location_type loc) { m_Location = loc; }
+
 
 	int           GoldTips()const { return m_iGoldTips; }
     void          SetGoldTips(int val) { val<0 ? m_iGoldTips = 0 : m_iGoldTips = val; }

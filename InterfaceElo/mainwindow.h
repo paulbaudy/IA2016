@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QThread>
+#include <QMap>
+#include <QRect>
 
 #include <fstream>
 #include <time.h>

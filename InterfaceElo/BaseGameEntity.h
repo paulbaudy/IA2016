@@ -11,7 +11,10 @@
 //------------------------------------------------------------------------
 #include <string>
 
+#include "Locations.h"
 #include "messaging/Telegram.h"
+#include <QLabel>
+#include <QMap>
 
 
 class BaseGameEntity
@@ -32,11 +35,19 @@ private:
   //the next valid ID
   void SetID(int val);
 
+  location_type   m_Location;
+  QLabel *img;
+  QMap<location_type, QLabel*> locations;
+
 public:
 
-  BaseGameEntity(int id)
+  BaseGameEntity(int id, location_type location, QMap<location_type, QLabel*> locations, QLabel *img = nullptr)
   {
     SetID(id);
+    m_Location = location;
+    img!=nullptr?this->img = img:this->img=nullptr;
+    this->locations = locations;
+
   }
 
   virtual ~BaseGameEntity(){}
@@ -49,6 +60,24 @@ public:
   virtual bool  HandleMessage(const Telegram& msg)=0;
 
   int           ID()const{return m_ID;}  
+
+  location_type Location()const{return m_Location;}
+  void          ChangeLocation(location_type loc){
+      m_Location=loc;
+
+      if(img!=nullptr) {
+
+          if(locations.contains(loc))
+               img->move(locations.value(loc)->x(), locations.value(loc)->y()+50);
+            // this->locations->value(m_Location);
+
+          // QLabel* label;
+            /*
+          if(label!=nullptr)
+
+          */
+        }
+  }
 };
 
 
