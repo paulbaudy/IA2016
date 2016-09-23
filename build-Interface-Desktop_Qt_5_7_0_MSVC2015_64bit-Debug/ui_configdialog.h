@@ -34,11 +34,11 @@ public:
     QFrame *frame;
     QFormLayout *formLayout;
     QLabel *label_4;
-    QComboBox *comboBox_3;
+    QComboBox *bobPlace;
     QLabel *label_3;
-    QComboBox *comboBox_2;
+    QComboBox *elsaPlace;
     QLabel *label_2;
-    QComboBox *comboBox;
+    QComboBox *jessPlace;
     QLabel *label_5;
     QSpinBox *sb_iteration;
     QLabel *label;
@@ -69,30 +69,30 @@ public:
 
         formLayout->setWidget(0, QFormLayout::LabelRole, label_4);
 
-        comboBox_3 = new QComboBox(frame);
-        comboBox_3->setObjectName(QStringLiteral("comboBox_3"));
+        bobPlace = new QComboBox(frame);
+        bobPlace->setObjectName(QStringLiteral("bobPlace"));
 
-        formLayout->setWidget(0, QFormLayout::FieldRole, comboBox_3);
+        formLayout->setWidget(0, QFormLayout::FieldRole, bobPlace);
 
         label_3 = new QLabel(frame);
         label_3->setObjectName(QStringLiteral("label_3"));
 
         formLayout->setWidget(1, QFormLayout::LabelRole, label_3);
 
-        comboBox_2 = new QComboBox(frame);
-        comboBox_2->setObjectName(QStringLiteral("comboBox_2"));
+        elsaPlace = new QComboBox(frame);
+        elsaPlace->setObjectName(QStringLiteral("elsaPlace"));
 
-        formLayout->setWidget(1, QFormLayout::FieldRole, comboBox_2);
+        formLayout->setWidget(1, QFormLayout::FieldRole, elsaPlace);
 
         label_2 = new QLabel(frame);
         label_2->setObjectName(QStringLiteral("label_2"));
 
         formLayout->setWidget(2, QFormLayout::LabelRole, label_2);
 
-        comboBox = new QComboBox(frame);
-        comboBox->setObjectName(QStringLiteral("comboBox"));
+        jessPlace = new QComboBox(frame);
+        jessPlace->setObjectName(QStringLiteral("jessPlace"));
 
-        formLayout->setWidget(2, QFormLayout::FieldRole, comboBox);
+        formLayout->setWidget(2, QFormLayout::FieldRole, jessPlace);
 
         label_5 = new QLabel(frame);
         label_5->setObjectName(QStringLiteral("label_5"));
@@ -131,22 +131,22 @@ public:
     {
         ConfigDialog->setWindowTitle(QApplication::translate("ConfigDialog", "Options", 0));
         label_4->setText(QApplication::translate("ConfigDialog", "Bob", 0));
-        comboBox_3->clear();
-        comboBox_3->insertItems(0, QStringList()
+        bobPlace->clear();
+        bobPlace->insertItems(0, QStringList()
          << QApplication::translate("ConfigDialog", "Shack", 0)
          << QApplication::translate("ConfigDialog", "Goldmine", 0)
          << QApplication::translate("ConfigDialog", "Saloon", 0)
          << QApplication::translate("ConfigDialog", "Bank", 0)
         );
         label_3->setText(QApplication::translate("ConfigDialog", "Elsa", 0));
-        comboBox_2->clear();
-        comboBox_2->insertItems(0, QStringList()
+        elsaPlace->clear();
+        elsaPlace->insertItems(0, QStringList()
          << QApplication::translate("ConfigDialog", "Shack", 0)
          << QApplication::translate("ConfigDialog", "Bathroom", 0)
         );
         label_2->setText(QApplication::translate("ConfigDialog", "Jessica", 0));
-        comboBox->clear();
-        comboBox->insertItems(0, QStringList()
+        jessPlace->clear();
+        jessPlace->insertItems(0, QStringList()
          << QApplication::translate("ConfigDialog", "Saloon", 0)
          << QApplication::translate("ConfigDialog", "Restroom", 0)
          << QApplication::translate("ConfigDialog", "Piano", 0)

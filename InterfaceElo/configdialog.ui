@@ -41,7 +41,7 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QComboBox" name="comboBox_3">
+       <widget class="QComboBox" name="bobPlace">
         <item>
          <property name="text">
           <string>Shack</string>
@@ -72,7 +72,7 @@
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QComboBox" name="comboBox_2">
+       <widget class="QComboBox" name="elsaPlace">
         <item>
          <property name="text">
           <string>Shack</string>
@@ -93,7 +93,7 @@
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QComboBox" name="comboBox">
+       <widget class="QComboBox" name="jessPlace">
         <item>
          <property name="text">
           <string>Saloon</string>
