@@ -146,6 +146,9 @@ void MainWindow::setInfosByDefault(){
     Jessica->SetGoldTips(0);
     Jessica->SetSweat(0);
     Jessica->SetBoredom(0);
+
+    //Clean log
+    ui->log->setText("");
 }
 
 void MainWindow::setInfosEnabled(bool val){
