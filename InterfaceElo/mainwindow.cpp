@@ -25,6 +25,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //seed random number generator
     srand((unsigned) time(NULL));
 
+    //locations list
     QMap<location_type, QLabel*> locations;
     locations[goldmine] = ui->Mine;
     locations[bank] = ui->Bank;
@@ -32,8 +33,6 @@ MainWindow::MainWindow(QWidget *parent) :
     locations[saloonRestroom] = ui->Toilets;
     locations[saloonPiano] = ui->Piano;
     locations[shack] = ui->Home;
-
-
 
     //create a miner
     Bob = new Miner(ent_Miner_Bob, locations, ui->Bob);
@@ -132,14 +131,17 @@ void MainWindow::setInfosByDefault(){
     Bob->SetThirst(0);
     Bob->SetFatigue(0);
     Bob->cleanLipstick();
+    Bob->GetFSM()->ChangeState(GoHomeAndSleepTilRested::Instance());
 
     //Elsa's infos
     Elsa->SetCooking(false);
+    Elsa->GetFSM()->ChangeState(DoHouseWork::Instance());
 
     //Jessica's infos
     Jessica->SetGoldTips(0);
     Jessica->SetSweat(0);
     Jessica->SetBoredom(0);
+    Jessica->GetFSM()->ChangeState(Bartend::Instance());
 
     //Clean log
     ui->log->setText("");

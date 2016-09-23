@@ -315,7 +315,15 @@ bool QuenchThirst::OnMessage(Miner* pMiner, const Telegram& msg)
 
 		pMiner->BuyAndDrinkAWhiskey();
 
-		cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "That's mighty fine sippin' liquer"; 
+        cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "A don't need Jess... Waiter pleas', need' drink! That's mighty fine sippin' liquer";
+
+        //let the waitress know I'm leaving
+        Dispatch->DispatchMessage(0.1, //time delay
+            pMiner->ID(),        //ID of sender
+            ent_Jessica,         //ID of recipient
+            Msg_AlreadyLeft,     //the message
+            NO_ADDITIONAL_INFO);
+
 
 		pMiner->GetFSM()->ChangeState(EnterMineAndDigForNugget::Instance());
 	}//end switch

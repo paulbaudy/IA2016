@@ -67,7 +67,7 @@ void Bartend::Execute(Waitress* pWaitress)
 void Bartend::Exit(Waitress* pWaitress)
 {
 	cout << "\n" << GetNameOfEntity(pWaitress->ID()) << ": "
-		<< "I'm leaving the bar darlings!";
+        << "I'm leaving the bottles darlings!";
 }
 
 
@@ -273,6 +273,16 @@ bool InteractWithMiner::OnMessage(Waitress* pWaitress, const Telegram& msg)
 
 	switch (msg.Msg)
 	{
+    //Bob left before she can come
+    case Msg_AlreadyLeft:
+
+        SetTextColor(FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+        cout << "\n" << GetNameOfEntity(pWaitress->ID())
+            << ": That's too sad... He will come back soon!";
+        pWaitress->GetFSM()->RevertToPreviousState();
+        return true;
+
+    //Bob asks her some drink
 	case Msg_GiveMeADrink:
 
 		cout << "\nMessage handled by " << GetNameOfEntity(pWaitress->ID())
@@ -291,6 +301,7 @@ bool InteractWithMiner::OnMessage(Waitress* pWaitress, const Telegram& msg)
 
 		return true;
 
+    //Bob explains he had a good harvest
 	case Msg_GoodHarvest:
 
 		cout << "\nMessage handled by " << GetNameOfEntity(pWaitress->ID())
@@ -309,6 +320,7 @@ bool InteractWithMiner::OnMessage(Waitress* pWaitress, const Telegram& msg)
 
 		return true;
 
+    //Bob doesn't have any nugget to give, or just doesn't want to
 	case Msg_BadHarvest:
 	case Msg_LeaveMeAlone:
 
@@ -329,6 +341,7 @@ bool InteractWithMiner::OnMessage(Waitress* pWaitress, const Telegram& msg)
 		pWaitress->GetFSM()->RevertToPreviousState();
 		return true;
 
+    //Bob gives a nugget to Jessica
 	case Msg_TakeGold:
 
 		cout << "\nMessage handled by " << GetNameOfEntity(pWaitress->ID())

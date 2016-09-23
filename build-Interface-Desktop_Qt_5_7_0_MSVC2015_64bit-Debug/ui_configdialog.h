@@ -101,6 +101,7 @@ public:
 
         sb_iteration = new QSpinBox(frame);
         sb_iteration->setObjectName(QStringLiteral("sb_iteration"));
+        sb_iteration->setMinimum(1);
         sb_iteration->setMaximum(50);
         sb_iteration->setValue(30);
 

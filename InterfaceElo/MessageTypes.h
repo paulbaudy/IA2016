@@ -21,6 +21,7 @@ enum message_type
   Msg_SeeYouSoon,
   Msg_AskForGold,
   Msg_NotWhatLooksLike,
+  Msg_AlreadyLeft,
 };
 
 
@@ -72,6 +73,9 @@ inline std::string MsgToStr(int msg)
 
   case Msg_NotWhatLooksLike:
       return "NotWhatLooksLike";
+
+  case Msg_AlreadyLeft:
+      return "AlreadyLeft";
 
   default:
 
