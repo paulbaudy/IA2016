@@ -33,9 +33,11 @@ class GUIUpdater : public QThread {
             emit newUpdate();
             Sleep(1000);
         }
-
+        emit simulationfFinished();
+        Sleep(1000);
     }
     int nbIteration;
+    int currentIteration = 0;
     bool stepByStep;
 public:
     void setIteration(int nb) {
@@ -45,8 +47,23 @@ public:
         stepByStep = val;
     }
 
+    void doStep() {
+        if(stepByStep && currentIteration<nbIteration) {
+            emit newUpdate();
+            currentIteration++;
+
+            if(currentIteration==nbIteration) {
+                emit simulationfFinished();
+
+            }
+
+        }
+
+    }
+
 signals:
     void newUpdate();
+    void simulationfFinished();
 };
 
 
@@ -62,7 +79,8 @@ public slots:
     void updateGui();
     void updateInfos();
     void setInfosByDefault();
-    void setInfosEnabled(bool val);
+    void setInfosEnabled(bool val = true);
+    void endOfSimulation();
 
 private slots:
     void on_pushButton_clicked();
@@ -101,6 +119,8 @@ private:
     Waitress* Jessica;
 
     GUIUpdater *updater;
+
+
 };
 
 

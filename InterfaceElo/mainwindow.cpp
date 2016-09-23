@@ -20,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
     cf.stepbystep = false;
 
 
+
     //define this to send output to a text file (see locations.h)
     #ifdef TEXTOUTPUT
       os.open("output.txt");
@@ -68,7 +69,9 @@ MainWindow::MainWindow(QWidget *parent) :
     updater->setIteration(cf.nbIteration);
     updater->setStepByStep(cf.stepbystep);
     connect(updater, SIGNAL(newUpdate()), SLOT(updateGui()));
+    connect(updater, SIGNAL(simulationfFinished()), SLOT(endOfSimulation()));
     connect(updater, SIGNAL(finished()), updater, SLOT(deleteLater()));
+
 
 }
 
@@ -82,20 +85,6 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::updateGui() {
-    /* ui->progressBar->raise();
-
-    //run Bob and Elsa through a few Update calls
-    for (int i=0; i<30; ++i)
-    {
-      Bob->Update();
-      Elsa->Update();
-      Jessica->Update();
-
-      //dispatch any delayed messages
-      Dispatch->DispatchDelayedMessages();
-
-      Sleep(800);
-    } */
     Bob->Update();
     Elsa->Update();
     Jessica->Update();
@@ -165,9 +154,16 @@ void MainWindow::setInfosEnabled(bool val){
 //----------------
 void MainWindow::on_pushButton_clicked()
 {
-    updater->start();
     //Disable infos changes
     setInfosEnabled(false);
+
+    if(cf.stepbystep) {
+        updater->doStep();
+    }else {
+        updater->start();
+        ui->pushButton->setEnabled(false);
+    }
+
 
 }
 
@@ -183,6 +179,29 @@ void MainWindow::on_pushButton_2_clicked()
 
     updater->setIteration(cf.nbIteration);
     updater->setStepByStep(cf.stepbystep);
+
+    ui->progressBar->setMaximum(cf.nbIteration);
+
+    if(cf.stepbystep) {
+        ui->pushButton->setText("Next");
+    }else {
+        ui->pushButton->setText("Launch");
+    }
+}
+
+void MainWindow::endOfSimulation() {
+    setInfosEnabled(true);
+    ui->progressBar->setValue(0);
+
+    if(!cf.stepbystep)
+        ui->pushButton->setEnabled(true);
+
+    updater = new GUIUpdater();
+    updater->setIteration(cf.nbIteration);
+    updater->setStepByStep(cf.stepbystep);
+    connect(updater, SIGNAL(newUpdate()), SLOT(updateGui()));
+    connect(updater, SIGNAL(simulationfFinished()), SLOT(endOfSimulation()));
+    connect(updater, SIGNAL(finished()), updater, SLOT(deleteLater()));
 }
 
 //---------------
