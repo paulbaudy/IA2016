@@ -42,24 +42,14 @@ public:
     QGridLayout *gridLayout;
     QProgressBar *progressBar;
     QTextEdit *log;
-    QFrame *frame;
-    QFormLayout *formLayout;
-    QPushButton *pushButton_2;
-    QPushButton *pushButton;
-    QGroupBox *groupBox_3;
-    QGridLayout *gridLayout_4;
-    QSpinBox *sbBeauty;
-    QLabel *label_8;
-    QSpinBox *sbBored;
-    QLabel *label_5;
-    QLabel *label_7;
-    QSpinBox *sbGold_2;
-    QCheckBox *checkBoxSweat;
-    QCheckBox *checkBoxBoredom;
     QGroupBox *groupBox_2;
     QGridLayout *gridLayout_3;
     QLabel *label_4;
     QCheckBox *checkBoxCook;
+    QFrame *frame;
+    QFormLayout *formLayout;
+    QPushButton *pushButton_2;
+    QPushButton *pushButton;
     QGroupBox *groupBox;
     QGridLayout *gridLayout_2;
     QSpinBox *sbGold;
@@ -75,6 +65,16 @@ public:
     QLabel *label_6;
     QCheckBox *checkBoxKissed;
     QCheckBox *checkBoxGold;
+    QGroupBox *groupBox_3;
+    QGridLayout *gridLayout_4;
+    QSpinBox *sbBeauty;
+    QLabel *label_8;
+    QSpinBox *sbBored;
+    QLabel *label_5;
+    QLabel *label_7;
+    QSpinBox *sbGold_2;
+    QCheckBox *checkBoxSweat;
+    QCheckBox *checkBoxBoredom;
     QFrame *frame_2;
     QLabel *Bank;
     QLabel *Mine;
@@ -117,6 +117,25 @@ public:
 
         gridLayout->addWidget(log, 4, 1, 1, 2);
 
+        groupBox_2 = new QGroupBox(centralWidget);
+        groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
+        gridLayout_3 = new QGridLayout(groupBox_2);
+        gridLayout_3->setSpacing(6);
+        gridLayout_3->setContentsMargins(11, 11, 11, 11);
+        gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
+        label_4 = new QLabel(groupBox_2);
+        label_4->setObjectName(QStringLiteral("label_4"));
+
+        gridLayout_3->addWidget(label_4, 0, 0, 1, 1);
+
+        checkBoxCook = new QCheckBox(groupBox_2);
+        checkBoxCook->setObjectName(QStringLiteral("checkBoxCook"));
+
+        gridLayout_3->addWidget(checkBoxCook, 0, 1, 1, 1);
+
+
+        gridLayout->addWidget(groupBox_2, 1, 2, 1, 1);
+
         frame = new QFrame(centralWidget);
         frame->setObjectName(QStringLiteral("frame"));
         frame->setFrameShape(QFrame::StyledPanel);
@@ -137,74 +156,6 @@ public:
 
 
         gridLayout->addWidget(frame, 3, 2, 1, 1);
-
-        groupBox_3 = new QGroupBox(centralWidget);
-        groupBox_3->setObjectName(QStringLiteral("groupBox_3"));
-        gridLayout_4 = new QGridLayout(groupBox_3);
-        gridLayout_4->setSpacing(6);
-        gridLayout_4->setContentsMargins(11, 11, 11, 11);
-        gridLayout_4->setObjectName(QStringLiteral("gridLayout_4"));
-        sbBeauty = new QSpinBox(groupBox_3);
-        sbBeauty->setObjectName(QStringLiteral("sbBeauty"));
-
-        gridLayout_4->addWidget(sbBeauty, 0, 1, 1, 1);
-
-        label_8 = new QLabel(groupBox_3);
-        label_8->setObjectName(QStringLiteral("label_8"));
-
-        gridLayout_4->addWidget(label_8, 0, 0, 1, 1);
-
-        sbBored = new QSpinBox(groupBox_3);
-        sbBored->setObjectName(QStringLiteral("sbBored"));
-
-        gridLayout_4->addWidget(sbBored, 1, 1, 1, 1);
-
-        label_5 = new QLabel(groupBox_3);
-        label_5->setObjectName(QStringLiteral("label_5"));
-
-        gridLayout_4->addWidget(label_5, 2, 0, 1, 1);
-
-        label_7 = new QLabel(groupBox_3);
-        label_7->setObjectName(QStringLiteral("label_7"));
-
-        gridLayout_4->addWidget(label_7, 1, 0, 1, 1);
-
-        sbGold_2 = new QSpinBox(groupBox_3);
-        sbGold_2->setObjectName(QStringLiteral("sbGold_2"));
-
-        gridLayout_4->addWidget(sbGold_2, 2, 1, 1, 1);
-
-        checkBoxSweat = new QCheckBox(groupBox_3);
-        checkBoxSweat->setObjectName(QStringLiteral("checkBoxSweat"));
-
-        gridLayout_4->addWidget(checkBoxSweat, 0, 2, 1, 1);
-
-        checkBoxBoredom = new QCheckBox(groupBox_3);
-        checkBoxBoredom->setObjectName(QStringLiteral("checkBoxBoredom"));
-
-        gridLayout_4->addWidget(checkBoxBoredom, 1, 2, 1, 1);
-
-
-        gridLayout->addWidget(groupBox_3, 2, 2, 1, 1);
-
-        groupBox_2 = new QGroupBox(centralWidget);
-        groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
-        gridLayout_3 = new QGridLayout(groupBox_2);
-        gridLayout_3->setSpacing(6);
-        gridLayout_3->setContentsMargins(11, 11, 11, 11);
-        gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
-        label_4 = new QLabel(groupBox_2);
-        label_4->setObjectName(QStringLiteral("label_4"));
-
-        gridLayout_3->addWidget(label_4, 0, 0, 1, 1);
-
-        checkBoxCook = new QCheckBox(groupBox_2);
-        checkBoxCook->setObjectName(QStringLiteral("checkBoxCook"));
-
-        gridLayout_3->addWidget(checkBoxCook, 0, 1, 1, 1);
-
-
-        gridLayout->addWidget(groupBox_2, 1, 2, 1, 1);
 
         groupBox = new QGroupBox(centralWidget);
         groupBox->setObjectName(QStringLiteral("groupBox"));
@@ -293,54 +244,103 @@ public:
 
         gridLayout->addWidget(groupBox, 0, 2, 1, 1);
 
+        groupBox_3 = new QGroupBox(centralWidget);
+        groupBox_3->setObjectName(QStringLiteral("groupBox_3"));
+        gridLayout_4 = new QGridLayout(groupBox_3);
+        gridLayout_4->setSpacing(6);
+        gridLayout_4->setContentsMargins(11, 11, 11, 11);
+        gridLayout_4->setObjectName(QStringLiteral("gridLayout_4"));
+        sbBeauty = new QSpinBox(groupBox_3);
+        sbBeauty->setObjectName(QStringLiteral("sbBeauty"));
+
+        gridLayout_4->addWidget(sbBeauty, 0, 1, 1, 1);
+
+        label_8 = new QLabel(groupBox_3);
+        label_8->setObjectName(QStringLiteral("label_8"));
+
+        gridLayout_4->addWidget(label_8, 0, 0, 1, 1);
+
+        sbBored = new QSpinBox(groupBox_3);
+        sbBored->setObjectName(QStringLiteral("sbBored"));
+
+        gridLayout_4->addWidget(sbBored, 1, 1, 1, 1);
+
+        label_5 = new QLabel(groupBox_3);
+        label_5->setObjectName(QStringLiteral("label_5"));
+
+        gridLayout_4->addWidget(label_5, 2, 0, 1, 1);
+
+        label_7 = new QLabel(groupBox_3);
+        label_7->setObjectName(QStringLiteral("label_7"));
+
+        gridLayout_4->addWidget(label_7, 1, 0, 1, 1);
+
+        sbGold_2 = new QSpinBox(groupBox_3);
+        sbGold_2->setObjectName(QStringLiteral("sbGold_2"));
+
+        gridLayout_4->addWidget(sbGold_2, 2, 1, 1, 1);
+
+        checkBoxSweat = new QCheckBox(groupBox_3);
+        checkBoxSweat->setObjectName(QStringLiteral("checkBoxSweat"));
+
+        gridLayout_4->addWidget(checkBoxSweat, 0, 2, 1, 1);
+
+        checkBoxBoredom = new QCheckBox(groupBox_3);
+        checkBoxBoredom->setObjectName(QStringLiteral("checkBoxBoredom"));
+
+        gridLayout_4->addWidget(checkBoxBoredom, 1, 2, 1, 1);
+
+
+        gridLayout->addWidget(groupBox_3, 2, 2, 1, 1);
+
         frame_2 = new QFrame(centralWidget);
         frame_2->setObjectName(QStringLiteral("frame_2"));
         frame_2->setFrameShape(QFrame::StyledPanel);
         frame_2->setFrameShadow(QFrame::Raised);
         Bank = new QLabel(frame_2);
         Bank->setObjectName(QStringLiteral("Bank"));
-        Bank->setGeometry(QRect(20, 20, 61, 41));
+        Bank->setGeometry(QRect(20, 10, 81, 61));
         Bank->setPixmap(QPixmap(QString::fromUtf8("images/bank-512.png")));
         Bank->setScaledContents(true);
         Mine = new QLabel(frame_2);
         Mine->setObjectName(QStringLiteral("Mine"));
-        Mine->setGeometry(QRect(140, 10, 61, 61));
+        Mine->setGeometry(QRect(230, 10, 71, 61));
         Mine->setPixmap(QPixmap(QString::fromUtf8("images/gold_mine-128.png")));
         Mine->setScaledContents(true);
         Home = new QLabel(frame_2);
         Home->setObjectName(QStringLiteral("Home"));
-        Home->setGeometry(QRect(20, 150, 61, 61));
+        Home->setGeometry(QRect(20, 170, 81, 71));
         Home->setPixmap(QPixmap(QString::fromUtf8("images/home.png")));
         Home->setScaledContents(true);
         Bar = new QLabel(frame_2);
         Bar->setObjectName(QStringLiteral("Bar"));
-        Bar->setGeometry(QRect(260, 10, 71, 61));
+        Bar->setGeometry(QRect(230, 180, 81, 71));
         Bar->setPixmap(QPixmap(QString::fromUtf8("images/Cocktail-512.png")));
         Bar->setScaledContents(true);
         Piano = new QLabel(frame_2);
         Piano->setObjectName(QStringLiteral("Piano"));
-        Piano->setGeometry(QRect(360, 10, 61, 61));
+        Piano->setGeometry(QRect(320, 210, 41, 31));
         Piano->setPixmap(QPixmap(QString::fromUtf8("images/Music-Piano-icon.png")));
         Piano->setScaledContents(true);
         Toilets = new QLabel(frame_2);
         Toilets->setObjectName(QStringLiteral("Toilets"));
-        Toilets->setGeometry(QRect(340, 160, 71, 71));
+        Toilets->setGeometry(QRect(370, 210, 41, 31));
         Toilets->setPixmap(QPixmap(QString::fromUtf8("images/Toilets_unisex.svg.png")));
         Toilets->setScaledContents(true);
         Bob = new QLabel(frame_2);
         Bob->setObjectName(QStringLiteral("Bob"));
-        Bob->setGeometry(QRect(70, 220, 41, 41));
+        Bob->setGeometry(QRect(70, 250, 41, 41));
         Bob->setPixmap(QPixmap(QString::fromUtf8("images/Transparent_Minion_Bob_PNG_Picture.png")));
         Bob->setScaledContents(true);
         Elsa = new QLabel(frame_2);
         Elsa->setObjectName(QStringLiteral("Elsa"));
-        Elsa->setGeometry(QRect(10, 210, 61, 51));
+        Elsa->setGeometry(QRect(10, 250, 61, 51));
         Elsa->setPixmap(QPixmap(QString::fromUtf8("images/elsa-frozen-disney-03.png")));
         Elsa->setScaledContents(true);
         Elsa->setWordWrap(false);
         Jessica = new QLabel(frame_2);
         Jessica->setObjectName(QStringLiteral("Jessica"));
-        Jessica->setGeometry(QRect(280, 70, 61, 51));
+        Jessica->setGeometry(QRect(230, 240, 61, 51));
         Jessica->setPixmap(QPixmap(QString::fromUtf8("images/waitress.png")));
         Jessica->setScaledContents(true);
 
@@ -379,17 +379,11 @@ public:
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", 0));
-        pushButton_2->setText(QApplication::translate("MainWindow", "Options", 0));
-        pushButton->setText(QApplication::translate("MainWindow", "Launch", 0));
-        groupBox_3->setTitle(QApplication::translate("MainWindow", "Jessica", 0));
-        label_8->setText(QApplication::translate("MainWindow", "Sweat", 0));
-        label_5->setText(QApplication::translate("MainWindow", "Gold", 0));
-        label_7->setText(QApplication::translate("MainWindow", "Boredom", 0));
-        checkBoxSweat->setText(QString());
-        checkBoxBoredom->setText(QString());
         groupBox_2->setTitle(QApplication::translate("MainWindow", "Elsa", 0));
         label_4->setText(QApplication::translate("MainWindow", "Cooking", 0));
         checkBoxCook->setText(QString());
+        pushButton_2->setText(QApplication::translate("MainWindow", "Options", 0));
+        pushButton->setText(QApplication::translate("MainWindow", "Launch", 0));
         groupBox->setTitle(QApplication::translate("MainWindow", "Bob", 0));
         checkBoxFatigue->setText(QString());
         checkBoxThirst->setText(QString());
@@ -400,6 +394,12 @@ public:
         label_6->setText(QApplication::translate("MainWindow", "Bank", 0));
         checkBoxKissed->setText(QString());
         checkBoxGold->setText(QString());
+        groupBox_3->setTitle(QApplication::translate("MainWindow", "Jessica", 0));
+        label_8->setText(QApplication::translate("MainWindow", "Sweat", 0));
+        label_5->setText(QApplication::translate("MainWindow", "Gold", 0));
+        label_7->setText(QApplication::translate("MainWindow", "Boredom", 0));
+        checkBoxSweat->setText(QString());
+        checkBoxBoredom->setText(QString());
         Bank->setText(QString());
         Mine->setText(QString());
         Home->setText(QString());
