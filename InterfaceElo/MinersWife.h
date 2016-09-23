@@ -30,17 +30,15 @@ private:
   //an instance of the state machine class
   StateMachine<MinersWife>* m_pStateMachine;
 
-  location_type   m_Location;
-
   //is she presently cooking?
   bool            m_bCooking;
 
 
 public:
 
-  MinersWife(int id):m_Location(shack),
+  MinersWife(int id, QMap<location_type, QLabel*> locations, QLabel* img = nullptr):
                      m_bCooking(false),
-                     BaseGameEntity(id)
+                     BaseGameEntity(id, shack, locations,  img)
                                         
   {
     //set up the state machine
@@ -63,8 +61,6 @@ public:
   StateMachine<MinersWife>* GetFSM()const{return m_pStateMachine;}
 
   //----------------------------------------------------accessors
-  location_type Location()const{return m_Location;}
-  void          ChangeLocation(location_type loc){m_Location=loc;}
 
   bool          Cooking()const{return m_bCooking;}
   void          SetCooking(bool val){m_bCooking = val;}

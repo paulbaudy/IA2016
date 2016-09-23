@@ -28,14 +28,23 @@ MainWindow::MainWindow(QWidget *parent) :
     //seed random number generator
     srand((unsigned) time(NULL));
 
+    QMap<location_type, QLabel*> locations;
+    locations[goldmine] = ui->Mine;
+    locations[bank] = ui->Bank;
+    locations[saloon] = ui->Bar;
+    locations[saloonRestroom] = ui->Toilets;
+    locations[saloonPiano] = ui->Piano;
+    locations[shack] = ui->Home;
+
+
     //create a miner
-    Bob = new Miner(ent_Miner_Bob);
+    Bob = new Miner(ent_Miner_Bob, locations, ui->Bob);
 
     //create his wife
-    Elsa = new MinersWife(ent_Elsa);
+    Elsa = new MinersWife(ent_Elsa, locations, ui->Elsa);
 
     //create the waitress
-    Jessica = new Waitress(ent_Jessica);
+    Jessica = new Waitress(ent_Jessica, locations, ui->Jessica);
 
     //register them with the entity manager
     EntityMgr->RegisterEntity(Bob);
@@ -59,6 +68,7 @@ MainWindow::MainWindow(QWidget *parent) :
     updater->setIteration(cf.nbIteration);
     connect(updater, SIGNAL(newUpdate()), SLOT(updateGui()));
     connect(updater, SIGNAL(finished()), updater, SLOT(deleteLater()));
+
 }
 
 MainWindow::~MainWindow()
