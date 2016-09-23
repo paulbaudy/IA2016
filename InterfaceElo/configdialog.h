@@ -5,6 +5,7 @@
 #include "configuration.h"
 
 
+
 namespace Ui {
 class ConfigDialog;
 }
@@ -23,6 +24,10 @@ private slots:
 private:
     Ui::ConfigDialog *ui;
     configuration *cf;
+
+    State<Miner>* getBobState(QString text);
+    State<MinersWife>* getElsaState(QString text);
+    State<Waitress>* getJessicaState(QString text);
 };
 
 #endif // CONFIGDIALOG_H

@@ -15,10 +15,6 @@ MainWindow::MainWindow(QWidget *parent) :
     new Q_DebugStream(std::cout, ui->log);
     ui->log->setReadOnly(true);
 
-    // Init configuration
-    cf.nbIteration = 50;
-    cf.stepbystep = false;
-
 
 
     //define this to send output to a text file (see locations.h)
@@ -38,6 +34,7 @@ MainWindow::MainWindow(QWidget *parent) :
     locations[shack] = ui->Home;
 
 
+
     //create a miner
     Bob = new Miner(ent_Miner_Bob, locations, ui->Bob);
 
@@ -46,6 +43,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //create the waitress
     Jessica = new Waitress(ent_Jessica, locations, ui->Jessica);
+
+    // Init configuration
+    cf.nbIteration = 50;
+    cf.stepbystep = false;
+    cf.bob_state = Bob->GetFSM()->CurrentState();
+    cf.elsa_state = Elsa->GetFSM()->CurrentState();
+    cf.jess_state = Jessica->GetFSM()->CurrentState();
+
 
     //register them with the entity manager
     EntityMgr->RegisterEntity(Bob);
@@ -190,6 +195,13 @@ void MainWindow::on_pushButton_2_clicked()
     }else {
         ui->pushButton->setText("Launch");
     }
+
+    Bob->GetFSM()->ChangeState(cf.bob_state);
+    Elsa->GetFSM()->ChangeState(cf.elsa_state);
+    Jessica->GetFSM()->ChangeState(cf.jess_state);
+
+    ui->log->setText("");
+
 }
 
 void MainWindow::endOfSimulation() {
