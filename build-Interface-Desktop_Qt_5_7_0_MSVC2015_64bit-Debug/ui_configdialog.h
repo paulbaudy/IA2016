@@ -19,17 +19,18 @@
 #include <QtWidgets/QDialogButtonBox>
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QFrame>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QSpinBox>
-#include <QtWidgets/QVBoxLayout>
 
 QT_BEGIN_NAMESPACE
 
 class Ui_ConfigDialog
 {
 public:
-    QVBoxLayout *verticalLayout;
+    QGridLayout *gridLayout;
+    QDialogButtonBox *buttonBox;
     QFrame *frame;
     QFormLayout *formLayout;
     QLabel *label_4;
@@ -42,15 +43,21 @@ public:
     QSpinBox *sb_iteration;
     QLabel *label;
     QCheckBox *cbStep;
-    QDialogButtonBox *buttonBox;
 
     void setupUi(QDialog *ConfigDialog)
     {
         if (ConfigDialog->objectName().isEmpty())
             ConfigDialog->setObjectName(QStringLiteral("ConfigDialog"));
         ConfigDialog->resize(400, 300);
-        verticalLayout = new QVBoxLayout(ConfigDialog);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        gridLayout = new QGridLayout(ConfigDialog);
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        buttonBox = new QDialogButtonBox(ConfigDialog);
+        buttonBox->setObjectName(QStringLiteral("buttonBox"));
+        buttonBox->setOrientation(Qt::Horizontal);
+        buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
+
+        gridLayout->addWidget(buttonBox, 1, 0, 1, 1);
+
         frame = new QFrame(ConfigDialog);
         frame->setObjectName(QStringLiteral("frame"));
         frame->setFrameShape(QFrame::StyledPanel);
@@ -110,14 +117,7 @@ public:
         formLayout->setWidget(4, QFormLayout::FieldRole, cbStep);
 
 
-        verticalLayout->addWidget(frame);
-
-        buttonBox = new QDialogButtonBox(ConfigDialog);
-        buttonBox->setObjectName(QStringLiteral("buttonBox"));
-        buttonBox->setOrientation(Qt::Horizontal);
-        buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
-
-        verticalLayout->addWidget(buttonBox);
+        gridLayout->addWidget(frame, 0, 0, 1, 1);
 
 
         retranslateUi(ConfigDialog);
@@ -131,8 +131,26 @@ public:
     {
         ConfigDialog->setWindowTitle(QApplication::translate("ConfigDialog", "Options", 0));
         label_4->setText(QApplication::translate("ConfigDialog", "Bob", 0));
+        comboBox_3->clear();
+        comboBox_3->insertItems(0, QStringList()
+         << QApplication::translate("ConfigDialog", "Shack", 0)
+         << QApplication::translate("ConfigDialog", "Goldmine", 0)
+         << QApplication::translate("ConfigDialog", "Saloon", 0)
+         << QApplication::translate("ConfigDialog", "Bank", 0)
+        );
         label_3->setText(QApplication::translate("ConfigDialog", "Elsa", 0));
+        comboBox_2->clear();
+        comboBox_2->insertItems(0, QStringList()
+         << QApplication::translate("ConfigDialog", "Shack", 0)
+         << QApplication::translate("ConfigDialog", "Bathroom", 0)
+        );
         label_2->setText(QApplication::translate("ConfigDialog", "Jessica", 0));
+        comboBox->clear();
+        comboBox->insertItems(0, QStringList()
+         << QApplication::translate("ConfigDialog", "Saloon", 0)
+         << QApplication::translate("ConfigDialog", "Restroom", 0)
+         << QApplication::translate("ConfigDialog", "Piano", 0)
+        );
         label_5->setText(QApplication::translate("ConfigDialog", "Iteration", 0));
         label->setText(QApplication::translate("ConfigDialog", "Step by step", 0));
         cbStep->setText(QString());

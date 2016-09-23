@@ -66,6 +66,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     updater = new GUIUpdater();
     updater->setIteration(cf.nbIteration);
+    updater->setStepByStep(cf.stepbystep);
     connect(updater, SIGNAL(newUpdate()), SLOT(updateGui()));
     connect(updater, SIGNAL(finished()), updater, SLOT(deleteLater()));
 
@@ -115,11 +116,6 @@ void MainWindow::updateInfos(){
     ui->sbThirst->setValue(Bob->GetThirst());
     ui->sbFatigue->setValue(Bob->GetFatigue());
     ui->checkBoxThirst->setChecked(Bob->Thirsty());
-    if(Bob->Thirsty()){
-        ui->label_3->setStyleSheet("QLabel { color : red; }");
-    }else{
-        ui->label_3->setStyleSheet("QLabel { color : black; }");
-    }
     ui->checkBoxFatigue->setChecked(Bob->Fatigued());
     ui->checkBoxGold->setChecked(Bob->PocketsFull());
     ui->checkBoxKissed->setChecked(Bob->Kissed());
@@ -186,6 +182,7 @@ void MainWindow::on_pushButton_2_clicked()
     this->setEnabled(true);
 
     updater->setIteration(cf.nbIteration);
+    updater->setStepByStep(cf.stepbystep);
 }
 
 //---------------

@@ -36,9 +36,13 @@ class GUIUpdater : public QThread {
 
     }
     int nbIteration;
+    bool stepByStep;
 public:
     void setIteration(int nb) {
         nbIteration = nb;
+    }
+    void setStepByStep(bool val) {
+        stepByStep = val;
     }
 
 signals:
