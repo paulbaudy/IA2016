@@ -10,13 +10,13 @@ COCQ Elodie - COCE16529404
 -	FONCTIONNALITES AJOUTEES	-
 -----------------------------------------
 
->>> 3.2 : L'agent ajouté est une serveuse du saloon qui tente de récupérer les pépittes de Bob.
+>>> 3.2 : L'agent ajouté est une serveuse du saloon qui tente de récupérer les pépites de Bob.
 
 >>> 3.4.1 : Une interface graphique 
 > Réalisée avec Qt. Elle affiche l'état de départ mais aussi celui tout au long de l'exécution.
 > Elle permet surtout de modifier l'ensemble des paramètres des agents:
 On peut définir de nombreuses données comme l'état de départ de chaque agent (dans Options), mais aussi 
-les attributs de chaque personnage, comme le niveau de fatigue, le nombre de pépittes etc.
+les attributs de chaque personnage, comme le niveau de fatigue, le nombre de pépites, etc.
 > Les messages échangés ne sont plus sur console mais bien intégrés à l'interface
 graphique, avec le nom des agents en couleur.
 
