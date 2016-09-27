@@ -27,7 +27,7 @@ template <class entity_type> class State; //pre-fixed with "template <class enti
 struct Telegram;
 
 //bellow this value a waitress looks bad
-const int SweatLevel = 4; //TODO voir si on change valeur
+const int SweatLevel = 4;
 //above this value a waitress is bored
 const int BoredomLevel = 5;
 
@@ -85,7 +85,7 @@ public:
 	void          AddToGoldTips(int val);
 
 	bool		  isSweaty()const;
-	void		  DecreaseSweat() { m_iSweat -= 1; } //TODO voir si on change de valeur
+    void		  DecreaseSweat() { m_iSweat -= 1; }
 	void		  IncreaseSweat() { m_iSweat += 1; }
     void		  SetSweat(int val) {val<0 ? m_iSweat=0 : m_iSweat = val; }
     int           GetSweat() { return m_iSweat; }

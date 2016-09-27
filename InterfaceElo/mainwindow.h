@@ -27,7 +27,7 @@ namespace Ui {
 class MainWindow;
 }
 
-
+// Thread to update agent
 class EntityUpdate : public QThread {
     Q_OBJECT
     void run() {
@@ -41,6 +41,7 @@ public:
     }
 };
 
+// Thread to update the simulation and the interface.
 class GUIUpdater : public QThread {
 
     Q_OBJECT

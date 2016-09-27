@@ -32,10 +32,8 @@ protected:
     {
         if (v == '\n')
         {
-            // log_window->append(" ");
             emit emitConsole(" <br/>");
         }else{
-            // log_window->insertHtml((QString)v);
             emit emitConsole((QString)v);
         }
         return v;
@@ -54,8 +52,6 @@ protected:
         QString res;
         res.reserve(10000);
 
-
-            //log_window->moveCursor (QTextCursor::End);
             if(str.contains("Miner Bob:")){
                 str+=" ";
                 color = bobColor;
@@ -68,7 +64,7 @@ protected:
             }else{
                 color = stdColor;
             }
-           // log_window->insertHtml(color + str + endColor);
+
             res.append(color + str + endColor);
 
         emit emitConsole(res);

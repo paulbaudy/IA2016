@@ -100,8 +100,6 @@ void MainWindow::moveEntity(location_type loc, QLabel* img) {
 
 void MainWindow::updateConsole(QString msg) {
     ui->log->append(msg);
-
-
     ui->log->moveCursor(QTextCursor::End);
 }
 

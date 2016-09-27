@@ -293,11 +293,6 @@ void QuenchThirst::Enter(Miner* pMiner)
 
 void QuenchThirst::Execute(Miner* pMiner)
 {
-	// pMiner->BuyAndDrinkAWhiskey();
-
-	// cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "That's mighty fine sippin' liquer";
-	
-	// pMiner->GetFSM()->ChangeState(EnterMineAndDigForNugget::Instance());
 
 	//let the waitress know I'm here
     Dispatch->DispatchMessage(0.01, //time delay
@@ -399,8 +394,6 @@ void InteractWithWaitress::Enter(Miner* pMiner) {
 }
 
 void InteractWithWaitress::Execute(Miner* pMiner) {
-
-	// cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Bla bla!";
 
 }
 
