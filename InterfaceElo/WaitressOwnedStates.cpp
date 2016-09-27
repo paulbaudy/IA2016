@@ -285,8 +285,6 @@ void InteractWithMiner::Execute(Waitress* pWaitress)
 	//the miner
 	pWaitress->DecreaseBoredom();
 
-	// cout << "\n" << GetNameOfEntity(pWaitress->ID()) << ": " << "Blablabla";
-
 	//A message will be sent to end the conversation
 
 }

@@ -283,7 +283,7 @@ void QuenchThirst::Enter(Miner* pMiner)
 		Msg_HiWaitress,   //the message
 		NO_ADDITIONAL_INFO); 
 
-	Dispatch->DispatchMessage(1.5, //time delay
+    Dispatch->DispatchMessage(3, //time delay
 		pMiner->ID(),        //ID of sender
 		pMiner->ID(),            //ID of recipient
 		Msg_WaitingForDrink,   //the message
@@ -306,9 +306,7 @@ void QuenchThirst::Execute(Miner* pMiner)
 		Msg_HiWaitress,   //the message
 		NO_ADDITIONAL_INFO);
 
-    std::stringstream ss;
-    ss << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Still waiting for Jess...";
-    cout << ss.str();
+    //Wait for Jess a little
 }
 
 
