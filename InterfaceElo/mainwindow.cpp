@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "q_debugstream.h"
 
+QMutex m_mutex_qlabel;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -12,10 +13,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->progressBar->setValue(0);
 
     //Redirect Console output to QTextEdit
-    new Q_DebugStream(std::cout, ui->log);
+    Q_DebugStream* dst = new Q_DebugStream(std::cout, ui->log);
     ui->log->setReadOnly(true);
+    connect(dst, SIGNAL(emitConsole(QString)), this, SLOT(updateConsole(QString)));
 
-
+    qRegisterMetaType<location_type>("location_type");
 
     //define this to send output to a text file (see locations.h)
     #ifdef TEXTOUTPUT
@@ -26,7 +28,6 @@ MainWindow::MainWindow(QWidget *parent) :
     srand((unsigned) time(NULL));
 
     //locations list
-    QMap<location_type, QLabel*> locations;
     locations[goldmine] = ui->Mine;
     locations[bank] = ui->Bank;
     locations[saloon] = ui->Bar;
@@ -36,12 +37,16 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //create a miner
     Bob = new Miner(ent_Miner_Bob, locations, ui->Bob);
+    connect(Bob, SIGNAL(newLocation(location_type, QLabel*)), this, SLOT(moveEntity(location_type,QLabel*)));
 
     //create his wife
     Elsa = new MinersWife(ent_Elsa, locations, ui->Elsa);
+    connect(Elsa, SIGNAL(newLocation(location_type, QLabel*)), this, SLOT(moveEntity(location_type, QLabel*)));
 
     //create the waitress
     Jessica = new Waitress(ent_Jessica, locations, ui->Jessica);
+    connect(Jessica, SIGNAL(newLocation(location_type, QLabel*)), this, SLOT(moveEntity(location_type, QLabel*)));
+
 
     // Init configuration
     cf.nbIteration = 50;
@@ -66,17 +71,17 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->checkBoxSweat->setEnabled(false);
     ui->checkBoxBoredom->setEnabled(false);
 
-    ui->progressBar->setMaximum(50);
+    // Init progressbar
+    ui->progressBar->setMaximum(cf.nbIteration);
     ui->progressBar->setMinimum(0);
 
+    // Init thread for GUI update
     updater = new GUIUpdater();
     updater->setIteration(cf.nbIteration);
     updater->setStepByStep(cf.stepbystep);
     connect(updater, SIGNAL(newUpdate()), SLOT(updateGui()));
     connect(updater, SIGNAL(simulationfFinished()), SLOT(endOfSimulation()));
     connect(updater, SIGNAL(finished()), updater, SLOT(deleteLater()));
-
-
 }
 
 MainWindow::~MainWindow()
@@ -88,10 +93,32 @@ MainWindow::~MainWindow()
     delete Jessica;
 }
 
+void MainWindow::moveEntity(location_type loc, QLabel* img) {
+    if(locations.contains(loc))
+         img->move(locations.value(loc)->x(), locations.value(loc)->y()+50);
+}
+
+void MainWindow::updateConsole(QString msg) {
+    ui->log->append(msg);
+
+
+    ui->log->moveCursor(QTextCursor::End);
+}
+
 void MainWindow::updateGui() {
-    Bob->Update();
-    Elsa->Update();
-    Jessica->Update();
+    EntityUpdate * t_Bob = new EntityUpdate(Bob);
+    connect(t_Bob, SIGNAL(finished()), t_Bob, SLOT(deleteLater()));
+    t_Bob->start();
+    EntityUpdate * t_Elsa = new EntityUpdate(Elsa);
+    connect(t_Elsa, SIGNAL(finished()), t_Elsa, SLOT(deleteLater()));
+    t_Elsa->start();
+    EntityUpdate * t_Jessica = new EntityUpdate(Jessica);
+    connect(t_Jessica, SIGNAL(finished()), t_Jessica, SLOT(deleteLater()));
+    t_Jessica->start();
+
+    t_Bob->wait();
+    t_Elsa->wait();
+    t_Jessica->wait();
 
     //dispatch any delayed messages
     Dispatch->DispatchDelayedMessages();

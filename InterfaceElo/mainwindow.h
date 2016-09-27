@@ -5,9 +5,11 @@
 #include <QThread>
 #include <QMap>
 #include <QRect>
+#include <QMutex>
 
 #include <fstream>
 #include <time.h>
+#include <thread>
 
 #include "Locations.h"
 #include "Miner.h"
@@ -25,6 +27,20 @@ namespace Ui {
 class MainWindow;
 }
 
+
+class EntityUpdate : public QThread {
+    Q_OBJECT
+    void run() {
+        entity->Update();
+    }
+
+    BaseGameEntity* entity;
+public:
+    EntityUpdate(BaseGameEntity* entity) {
+        this->entity = entity;
+    }
+};
+
 class GUIUpdater : public QThread {
 
     Q_OBJECT
@@ -36,6 +52,7 @@ class GUIUpdater : public QThread {
         emit simulationfFinished();
         Sleep(1000);
     }
+
     int nbIteration;
     int currentIteration = 0;
     bool stepByStep;
@@ -54,11 +71,9 @@ public:
 
             if(currentIteration==nbIteration) {
                 emit simulationfFinished();
-
             }
 
         }
-
     }
 
 signals:
@@ -81,6 +96,8 @@ public slots:
     void setInfosByDefault();
     void setInfosEnabled(bool val = true);
     void endOfSimulation();
+    void moveEntity(location_type loc, QLabel* img);
+    void updateConsole(QString msg);
 
 private slots:
     void on_pushButton_clicked();
@@ -119,7 +136,7 @@ private:
     Waitress* Jessica;
 
     GUIUpdater *updater;
-
+    QMap<location_type, QLabel*> locations;
 
 };
 

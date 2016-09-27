@@ -15,10 +15,13 @@
 #include "messaging/Telegram.h"
 #include <QLabel>
 #include <QMap>
+#include <QObject>
 
 
-class BaseGameEntity
+class BaseGameEntity: public QObject
 {
+
+Q_OBJECT
 
 private:
 
@@ -64,20 +67,15 @@ public:
   location_type Location()const{return m_Location;}
   void          ChangeLocation(location_type loc){
       m_Location=loc;
+      emit newLocation(loc, this->img);
 
-      if(img!=nullptr) {
 
-          if(locations.contains(loc))
-               img->move(locations.value(loc)->x(), locations.value(loc)->y()+50);
-            // this->locations->value(m_Location);
 
-          // QLabel* label;
-            /*
-          if(label!=nullptr)
-
-          */
-        }
   }
+signals:
+    void newLocation(location_type loc, QLabel *img);
+    void emitText(QString text);
+
 };
 
 

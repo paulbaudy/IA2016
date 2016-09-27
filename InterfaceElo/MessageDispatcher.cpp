@@ -7,6 +7,7 @@
 #include "EntityNames.h"
 
 #include <iostream>
+#include <sstream>
 using std::cout;
 
 using std::set;
@@ -39,7 +40,9 @@ void MessageDispatcher::Discharge(BaseGameEntity* pReceiver,
   if (!pReceiver->HandleMessage(telegram))
   {
     //telegram could not be handled
-    cout << "Message not handled";
+      std::stringstream ss;
+    ss << "Message not handled";
+    cout << ss.str();
   }
 }
 
@@ -64,7 +67,9 @@ void MessageDispatcher::DispatchMessage(double  delay,
   //make sure the receiver is valid
   if (pReceiver == NULL)
   {
-    cout << "\nWarning! No Receiver with ID of " << receiver << " found";
+      std::stringstream ss;
+    ss << "\nWarning! No Receiver with ID of " << receiver << " found";
+    cout << ss.str();
 
     return;
   }
@@ -75,9 +80,11 @@ void MessageDispatcher::DispatchMessage(double  delay,
   //if there is no delay, route telegram immediately                       
   if (delay <= 0.0f)                                                        
   {
-    cout << "\nInstant telegram dispatched by " << GetNameOfEntity(pSender->ID()) << " for " << GetNameOfEntity(pReceiver->ID())
+    std::stringstream ss;
+    ss << "\nInstant telegram dispatched by " << GetNameOfEntity(pSender->ID()) << " for " << GetNameOfEntity(pReceiver->ID())
          << " at time: " << Clock->GetCurrentTime()
          << ". Msg is "<< MsgToStr(msg);
+    cout << ss.str();
 
     //send the telegram to the recipient
     Discharge(pReceiver, telegram);
@@ -93,10 +100,13 @@ void MessageDispatcher::DispatchMessage(double  delay,
     //and put it in the queue
     PriorityQ.insert(telegram);   
 
-    cout << "\nDelayed telegram from " << GetNameOfEntity(pSender->ID())
+    std::stringstream ss;
+    ss << "\nDelayed telegram from " << GetNameOfEntity(pSender->ID())
          << " for " << GetNameOfEntity(pReceiver->ID())
          << " recorded at time " << Clock->GetCurrentTime()
             << ". Msg is "<< MsgToStr(msg);
+
+    cout << ss.str();
             
   }
 }
@@ -127,8 +137,11 @@ void MessageDispatcher::DispatchDelayedMessages()
     //find the recipient
     BaseGameEntity* pReceiver = EntityMgr->GetEntityFromID(telegram.Receiver);
 
-    cout << "\nQueued telegram ready for dispatch: Sent to " 
+    std::stringstream ss;
+    ss << "\nQueued telegram ready for dispatch: Sent to "
          << GetNameOfEntity(pReceiver->ID()) << ". Msg is " << MsgToStr(telegram.Msg);
+
+    cout << ss.str();
 
     //send the telegram to the recipient
     Discharge(pReceiver, telegram);

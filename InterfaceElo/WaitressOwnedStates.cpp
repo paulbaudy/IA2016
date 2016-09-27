@@ -34,7 +34,9 @@ void Bartend::Enter(Waitress* pWaitress)
 	//change location to the saloon
 	if (pWaitress->Location() != saloon)
 	{
-		cout << "\n" << GetNameOfEntity(pWaitress->ID()) << ": " << "I'm walking to the bar";
+        std::stringstream ss;
+        ss << "\n" << GetNameOfEntity(pWaitress->ID()) << ": " << "I'm walking to the bar";
+        cout << ss.str();
 
 		pWaitress->ChangeLocation(saloon);
 	}
@@ -49,7 +51,9 @@ void Bartend::Execute(Waitress* pWaitress)
 
 	pWaitress->IncreaseBoredom();
 
-	cout << "\n" << GetNameOfEntity(pWaitress->ID()) << ": " << "I love bartending!";
+    std::stringstream ss;
+    ss << "\n" << GetNameOfEntity(pWaitress->ID()) << ": " << "I love bartending!";
+    cout << ss.str();
 
 	//if not enough pretty, go to the restroom
 	if (pWaitress->isSweaty())
@@ -66,26 +70,33 @@ void Bartend::Execute(Waitress* pWaitress)
 
 void Bartend::Exit(Waitress* pWaitress)
 {
-	cout << "\n" << GetNameOfEntity(pWaitress->ID()) << ": "
+    std::stringstream ss;
+    ss << "\n" << GetNameOfEntity(pWaitress->ID()) << ": "
         << "I'm leaving the bottles darlings!";
+    cout << ss.str();
 }
 
 
 bool Bartend::OnMessage(Waitress* pWaitress, const Telegram& msg)
 {
 	SetTextColor(BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+    std::stringstream ss;
+    std::stringstream ss2;
 
 	switch (msg.Msg)
 	{
 	case Msg_HiWaitress:
 
-		cout << "\nMessage handled by " << GetNameOfEntity(pWaitress->ID())
+        ss << "\nMessage handled by " << GetNameOfEntity(pWaitress->ID())
 			<< " at time: " << Clock->GetCurrentTime();
+        cout << ss.str();
 
 		SetTextColor(FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY);
 
-		cout << "\n" << GetNameOfEntity(pWaitress->ID())
+
+        ss2 << "\n" << GetNameOfEntity(pWaitress->ID())
 			<< ": Oh! That's my favorite miner!";
+        cout << ss2.str();
 
 		pWaitress->GetFSM()->ChangeState(InteractWithMiner::Instance());
 
@@ -111,7 +122,9 @@ void EnterRestroomAndMakeUp::Enter(Waitress* pWaitress)
 	//change location to this restroom
 	if (pWaitress->Location() != saloonRestroom)
 	{
-		cout << "\n" << GetNameOfEntity(pWaitress->ID()) << ": " << "Let's go to the restroom";
+        std::stringstream ss;
+        ss << "\n" << GetNameOfEntity(pWaitress->ID()) << ": " << "Let's go to the restroom";
+        cout << ss.str();
 
 		pWaitress->ChangeLocation(saloonRestroom);
 	}
@@ -126,7 +139,9 @@ void EnterRestroomAndMakeUp::Execute(Waitress* pWaitress)
 
 	pWaitress->IncreaseBoredom();
 
-	cout << "\n" << GetNameOfEntity(pWaitress->ID()) << ": " << "I'll be the prettiest girl!";
+    std::stringstream ss;
+    ss << "\n" << GetNameOfEntity(pWaitress->ID()) << ": " << "I'll be the prettiest girl!";
+    cout << ss.str();
 
 	pWaitress->GetFSM()->RevertToPreviousState();
 }
@@ -134,8 +149,10 @@ void EnterRestroomAndMakeUp::Execute(Waitress* pWaitress)
 
 void EnterRestroomAndMakeUp::Exit(Waitress* pWaitress)
 {
-	cout << "\n" << GetNameOfEntity(pWaitress->ID()) << ": "
+    std::stringstream ss;
+    ss << "\n" << GetNameOfEntity(pWaitress->ID()) << ": "
 		<< "Bye peace and quiet place!";
+    cout << ss.str();
 }
 
 
@@ -160,7 +177,9 @@ void PractisePiano::Enter(Waitress* pWaitress)
 	//change location to the piano
 	if (pWaitress->Location() != saloonPiano)
 	{
-		cout << "\n" << GetNameOfEntity(pWaitress->ID()) << ": " << "I'm walking to the piano!";
+        std::stringstream ss;
+        ss << "\n" << GetNameOfEntity(pWaitress->ID()) << ": " << "I'm walking to the piano!";
+        cout << ss.str();
 
 		pWaitress->ChangeLocation(saloonPiano);
 	}
@@ -174,7 +193,9 @@ void PractisePiano::Execute(Waitress* pWaitress)
 	pWaitress->IncreaseSweat();
 	pWaitress->DecreaseBoredom();
 
-	cout << "\n" << GetNameOfEntity(pWaitress->ID()) << ": " << "What a groove!";
+    std::stringstream ss;
+    ss << "\n" << GetNameOfEntity(pWaitress->ID()) << ": " << "What a groove!";
+    cout << ss.str();
 
 	//if not enough pretty, go to the restroom
 	if (pWaitress->isSweaty())
@@ -189,26 +210,32 @@ void PractisePiano::Execute(Waitress* pWaitress)
 
 void PractisePiano::Exit(Waitress* pWaitress)
 {
-	cout << "\n" << GetNameOfEntity(pWaitress->ID()) << ": "
+    std::stringstream ss;
+    ss << "\n" << GetNameOfEntity(pWaitress->ID()) << ": "
 		<< "The artist is leaving the scene!";
+    cout << ss.str();
 }
 
 
 bool PractisePiano::OnMessage(Waitress* pWaitress, const Telegram& msg)
 {
 	SetTextColor(BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+    std::stringstream ss;
+    std::stringstream ss2;
 
 	switch (msg.Msg)
 	{
 	case Msg_HiWaitress:
 
-		cout << "\nMessage handled by " << GetNameOfEntity(pWaitress->ID())
+        ss << "\nMessage handled by " << GetNameOfEntity(pWaitress->ID())
 			<< " at time: " << Clock->GetCurrentTime();
+        cout << ss.str();
 
 		SetTextColor(FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY);
 
-		cout << "\n" << GetNameOfEntity(pWaitress->ID())
+        ss2 << "\n" << GetNameOfEntity(pWaitress->ID())
 			<< ": Oh! That's my favorite miner over there!";
+        cout << ss2.str();
 
 		pWaitress->GetFSM()->ChangeState(InteractWithMiner::Instance());
 
@@ -232,10 +259,13 @@ void InteractWithMiner::Enter(Waitress* pWaitress)
 {
 	//if the waitress is not already located at the bar, she must
 	//change location to this bar
+    std::stringstream ss;
+    std::stringstream ss2;
+
 	if (pWaitress->Location() != saloon)
 	{
-		cout << "\n" << GetNameOfEntity(pWaitress->ID()) << ": " << "I'm coming darling!";
-
+        ss << "\n" << GetNameOfEntity(pWaitress->ID()) << ": " << "I'm coming darling!";
+        cout << ss.str();
 		pWaitress->ChangeLocation(saloon);
 	}
     Dispatch->DispatchMessage(0.001,
@@ -244,7 +274,8 @@ void InteractWithMiner::Enter(Waitress* pWaitress)
 							Msg_HiMiner,
 							NO_ADDITIONAL_INFO);
 
-	cout << "\n" << GetNameOfEntity(pWaitress->ID()) << ": " << "Hi Miner, how are you today?";
+    ss2 << "\n" << GetNameOfEntity(pWaitress->ID()) << ": " << "Hi Miner, how are you today?";
+    cout << ss2.str();
 }
 
 
@@ -270,6 +301,8 @@ void InteractWithMiner::Exit(Waitress* pWaitress)
 bool InteractWithMiner::OnMessage(Waitress* pWaitress, const Telegram& msg)
 {
 	SetTextColor(BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+    std::stringstream ss;
+    std::stringstream ss2;
 
 	switch (msg.Msg)
 	{
@@ -277,16 +310,18 @@ bool InteractWithMiner::OnMessage(Waitress* pWaitress, const Telegram& msg)
     case Msg_AlreadyLeft:
 
         SetTextColor(FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY);
-        cout << "\n" << GetNameOfEntity(pWaitress->ID())
+        ss << "\n" << GetNameOfEntity(pWaitress->ID())
             << ": That's too sad... He will come back soon!";
+        cout << ss.str();
         pWaitress->GetFSM()->RevertToPreviousState();
         return true;
 
     //Bob asks her some drink
 	case Msg_GiveMeADrink:
 
-		cout << "\nMessage handled by " << GetNameOfEntity(pWaitress->ID())
+        ss << "\nMessage handled by " << GetNameOfEntity(pWaitress->ID())
 			<< " at time: " << Clock->GetCurrentTime();
+        cout << ss.str();
 
         Dispatch->DispatchMessage(0.01,
 			pWaitress->ID(),
@@ -296,16 +331,18 @@ bool InteractWithMiner::OnMessage(Waitress* pWaitress, const Telegram& msg)
 
 		SetTextColor(FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY);
 
-		cout << "\n" << GetNameOfEntity(pWaitress->ID())
+        ss2 << "\n" << GetNameOfEntity(pWaitress->ID())
 			<< ": There you go! Did you have a good harvest?";
+        cout << ss2.str();
 
 		return true;
 
     //Bob explains he had a good harvest
 	case Msg_GoodHarvest:
 
-		cout << "\nMessage handled by " << GetNameOfEntity(pWaitress->ID())
+        ss << "\nMessage handled by " << GetNameOfEntity(pWaitress->ID())
 			<< " at time: " << Clock->GetCurrentTime();
+        cout << ss.str();
 
         Dispatch->DispatchMessage(0.01,
 			pWaitress->ID(),
@@ -315,8 +352,9 @@ bool InteractWithMiner::OnMessage(Waitress* pWaitress, const Telegram& msg)
 
 		SetTextColor(FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY);
 
-		cout << "\n" << GetNameOfEntity(pWaitress->ID())
+        ss2 << "\n" << GetNameOfEntity(pWaitress->ID())
 			<< ": That's a good news! Don't you have some for your favorite waitress?";
+        cout << ss2.str();
 
 		return true;
 
@@ -324,8 +362,10 @@ bool InteractWithMiner::OnMessage(Waitress* pWaitress, const Telegram& msg)
 	case Msg_BadHarvest:
 	case Msg_LeaveMeAlone:
 
-		cout << "\nMessage handled by " << GetNameOfEntity(pWaitress->ID())
+
+        ss << "\nMessage handled by " << GetNameOfEntity(pWaitress->ID())
 			<< " at time: " << Clock->GetCurrentTime();
+        cout << ss.str();
 
         Dispatch->DispatchMessage(0.01,
 			pWaitress->ID(),
@@ -335,8 +375,9 @@ bool InteractWithMiner::OnMessage(Waitress* pWaitress, const Telegram& msg)
 
 		SetTextColor(FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY);
 
-		cout << "\n" << GetNameOfEntity(pWaitress->ID())
+        ss2 << "\n" << GetNameOfEntity(pWaitress->ID())
 			<< ": That's too bad... Guess I have some work to do.";
+        cout << ss2.str();
 
 		pWaitress->GetFSM()->RevertToPreviousState();
 		return true;
@@ -344,8 +385,9 @@ bool InteractWithMiner::OnMessage(Waitress* pWaitress, const Telegram& msg)
     //Bob gives a nugget to Jessica
 	case Msg_TakeGold:
 
-		cout << "\nMessage handled by " << GetNameOfEntity(pWaitress->ID())
+        ss << "\nMessage handled by " << GetNameOfEntity(pWaitress->ID())
 			<< " at time: " << Clock->GetCurrentTime();
+        cout << ss.str();
 
         Dispatch->DispatchMessage(0.01,
 			pWaitress->ID(),
@@ -356,8 +398,9 @@ bool InteractWithMiner::OnMessage(Waitress* pWaitress, const Telegram& msg)
         pWaitress->AddToGoldTips(1);
 		SetTextColor(FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY);
 
-		cout << "\n" << GetNameOfEntity(pWaitress->ID())
+        ss2 << "\n" << GetNameOfEntity(pWaitress->ID())
 			<< ": Oh! Thank you, you're so cute! See you soon darling *kiss*";
+        cout << ss2.str();
 
 		pWaitress->GetFSM()->RevertToPreviousState();
 		return true;

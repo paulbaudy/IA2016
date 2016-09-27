@@ -9,8 +9,9 @@
 
 /* http://www.qtforum.org/article/39768/redirecting-std-cout-std-cerf-qdebug-to-qtextedit.html */
 
-class Q_DebugStream : public std::basic_streambuf<char>
+class Q_DebugStream : public QObject, std::basic_streambuf<char>
 {
+    Q_OBJECT
 public:
     Q_DebugStream(std::ostream &stream, QTextEdit* text_edit) : m_stream(stream)
     {
@@ -31,9 +32,11 @@ protected:
     {
         if (v == '\n')
         {
-            log_window->append(" ");
+            // log_window->append(" ");
+            emit emitConsole(" <br/>");
         }else{
-            log_window->insertHtml((QString)v);
+            // log_window->insertHtml((QString)v);
+            emit emitConsole((QString)v);
         }
         return v;
     }
@@ -48,34 +51,33 @@ protected:
         QString stdColor = "<font color = 'black'>";
         QString endColor = "</font>";
         QString color;
+        QString res;
+        res.reserve(10000);
 
-        if(str.contains("\n")){
-            QStringList strSplitted = str.split("\n");
 
-            log_window->moveCursor (QTextCursor::End);
-            log_window->insertHtml(strSplitted.at(0)); //Index 0 is still on the same old line
-
-            for(int i = 1; i < strSplitted.size(); i++){
-                log_window->append(strSplitted.at(i));
-            }
-        }else{
-            log_window->moveCursor (QTextCursor::End);
-            if(str == "Miner Bob"){
+            //log_window->moveCursor (QTextCursor::End);
+            if(str.contains("Miner Bob:")){
                 str+=" ";
                 color = bobColor;
-            }else if(str == "Elsa"){
+            }else if(str.contains("Elsa:")){
                 str+=" ";
                 color = elsaColor;
-            }else if(str == "Jessica"){
+            }else if(str.contains("Jessica:")){
                 str+=" ";
                 color = jessicaColor;
             }else{
                 color = stdColor;
             }
-            log_window->insertHtml(color + str + endColor);
-        }
+           // log_window->insertHtml(color + str + endColor);
+            res.append(color + str + endColor);
+
+        emit emitConsole(res);
+
         return n;
     }
+
+signals:
+    void emitConsole(QString msg);
 
 private:
     std::ostream &m_stream;

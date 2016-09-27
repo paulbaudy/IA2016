@@ -40,17 +40,23 @@ void WifesGlobalState::Execute(MinersWife* wife)
 bool WifesGlobalState::OnMessage(MinersWife* wife, const Telegram& msg)
 {
   SetTextColor(BACKGROUND_RED|FOREGROUND_RED|FOREGROUND_GREEN|FOREGROUND_BLUE);
+  std::stringstream ss;
+  std::stringstream ss2;
 
   switch(msg.Msg)
   {
   case Msg_NotWhatLooksLike: {
-	  cout << "\nMessage handled by " << GetNameOfEntity(wife->ID()) << " at time: "
+
+      ss << "\nMessage handled by " << GetNameOfEntity(wife->ID()) << " at time: "
 		  << Clock->GetCurrentTime();
+      cout << ss.str();
 
 	  SetTextColor(FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 
-      cout << "\n" << GetNameOfEntity(wife->ID()) <<
+
+      ss2 << "\n" << GetNameOfEntity(wife->ID()) <<
            ": Really... I'm not sure! Go away, I don't what to see you for the moment!";
+      cout << ss2.str();
 
 	  return true;
   }
@@ -58,13 +64,17 @@ bool WifesGlobalState::OnMessage(MinersWife* wife, const Telegram& msg)
 	 
   case Msg_HiHoneyImHome:
    {
-       cout << "\nMessage handled by " << GetNameOfEntity(wife->ID()) << " at time: " 
+
+       ss << "\nMessage handled by " << GetNameOfEntity(wife->ID()) << " at time: "
        << Clock->GetCurrentTime();
+       cout << ss.str();
 
      SetTextColor(FOREGROUND_GREEN|FOREGROUND_INTENSITY);
 
-     cout << "\n" << GetNameOfEntity(wife->ID()) << 
+
+     ss2 << "\n" << GetNameOfEntity(wife->ID()) <<
           ": Hi honey. Let me make you some of mah fine country stew";
+     cout << ss2.str();
 
      wife->GetFSM()->ChangeState(CookStew::Instance());
    }
@@ -88,32 +98,36 @@ DoHouseWork* DoHouseWork::Instance()
 
 void DoHouseWork::Enter(MinersWife* wife)
 {
-  cout << "\n" << GetNameOfEntity(wife->ID()) << ": Time to do some more housework!";
+  std::stringstream ss;
+  ss << "\n" << GetNameOfEntity(wife->ID()) << ": Time to do some more housework!";
+  cout << ss.str();
 }
 
 
 void DoHouseWork::Execute(MinersWife* wife)
 {
+    std::stringstream ss;
   switch(RandInt(0,2))
   {
   case 0:
 
-    cout << "\n" << GetNameOfEntity(wife->ID()) << ": Moppin' the floor";
+    ss << "\n" << GetNameOfEntity(wife->ID()) << ": Moppin' the floor";
 
     break;
 
   case 1:
 
-    cout << "\n" << GetNameOfEntity(wife->ID()) << ": Washin' the dishes";
+    ss << "\n" << GetNameOfEntity(wife->ID()) << ": Washin' the dishes";
 
     break;
 
   case 2:
 
-    cout << "\n" << GetNameOfEntity(wife->ID()) << ": Makin' the bed";
+    ss << "\n" << GetNameOfEntity(wife->ID()) << ": Makin' the bed";
 
     break;
   }
+  cout << ss.str();
 }
 
 void DoHouseWork::Exit(MinersWife* wife)
@@ -137,20 +151,26 @@ VisitBathroom* VisitBathroom::Instance()
 
 void VisitBathroom::Enter(MinersWife* wife)
 {  
-  cout << "\n" << GetNameOfEntity(wife->ID()) << ": Walkin' to the can. Need to powda mah pretty li'lle nose"; 
+  std::stringstream ss;
+  ss << "\n" << GetNameOfEntity(wife->ID()) << ": Walkin' to the can. Need to powda mah pretty li'lle nose";
+  cout << ss.str();
 }
 
 
 void VisitBathroom::Execute(MinersWife* wife)
 {
-  cout << "\n" << GetNameOfEntity(wife->ID()) << ": Ahhhhhh! Sweet relief!";
+  std::stringstream ss;
+  ss << "\n" << GetNameOfEntity(wife->ID()) << ": Ahhhhhh! Sweet relief!";
+  cout << ss.str();
 
   wife->GetFSM()->RevertToPreviousState();
 }
 
 void VisitBathroom::Exit(MinersWife* wife)
 {
-  cout << "\n" << GetNameOfEntity(wife->ID()) << ": Leavin' the Jon";
+  std::stringstream ss;
+  ss << "\n" << GetNameOfEntity(wife->ID()) << ": Leavin' the Jon";
+  cout << ss.str();
 }
 
 
@@ -175,7 +195,9 @@ void CookStew::Enter(MinersWife* wife)
   //if not already cooking put the stew in the oven
   if (!wife->Cooking())
   {
-    cout << "\n" << GetNameOfEntity(wife->ID()) << ": Putting the stew in the oven";
+    std::stringstream ss;
+    ss << "\n" << GetNameOfEntity(wife->ID()) << ": Putting the stew in the oven";
+    cout << ss.str();
   
     //send a delayed message myself so that I know when to take the stew
     //out of the oven
@@ -192,30 +214,39 @@ void CookStew::Enter(MinersWife* wife)
 
 void CookStew::Execute(MinersWife* wife)
 {
-  cout << "\n" << GetNameOfEntity(wife->ID()) << ": Fussin' over food";
+  std::stringstream ss;
+  ss << "\n" << GetNameOfEntity(wife->ID()) << ": Fussin' over food";
+  cout << ss.str();
 }
 
 void CookStew::Exit(MinersWife* wife)
 {
   SetTextColor(FOREGROUND_GREEN|FOREGROUND_INTENSITY);
-  
-  cout << "\n" << GetNameOfEntity(wife->ID()) << ": Puttin' the stew on the table";
+  std::stringstream ss;
+  ss << "\n" << GetNameOfEntity(wife->ID()) << ": Puttin' the stew on the table";
+  cout << ss.str();
 }
 
 
 bool CookStew::OnMessage(MinersWife* wife, const Telegram& msg)
 {
   SetTextColor(BACKGROUND_RED|FOREGROUND_RED|FOREGROUND_GREEN|FOREGROUND_BLUE);
+  std::stringstream ss;
+  std::stringstream ss2;
 
   switch(msg.Msg)
   {
     case Msg_StewReady:
     {
-      cout << "\nMessage received by " << GetNameOfEntity(wife->ID()) <<
+
+      ss << "\nMessage received by " << GetNameOfEntity(wife->ID()) <<
            " at time: " << Clock->GetCurrentTime();
+      cout << ss.str();
 
       SetTextColor(FOREGROUND_GREEN|FOREGROUND_INTENSITY);
-      cout << "\n" << GetNameOfEntity(wife->ID()) << ": StewReady! Lets eat";
+
+      ss2 << "\n" << GetNameOfEntity(wife->ID()) << ": StewReady! Lets eat";
+      cout << ss2.str();
 
       //let hubby know the stew is ready
       Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY,

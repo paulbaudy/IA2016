@@ -34,7 +34,9 @@ void EnterMineAndDigForNugget::Enter(Miner* pMiner)
   //change location to the gold mine
   if (pMiner->Location() != goldmine)
   {
-    cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Walkin' to the goldmine";
+    std::stringstream ss;
+    ss << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Walkin' to the goldmine";
+    cout << ss.str();
 
     pMiner->ChangeLocation(goldmine);
   }
@@ -51,7 +53,10 @@ void EnterMineAndDigForNugget::Execute(Miner* pMiner)
 
   pMiner->IncreaseFatigue();
 
-  cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Pickin' up a nugget";
+  std::stringstream ss;
+  ss << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Pickin' up a nugget";
+  cout << ss.str();
+
 
   //if enough gold mined, go and put it in the bank
   if (pMiner->PocketsFull())
@@ -68,8 +73,10 @@ void EnterMineAndDigForNugget::Execute(Miner* pMiner)
 
 void EnterMineAndDigForNugget::Exit(Miner* pMiner)
 {
-  cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " 
+  std::stringstream ss;
+  ss << "\n" << GetNameOfEntity(pMiner->ID()) << ": "
        << "Ah'm leavin' the goldmine with mah pockets full o' sweet gold";
+  cout << ss.str();
 }
 
 
@@ -93,7 +100,9 @@ void VisitBankAndDepositGold::Enter(Miner* pMiner)
   //on entry the miner makes sure he is located at the bank
   if (pMiner->Location() != bank)
   {
-    cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Goin' to the bank. Yes siree";
+    std::stringstream ss;
+    ss << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Goin' to the bank. Yes siree";
+    cout << ss.str();
 
     pMiner->ChangeLocation(bank);
   }
@@ -107,14 +116,18 @@ void VisitBankAndDepositGold::Execute(Miner* pMiner)
     
   pMiner->SetGoldCarried(0);
 
-  cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " 
+  std::stringstream ss;
+  ss << "\n" << GetNameOfEntity(pMiner->ID()) << ": "
        << "Depositing gold. Total savings now: "<< pMiner->Wealth();
+  cout << ss.str();
 
   //wealthy enough to have a well earned rest?
   if (pMiner->Wealth() >= ComfortLevel)
   {
-    cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " 
+    std::stringstream ss;
+    ss << "\n" << GetNameOfEntity(pMiner->ID()) << ": "
          << "WooHoo! Rich enough for now. Back home to mah li'lle lady";
+    cout << ss.str();
       
     pMiner->GetFSM()->ChangeState(GoHomeAndSleepTilRested::Instance());      
   }
@@ -129,7 +142,9 @@ void VisitBankAndDepositGold::Execute(Miner* pMiner)
 
 void VisitBankAndDepositGold::Exit(Miner* pMiner)
 {
-  cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Leavin' the bank";
+  std::stringstream ss;
+  ss << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Leavin' the bank";
+  cout << ss.str();
 }
 
 
@@ -151,7 +166,9 @@ void GoHomeAndSleepTilRested::Enter(Miner* pMiner)
 {
   if (pMiner->Location() != shack)
   {
-    cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Walkin' home";
+    std::stringstream ss;
+    ss << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Walkin' home";
+    cout << ss.str();
 
     pMiner->ChangeLocation(shack); 
 
@@ -165,8 +182,11 @@ void GoHomeAndSleepTilRested::Enter(Miner* pMiner)
 
         SetTextColor(FOREGROUND_RED|FOREGROUND_INTENSITY);
 
-        cout << "\n" << GetNameOfEntity(pMiner->ID())
+        std::stringstream ss;
+        ss << "\n" << GetNameOfEntity(pMiner->ID())
              << ": Honey, it's net' whot it looks lik'! A' prumis' you!";
+        cout << ss.str();
+
         pMiner->cleanLipstick();
     }else{
         //let the wife know I'm home
@@ -184,8 +204,10 @@ void GoHomeAndSleepTilRested::Execute(Miner* pMiner)
   //if miner is not fatigued start to dig for nuggets again.
   if (!pMiner->Fatigued())
   {
-     cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " 
+     std::stringstream ss;
+     ss << "\n" << GetNameOfEntity(pMiner->ID()) << ": "
           << "All mah fatigue has drained away. Time to find more gold!";
+     cout << ss.str();
 
      pMiner->GetFSM()->ChangeState(EnterMineAndDigForNugget::Instance());
   }
@@ -195,7 +217,9 @@ void GoHomeAndSleepTilRested::Execute(Miner* pMiner)
     //sleep
     pMiner->DecreaseFatigue();
 
-    cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "ZZZZ... ";
+    std::stringstream ss;
+    ss << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "ZZZZ... ";
+    cout << ss.str();
   } 
 }
 
@@ -212,13 +236,17 @@ bool GoHomeAndSleepTilRested::OnMessage(Miner* pMiner, const Telegram& msg)
    {
    case Msg_StewReady:
 
-     cout << "\nMessage handled by " << GetNameOfEntity(pMiner->ID()) 
+     std::stringstream ss;
+     ss << "\nMessage handled by " << GetNameOfEntity(pMiner->ID())
      << " at time: " << Clock->GetCurrentTime();
+     cout << ss.str();
 
      SetTextColor(FOREGROUND_RED|FOREGROUND_INTENSITY);
 
-     cout << "\n" << GetNameOfEntity(pMiner->ID()) 
+     std::stringstream ss2;
+     ss2 << "\n" << GetNameOfEntity(pMiner->ID())
           << ": Okay Hun, ahm a comin'!";
+     cout << ss2.str();
 
      pMiner->GetFSM()->ChangeState(EatStew::Instance());
       
@@ -244,7 +272,9 @@ void QuenchThirst::Enter(Miner* pMiner)
   {    
     pMiner->ChangeLocation(saloon);
 
-    cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Boy, ah sure is thusty! Walking to the saloon";
+    std::stringstream ss;
+    ss << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Boy, ah sure is thusty! Walking to the saloon";
+    cout << ss.str();
 
 	//let the waitress know I'm here
     Dispatch->DispatchMessage(0.01, //time delay
@@ -276,16 +306,19 @@ void QuenchThirst::Execute(Miner* pMiner)
 		Msg_HiWaitress,   //the message
 		NO_ADDITIONAL_INFO);
 
-	cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Still waiting for Jess...";
-
+    std::stringstream ss;
+    ss << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Still waiting for Jess...";
+    cout << ss.str();
 }
 
 
 void QuenchThirst::Exit(Miner* pMiner)
 { 
 	if (!pMiner->Thirsty()) {
-		cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Leaving the saloon, feelin' good";
-	}
+        std::stringstream ss;
+        ss << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Leaving the saloon, feelin' good";
+        cout << ss.str();
+    }
 }
 
 
@@ -293,12 +326,15 @@ bool QuenchThirst::OnMessage(Miner* pMiner, const Telegram& msg)
 {
 	SetTextColor(BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 
+    std::stringstream ss;
+    std::stringstream ss2;
 	switch (msg.Msg)
 	{
 	case Msg_HiMiner:
 
-		cout << "\nMessage handled by " << GetNameOfEntity(pMiner->ID())
+        ss << "\nMessage handled by " << GetNameOfEntity(pMiner->ID())
 			<< " at time: " << Clock->GetCurrentTime();
+        cout << ss.str();
 
 		SetTextColor(FOREGROUND_RED | FOREGROUND_INTENSITY);
 
@@ -308,14 +344,17 @@ bool QuenchThirst::OnMessage(Miner* pMiner, const Telegram& msg)
 		return true;
 
 	case Msg_WaitingForDrink:
-		cout << "\nMessage handled by " << GetNameOfEntity(pMiner->ID())
+
+        ss << "\nMessage handled by " << GetNameOfEntity(pMiner->ID())
 			<< " at time: " << Clock->GetCurrentTime();
+        cout << ss.str();
 
 		SetTextColor(FOREGROUND_RED | FOREGROUND_INTENSITY);
 
 		pMiner->BuyAndDrinkAWhiskey();
 
-        cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "A don't need Jess... Waiter pleas', need' drink! That's mighty fine sippin' liquer";
+        ss2 << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "A don't need Jess... Waiter pleas', need' drink! That's mighty fine sippin' liquer";
+        cout << ss2.str();
 
         //let the waitress know I'm leaving
         Dispatch->DispatchMessage(0.1, //time delay
@@ -353,8 +392,10 @@ void InteractWithWaitress::Enter(Miner* pMiner) {
 		Msg_GiveMeADrink,   //the message
 		NO_ADDITIONAL_INFO);
 
-	cout << "\n" << GetNameOfEntity(pMiner->ID())
+    std::stringstream ss;
+    ss << "\n" << GetNameOfEntity(pMiner->ID())
 		<< ": Oh, fine! Can I have my sippin' liquer?";
+    cout << ss.str();
 }
 
 void InteractWithWaitress::Execute(Miner* pMiner) {
@@ -370,12 +411,16 @@ void InteractWithWaitress::Exit(Miner* pMiner) {
 bool InteractWithWaitress::OnMessage(Miner* pMiner, const Telegram& msg) {
 	SetTextColor(BACKGROUND_RED | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 	message_type msgt;
+    std::stringstream ss;
+    std::stringstream ss2;
 
 	switch (msg.Msg)
 	{
 	case Msg_GiveDrinkAndAskHarvest:
-		cout << "\nMessage handled by " << GetNameOfEntity(pMiner->ID())
+
+        ss << "\nMessage handled by " << GetNameOfEntity(pMiner->ID())
 			<< " at time: " << Clock->GetCurrentTime();
+        cout << ss.str();
 
 		
 
@@ -392,16 +437,19 @@ bool InteractWithWaitress::OnMessage(Miner* pMiner, const Telegram& msg) {
 		NO_ADDITIONAL_INFO);
 
 		msgt ==Msg_GoodHarvest?
-			cout << "\n" << GetNameOfEntity(pMiner->ID())
+            ss2 << "\n" << GetNameOfEntity(pMiner->ID())
 			<< ": Oh yeah, a real gold mine! My pockets are almost full'!": 
-			cout << "\n" << GetNameOfEntity(pMiner->ID())
+            ss2 << "\n" << GetNameOfEntity(pMiner->ID())
 			<< ": Not really. This is just not my day.";
+        cout << ss2.str();
 
 		return true;
 
 	case Msg_AskForTips:
-		cout << "\nMessage handled by " << GetNameOfEntity(pMiner->ID())
+
+        ss << "\nMessage handled by " << GetNameOfEntity(pMiner->ID())
 			<< " at time: " << Clock->GetCurrentTime();
+        cout << ss.str();
 
         (RandFloat() < 0.5) ? msgt = Msg_LeaveMeAlone : msgt = Msg_TakeGold;
 
@@ -413,23 +461,27 @@ bool InteractWithWaitress::OnMessage(Miner* pMiner, const Telegram& msg) {
 			msgt,   //the message
 			NO_ADDITIONAL_INFO);
 
+
 		msgt == Msg_LeaveMeAlone ?
-			cout << "\n" << GetNameOfEntity(pMiner->ID())
+            ss2 << "\n" << GetNameOfEntity(pMiner->ID())
 			<< ":  Leave me alone. I'm tired..." :
-			cout << "\n" << GetNameOfEntity(pMiner->ID())
+            ss2 << "\n" << GetNameOfEntity(pMiner->ID())
 			<< ": What a good idea! Take this nugget!";
+        cout << ss2.str();
 
 		return true;
 
 	case Msg_MaybeNextTime:
-
-		cout << "\nMessage handled by " << GetNameOfEntity(pMiner->ID())
+        ss << "\nMessage handled by " << GetNameOfEntity(pMiner->ID())
 			<< " at time: " << Clock->GetCurrentTime();
+        cout << ss.str();
 
 		SetTextColor(FOREGROUND_RED | FOREGROUND_INTENSITY);
 
-		cout << "\n" << GetNameOfEntity(pMiner->ID())
+
+        ss2 << "\n" << GetNameOfEntity(pMiner->ID())
             << ": Okay Hun, see ya'! Let's finish my drink!";
+        cout << ss2.str();
 
         //Drink his last sip
         pMiner->SetThirst(0);
@@ -439,15 +491,19 @@ bool InteractWithWaitress::OnMessage(Miner* pMiner, const Telegram& msg) {
 		return true;
 		
 	case Msg_SeeYouSoon:
-		cout << "\nMessage handled by " << GetNameOfEntity(pMiner->ID())
+
+        ss << "\nMessage handled by " << GetNameOfEntity(pMiner->ID())
 			<< " at time: " << Clock->GetCurrentTime();
+        cout << ss.str();
 
 		SetTextColor(FOREGROUND_RED | FOREGROUND_INTENSITY);
 
 		pMiner->getKissed();
 
-		cout << "\n" << GetNameOfEntity(pMiner->ID())
+
+        ss2 << "\n" << GetNameOfEntity(pMiner->ID())
             << ": Okay, see ya'! Let's finish my drink!";
+        cout << ss2.str();
 
         //Drink his last sip
         pMiner->SetThirst(0);
@@ -474,20 +530,26 @@ EatStew* EatStew::Instance()
 
 void EatStew::Enter(Miner* pMiner)
 {
-  cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Smells Reaaal goood Elsa!";
+  std::stringstream ss;
+  ss << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Smells Reaaal goood Elsa!";
+  cout << ss.str();
 }
 
 void EatStew::Execute(Miner* pMiner)
 {
 
-  cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Tastes real good too!";
+  std::stringstream ss;
+  ss << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Tastes real good too!";
+  cout << ss.str();
 
   pMiner->GetFSM()->RevertToPreviousState();
 }
 
 void EatStew::Exit(Miner* pMiner)
 { 
-  cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Thankya li'lle lady. Ah better get back to whatever ah wuz doin'";
+  std::stringstream ss;
+  ss << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Thankya li'lle lady. Ah better get back to whatever ah wuz doin'";
+  cout << ss.str();
 }
 
 

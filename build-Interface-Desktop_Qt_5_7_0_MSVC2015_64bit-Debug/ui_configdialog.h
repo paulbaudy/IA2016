@@ -30,7 +30,6 @@ class Ui_ConfigDialog
 {
 public:
     QGridLayout *gridLayout;
-    QDialogButtonBox *buttonBox;
     QFrame *frame;
     QFormLayout *formLayout;
     QLabel *label_4;
@@ -43,6 +42,8 @@ public:
     QSpinBox *sb_iteration;
     QLabel *label;
     QCheckBox *cbStep;
+    QLabel *label_6;
+    QDialogButtonBox *buttonBox;
 
     void setupUi(QDialog *ConfigDialog)
     {
@@ -51,13 +52,6 @@ public:
         ConfigDialog->resize(400, 300);
         gridLayout = new QGridLayout(ConfigDialog);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        buttonBox = new QDialogButtonBox(ConfigDialog);
-        buttonBox->setObjectName(QStringLiteral("buttonBox"));
-        buttonBox->setOrientation(Qt::Horizontal);
-        buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
-
-        gridLayout->addWidget(buttonBox, 1, 0, 1, 1);
-
         frame = new QFrame(ConfigDialog);
         frame->setObjectName(QStringLiteral("frame"));
         frame->setFrameShape(QFrame::StyledPanel);
@@ -67,37 +61,37 @@ public:
         label_4 = new QLabel(frame);
         label_4->setObjectName(QStringLiteral("label_4"));
 
-        formLayout->setWidget(0, QFormLayout::LabelRole, label_4);
+        formLayout->setWidget(1, QFormLayout::LabelRole, label_4);
 
         bobPlace = new QComboBox(frame);
         bobPlace->setObjectName(QStringLiteral("bobPlace"));
 
-        formLayout->setWidget(0, QFormLayout::FieldRole, bobPlace);
+        formLayout->setWidget(1, QFormLayout::FieldRole, bobPlace);
 
         label_3 = new QLabel(frame);
         label_3->setObjectName(QStringLiteral("label_3"));
 
-        formLayout->setWidget(1, QFormLayout::LabelRole, label_3);
+        formLayout->setWidget(2, QFormLayout::LabelRole, label_3);
 
         elsaPlace = new QComboBox(frame);
         elsaPlace->setObjectName(QStringLiteral("elsaPlace"));
 
-        formLayout->setWidget(1, QFormLayout::FieldRole, elsaPlace);
+        formLayout->setWidget(2, QFormLayout::FieldRole, elsaPlace);
 
         label_2 = new QLabel(frame);
         label_2->setObjectName(QStringLiteral("label_2"));
 
-        formLayout->setWidget(2, QFormLayout::LabelRole, label_2);
+        formLayout->setWidget(3, QFormLayout::LabelRole, label_2);
 
         jessPlace = new QComboBox(frame);
         jessPlace->setObjectName(QStringLiteral("jessPlace"));
 
-        formLayout->setWidget(2, QFormLayout::FieldRole, jessPlace);
+        formLayout->setWidget(3, QFormLayout::FieldRole, jessPlace);
 
         label_5 = new QLabel(frame);
         label_5->setObjectName(QStringLiteral("label_5"));
 
-        formLayout->setWidget(3, QFormLayout::LabelRole, label_5);
+        formLayout->setWidget(4, QFormLayout::LabelRole, label_5);
 
         sb_iteration = new QSpinBox(frame);
         sb_iteration->setObjectName(QStringLiteral("sb_iteration"));
@@ -105,20 +99,32 @@ public:
         sb_iteration->setMaximum(50);
         sb_iteration->setValue(30);
 
-        formLayout->setWidget(3, QFormLayout::FieldRole, sb_iteration);
+        formLayout->setWidget(4, QFormLayout::FieldRole, sb_iteration);
 
         label = new QLabel(frame);
         label->setObjectName(QStringLiteral("label"));
 
-        formLayout->setWidget(4, QFormLayout::LabelRole, label);
+        formLayout->setWidget(5, QFormLayout::LabelRole, label);
 
         cbStep = new QCheckBox(frame);
         cbStep->setObjectName(QStringLiteral("cbStep"));
 
-        formLayout->setWidget(4, QFormLayout::FieldRole, cbStep);
+        formLayout->setWidget(5, QFormLayout::FieldRole, cbStep);
+
+        label_6 = new QLabel(frame);
+        label_6->setObjectName(QStringLiteral("label_6"));
+
+        formLayout->setWidget(0, QFormLayout::FieldRole, label_6);
 
 
         gridLayout->addWidget(frame, 0, 0, 1, 1);
+
+        buttonBox = new QDialogButtonBox(ConfigDialog);
+        buttonBox->setObjectName(QStringLiteral("buttonBox"));
+        buttonBox->setOrientation(Qt::Horizontal);
+        buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
+
+        gridLayout->addWidget(buttonBox, 1, 0, 1, 1);
 
 
         retranslateUi(ConfigDialog);
@@ -130,7 +136,7 @@ public:
 
     void retranslateUi(QDialog *ConfigDialog)
     {
-        ConfigDialog->setWindowTitle(QApplication::translate("ConfigDialog", "Options", 0));
+        ConfigDialog->setWindowTitle(QApplication::translate("ConfigDialog", "New configuration", 0));
         label_4->setText(QApplication::translate("ConfigDialog", "Bob", 0));
         bobPlace->clear();
         bobPlace->insertItems(0, QStringList()
@@ -155,6 +161,7 @@ public:
         label_5->setText(QApplication::translate("ConfigDialog", "Iteration", 0));
         label->setText(QApplication::translate("ConfigDialog", "Step by step", 0));
         cbStep->setText(QString());
+        label_6->setText(QApplication::translate("ConfigDialog", "Choose your new configuration :", 0));
     } // retranslateUi
 
 };

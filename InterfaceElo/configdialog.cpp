@@ -7,6 +7,8 @@ ConfigDialog::ConfigDialog(configuration *cf, QWidget *parent) :
 {
     ui->setupUi(this);
     this->cf = cf;
+
+
 }
 
 ConfigDialog::~ConfigDialog()
