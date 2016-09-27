@@ -143,7 +143,10 @@ void EnterRestroomAndMakeUp::Execute(Waitress* pWaitress)
     ss << "\n" << GetNameOfEntity(pWaitress->ID()) << ": " << "I'll be the prettiest girl!";
     cout << ss.str();
 
-	pWaitress->GetFSM()->RevertToPreviousState();
+    if(pWaitress->GetFSM()->PreviousState()==PractisePiano::Instance())
+        pWaitress->GetFSM()->RevertToPreviousState();
+    else
+        pWaitress->GetFSM()->ChangeState(Bartend::Instance());
 }
 
 
@@ -284,8 +287,6 @@ void InteractWithMiner::Execute(Waitress* pWaitress)
 	//Now the waitress is at the bar. She will talk to
 	//the miner
 	pWaitress->DecreaseBoredom();
-
-	// cout << "\n" << GetNameOfEntity(pWaitress->ID()) << ": " << "Blablabla";
 
 	//A message will be sent to end the conversation
 
