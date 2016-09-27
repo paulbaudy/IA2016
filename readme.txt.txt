@@ -21,13 +21,15 @@ les attributs de chaque personnage, comme le niveau de fatigue, le nombre de pép
 graphique, avec le nom des agents en couleur.
 
 >>> 3.4.2 : Multi-threading
-> Parallélisation des updates des agents grâce aux threads
+> Parallélisation des updates des agents grâce aux threads : l'affichage du texte n'est plus forcément
+dans le même ordre mais cela rajoute du réalisme.
 
 >>> Autres ajouts :
 > Carte du monde : affichage des localisations des agents
 > Exécution Step-By-Step ou Automatique : dans les Options, il est possible de définir le nombre
 d'itérations souhaitées pour l'application. Il est aussi possible de l'exécuter en mode pas à pas,
-pour pouvoir suivre plus facilement ce qu'il se passe.
+pour pouvoir suivre plus facilement ce qu'il se passe. Attention toutefois, l'horloge du programme 
+n'est pas mis en pause: si on attend trop longtemps pour le pas suivant, Bob n'attendra plus Jessica.
 > Reset by default : il est possible de réinitialiser l'ensemble des données par défaut. Cette option 
 est disponible dans l'onglet File.
 

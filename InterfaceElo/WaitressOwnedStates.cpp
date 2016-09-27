@@ -143,7 +143,10 @@ void EnterRestroomAndMakeUp::Execute(Waitress* pWaitress)
     ss << "\n" << GetNameOfEntity(pWaitress->ID()) << ": " << "I'll be the prettiest girl!";
     cout << ss.str();
 
-	pWaitress->GetFSM()->RevertToPreviousState();
+    if(pWaitress->GetFSM()->PreviousState()==PractisePiano::Instance())
+        pWaitress->GetFSM()->RevertToPreviousState();
+    else
+        pWaitress->GetFSM()->ChangeState(Bartend::Instance());
 }
 
 
